@@ -1,0 +1,43 @@
+<ion-fab class="volver" vertical="start" horizontal="start" >
+  <ion-fab-button color="none" (click)="verificarPerfil()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">CHAT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="pantalla">
+    <p *ngFor="let mensaje of mensajes" class="mensajes mensaje-escrito"
+    [ngClass]="usuario.perfil === mensaje.usuario
+                ? 'mensaje-enviado'
+                : 'mensaje-recibido'">
+            <span class="usuario">{{mensaje.usuario}} <br></span>
+            <!-- <span *ngIf="mensaje.usuario != 'mozo'" class="usuario">- Mesa {{mensaje.mesaId}}</span><br> -->
+            <span>{{mensaje.texto}}</span>
+            <br/>
+            <span class="fecha">{{mensaje.hora}}</span>
+    </p>
+  </div>
+</ion-content>
+
+<form>
+  <ion-footer>
+    <ion-toolbar>
+      <div class="enviar-mensaje">
+        <ion-input type="text" placeholder="Escriba un mensaje..." [disabled]="popup"
+        [(ngModel)]="nuevoMensaje" [ngModelOptions]="{ standalone: true }"></ion-input>
+        <ion-icon name="send" (click)="enviarMensaje()"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-footer>  
+</form>
+
+<div class="popup" *ngIf="popup">
+  <h4>{{mensajePopup}}</h4>
+  <ion-button (click)="popup = false">ACEPTAR</ion-button>
+</div>

@@ -1,0 +1,92 @@
+<ion-header [translucent]="true" *ngIf="!scannerActive">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      {{mensajeToolBar}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab  vertical="start" horizontal="end" *ngIf="!scannerActive">
+  <ion-fab-button color="none" (click)="logOut = true" class="sin-fondo">
+    <img class="imagen-cerrar-sesion" src="../../../../assets/inicio-cliente/cerrar-sesion.png" alt="Cerrar sesión">
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true" *ngIf="!scannerActive">
+
+  <div class="pantalla" *ngIf="pantalla === 1">
+    <div class="contenedor-personas">
+      <ion-label clasS="ion-text-center">¿Para cuantas personas es la mesa?</ion-label>
+      <div class="contenedor-cant-personas">
+        <ion-button (click)="sumarPersonas()" clasS="boton-sumador">
+          <ion-icon class="sumador-personas" name="add-circle"></ion-icon>
+        </ion-button>
+        <ion-label class="label-contador">{{contadorPersonas}}</ion-label>
+        <ion-button (click)="restarPersonas()" clasS="boton-sumador">
+          <ion-icon class="sumador-personas" name="remove-circle"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="contenedor-imagen-origami">
+      <img class="imagen-origami" src="../../../../assets/icon/icon.png" alt="Imagen origami">
+    </div>
+
+    <div class="contenedor-qr">
+      <ion-label>Acceda a la lista de espera <ion-icon name="arrow-down-circle-outline"></ion-icon></ion-label>
+        <ion-button fill="solid" class="boton-qr" (click)="startScanner()">
+          <div class="contenedor-icon-qr">
+            <ion-icon class="icon-qr" slot="start" name="qr-code-outline"></ion-icon>
+            <div class="contenedor-h2">
+              <h2>ENLISTARME</h2>
+            </div>
+          </div>
+        </ion-button>   
+      </div>
+  </div>
+  <div class="pantalla-2" *ngIf="pantalla === 2">
+    <div class="contenedor-imagen">
+      <img class="peces" src="../../../../assets/inicio-cliente/foods.gif" alt="Peces koi">
+    </div>
+    <div class="contenedor-h">
+      <h3 *ngIf="!clienteEsperando.sentado">Aguarde a que el metre le asigne su mesa.</h3>
+      <h3 *ngIf="clienteEsperando.sentado">El QR de su mesa está disponible para escanear.</h3>
+    </div>
+    <div class="contenedor-qr" *ngIf="clienteEsperando.sentado">
+      <ion-label>Escanee su mesa <ion-icon name="arrow-down-circle-outline"></ion-icon></ion-label>
+        <ion-button fill="solid" class="boton-qr" (click)="startScanner()">
+          <div class="contenedor-icon-qr">
+            <ion-icon class="icon-qr" slot="start" name="qr-code-outline"></ion-icon>
+            <div class="contenedor-h2">
+              <h2>ESCANEAR MESA</h2>
+            </div>
+          </div>
+        </ion-button>   
+      </div>
+    <div class="contenedor-qr-2">
+
+    </div>
+  </div>
+  <div class="contenedor-spinner" *ngIf="spinnerActivo">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="popup" *ngIf="popup">
+    <h4>{{mensajePopUp}}</h4>
+      <ion-button (click)="popup = false">ACEPTAR</ion-button>
+  </div>
+  <div class="popup" *ngIf="logOut">
+    <h4>¿Desea cerrar sesión?</h4>
+    <div class="botonera-popup">
+      <ion-button (click)="logOut = false">CANCELAR</ion-button>
+      <ion-button (click)="cerrarSesion()">ACEPTAR</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+
+<div *ngIf="scannerActive" class="pantalla-scan">
+  <div class="scan-box"></div>
+  <ion-button (click)="stopScan()" class="boton-cerrar">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+</div>

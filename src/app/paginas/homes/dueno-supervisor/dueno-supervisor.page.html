@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab *ngIf="!spinnerActivo"  vertical="start" horizontal="end" >
+  <ion-fab-button color="none" (click)="popup = true" class="sin-fondo">
+    <img class="imagen-cerrar-sesion" src="../../../../assets/inicio-cliente/cerrar-sesion.png" alt="Cerrar sesión">
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <div class="tabla">
+    <div class="encabezado-tabla">
+        <img class="logo" src="../../../../assets/icon/icon.png" alt="Icono empresa">
+        <h3>CLIENTES EN ESPERA</h3>
+    </div>
+    <div class="seccion-tabla">
+        <table>
+            <thead>
+                <tr>
+                    <th>IMAGEN</th>
+                    <th>NOMBRE</th>
+                    <th>CORREO</th>
+                    <th>ACCIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of listaClientes">
+                  <td><img [src]="cliente.rutaFoto" alt="Imagen cliente"></td>
+                  <td>{{cliente.nombre}}<br>{{cliente.apellido}}</td>
+                  <td>{{cliente.email}}</td>
+                  <td>
+                    <div class="botonera">
+                      <ion-button class="boton-aceptar" (click)="aceptarCliente(cliente)"></ion-button>
+                      <ion-button class="boton-denegar" (click)="accionRechazar(cliente)"></ion-button>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="contenedor-pop-up" class="esconder pop-up">
+      <form [formGroup]="formPopUp" (ngSubmit)="rechazarCliente()">
+        <h4>Razones del rechazo</h4>
+        <input formControlName="razones" class="input-razones" type="text" placeholder=" Explicar razones">
+        <small
+              class="mensaje-error"
+              *ngIf="
+              formPopUp.controls['razones'].errors?.['required'] &&
+              (formPopUp.controls['razones'].touched || razonesTouched)">
+              Debe indicar las razones
+        </small>
+        <small
+            class="mensaje-error"
+            *ngIf="formPopUp.controls['razones'].errors?.['minlength'] ||
+                    (formPopUp.controls['razones'].errors?.['maxLength'] &&
+                    formPopUp.controls['razones'].touched)">
+              Debe tener un mínimo de 10 carácteres y máximo 40    
+        </small>
+        <div class="botonera">
+          <ion-button class="boton-razones" type="submit">Enviar</ion-button>
+          <ion-button class="boton-razones" type="button" (click)="cancelarRechazo()">Cancelar</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="contenedor-spinner" *ngIf="spinnerActivo">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="popup" *ngIf="popup">
+    <h4>¿Desea cerrar sesión?</h4>
+    <div class="botonera-popup">
+      <ion-button (click)="popup = false">CANCELAR</ion-button>
+      <ion-button (click)="cerrarSesion()">ACEPTAR</ion-button>
+    </div>
+  </div>
+</ion-content>
+

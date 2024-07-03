@@ -1,0 +1,114 @@
+<ion-header [translucent]="true" *ngIf="!spinner">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      ENCUESTA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab vertical="start" horizontal="start" >
+  <ion-fab-button color="none" routerLink="/inicio-cliente/mesa">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <ion-fab vertical="start" horizontal="center">
+    <ion-fab-button class="fab-imagenes"  (click)="obtenerFotosEncuesta()">
+      <img class="imagenes-subir-fotos" src="../../../assets/encuesta-cliente/subir-imagenes.png">
+    </ion-fab-button>
+  </ion-fab>
+  <div class="pantalla">
+    <div class="subir-fotos">
+      <strong>¿Desea cargar alguna foto? (Máx 3).</strong>
+    </div>
+    <ion-item-divider></ion-item-divider>
+    
+      <strong>¿Cuál es su edad?</strong>
+      <ion-radio-group (ionChange)="cambiarEdad($event)">
+        <ion-item>
+          <ion-label color="light">13 a 20</ion-label>
+          <ion-radio slot="start" value="13a20"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label color="light">20 a 30</ion-label>
+          <ion-radio slot="start" value="20a30"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label color="light">30 a 40</ion-label>
+          <ion-radio slot="start" value="30a40"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label color="light">Más de 40</ion-label>
+          <ion-radio slot="start" value="40mas"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    
+      <ion-item-divider></ion-item-divider>
+    
+      <strong>¿Qué le hizo sentir más a gusto?</strong>
+      <ion-item class="contenedor-item ion-text-center">
+        <form class="form-opcion" action="#" method="get">
+          <div class="centrarSelect">
+            <ion-label color="dark">Elija una opción</ion-label>
+            <ion-select value="" okText="Seleccionar" cancelText="Cancelar" (ionChange)="cambiarValorSelect($event)">
+              <ion-select-option value="Musica">Música en vivo</ion-select-option>
+              <ion-select-option value="Decoracion">Decoración</ion-select-option>
+              <ion-select-option value="Personal">El personal</ion-select-option>
+            </ion-select>
+          </div>
+        </form>
+      </ion-item>
+    
+    
+      <ion-item-divider></ion-item-divider>
+    
+      <strong>¿Qué le pareció la limpieza del establecimiento?</strong>
+      <ion-item class="contenedor-item item-range">
+        <ion-range min="0" max="10" step="1" (ionChange)="cammbiarValorLimpieza($event)">
+          <ion-icon size="small" color="light" slot="start" name="sad"></ion-icon>
+          <ion-icon slot="end" color="light" name="happy"></ion-icon>
+        </ion-range>
+        <ion-label class="ion-text-center">{{nivelLimpieza}}</ion-label>
+      </ion-item>
+    
+      <ion-item-divider></ion-item-divider>
+    
+      <strong>Nos recomendaría para...</strong>
+    
+      <ion-item class="contenedor-item item-recomendacion" (ionChange)="cambiarValorRecomendadosCumpleanios($event)">
+        <ion-label color="dark">Cumpleaños</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+      <ion-item class="contenedor-item item-recomendacion" (ionChange)="cambiarValorRecomendadosFamilia($event)">
+        <ion-label color="dark">Reuniones familiares</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+      <ion-item class="contenedor-item item-recomendacion" (ionChange)="cambiarValorRecomendadosTrabajo($event)">
+        <ion-label color="dark">Reuniones laborales</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+    
+      <ion-item-divider></ion-item-divider>
+    
+      <strong>¿Tiene alguna sugerencia?</strong>
+      <ion-textarea class="comentario" rows="3" cols="30" placeholder="Escriba un comentario..." name="mensaje"
+      [(ngModel)]="comentario" #mensaje='ngModel'></ion-textarea>
+      <ion-item-divider></ion-item-divider>
+
+      <div class="contenedor-error" *ngIf="error !== ''">
+        <div class="centrar">
+          <strong class="error">{{error}}</strong>
+        </div>
+      </div>
+      
+      <ion-button (click)="enviarRespuestas()">ENVIAR</ion-button>
+  </div>
+</ion-content>
+<div class="contenedor-spinner" *ngIf="spinner">
+  <app-spinner></app-spinner>
+</div> 
+<div class="popup" *ngIf="popup">
+  <h4>Encuesta enviada</h4>
+  <ion-button routerLink="/inicio-cliente/mesa">ACEPTAR</ion-button>
+</div>

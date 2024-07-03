@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+@font-face {
+    font-family: 'Josefin Sans', sans-serif;
+    src: url(../../../assets/fonts/KATO____.ttf);
+}
+
+ion-header ion-toolbar
+{
+    font-family: 'Josefin Sans', sans-serif;
+    --background:  #F27405;
+    --color: white;
+}
+
+ion-footer ion-toolbar
+{
+    font-family: 'Josefin Sans', sans-serif;
+    --background:  #F27405;
+    --color: white;
+}
+
+ion-footer ion-toolbar div
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+ion-footer ion-toolbar ion-button
+{
+    font-family: 'Josefin Sans', sans-serif;
+    --background: #F27405;
+    margin-right: 5vw;
+}
+
+ion-fab-button
+{
+    width: 40px;
+    --box-shadow: none;
+}
+
+.pantalla
+{
+    width: 100%;
+    min-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+
+.pantalla .card
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pantalla .card ion-card
+{
+    width: 90%;
+    height: 225px;
+    --background: #F27405;
+    --color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Mate SC', serif;
+    text-align: center;
+}
+
+.pantalla ion-card ion-card-header
+{
+    width: 90%;
+    padding: 0;
+}
+
+.pantalla ion-card ion-card-header .imagenes
+{
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pantalla ion-card ion-card-header ion-thumbnail
+{
+    width: 30%;
+    height: 75px;
+    margin: 1vh;
+}
+
+.pantalla ion-card ion-card-header .imagenes ion-thumbnail img
+{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.pantalla ion-card ion-card-subtitle
+{
+    --color: white;
+    font-size: 1.1em;
+}
+
+.pantalla ion-card ion-card-content
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.3em;
+    padding: 0;
+}
+
+.pantalla ion-card ion-card-content .cantidad
+{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.boton-cantidad
+{
+    width: 50px;
+    height: 50px;
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+    --border-radius: 50%;
+}
+
+.carrito ion-card
+{
+    width: 90%;
+    --background: #F27405;
+    --color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Mate SC', serif;
+    text-align: center;
+    padding: 3vh 0;
+}
+
+.carrito ion-card ion-card-header
+{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 2vh;
+}
+
+.carrito ion-card ion-card-content
+{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carrito ion-card ion-card-content .item-pedido
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carrito ion-card ion-card-content .botones-detalle
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.carrito ion-card ion-card-content .botones-detalle ion-button
+{
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.hay-pedido
+{
+    justify-content: center;
+}
+
+.hay-pedido ion-button
+{
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.hay-pedido ion-card
+{
+    width: 90%;
+    --background: #F27405;
+    --color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Mate SC', serif;
+    text-align: center;
+    padding: 3vh 0;
+}
+
+.hay-pedido ion-card ion-card-header
+{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 2vh;
+}
+
+.hay-pedido ion-card ion-card-header ion-card-subtitle
+{
+    font-family: 'Mate SC', serif;
+}
+
+.hay-pedido ion-card ion-card-content
+{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hay-pedido ion-card ion-card-content .item-pedido
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hay-pedido ion-card ion-card-content .botones-detalle
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.hay-pedido ion-card ion-card-content .botones-detalle ion-button
+{
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.principal
+{
+    justify-content: center;
+}
+
+.principal ion-card
+{
+    width: 90%;
+    --background: #F27405;
+    --color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Mate SC', serif;
+    text-align: center;
+    padding: 3vh 0;
+}
+
+.principal ion-card ion-card-content
+{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.principal ion-card ion-card-content ion-button
+{
+    --background: #F27405;
+        font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.principal ion-card ion-card-content img
+{
+    width: 70%;
+}
+
+.principal ion-card ion-card-content .accion-pedidos
+{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.principal ion-card ion-card-content .accion-pedidos ion-button
+{
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.principal ion-card ion-card-content .accion-pedidos .boton-scan
+{
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+}
+
+.principal ion-card ion-card-content .accion-pedidos .boton-scan ion-icon
+{
+    font-size: 3em;
+}
+
+.pedir-cuenta
+{
+    justify-content: center;
+}
+
+.pedir-cuenta ion-text
+{
+    font-family: 'Mate SC', serif;
+}
+
+.pedir-cuenta .boton-scan
+{
+    --background: #F27405;
+    height: 10vh;
+}
+
+.pedir-cuenta .boton-scan ion-icon
+{
+    font-size: 3em;
+}
+
+.pedir-cuenta ion-card
+{
+    width: 90%;
+    --background: #F27405;
+    --color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Mate SC', serif;
+    text-align: center;
+    padding: 3vh 0;
+}
+
+.pedir-cuenta ion-card ion-card-header
+{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 2vh;
+}
+
+.pedir-cuenta ion-card ion-card-content
+{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pedir-cuenta ion-card ion-card-content .item-pedido
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pedir-cuenta ion-card ion-card-content .botones-detalle
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pedir-cuenta ion-card ion-card-content .botones-detalle ion-button
+{
+    --background: #F27405;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.pedir-cuenta ion-card ion-card-content .dinero
+{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 80%;
+}
+
+.contenedor-spinner
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.popup
+{
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    backdrop-filter: blur(3px);
+    background-color: #F27405;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Mate SC', serif;
+    padding: 2vh;
+}
+
+.popup .botonera-popup
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.popup ion-button
+{
+    font-family: 'Josefin Sans', sans-serif;
+    --background:#F27405;
+}
+
+ion-icon
+{
+    color: white;
+}
+
+.pantalla-scan
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.scan-box {
+  position: absolute;
+  top: 50%; /* posición vertical en el centro de la pantalla */
+  left: 50%; /* posición horizontal en el centro de la pantalla */
+  transform: translate(-50%, -50%); /* centrar el cuadrado */
+  height: 270px;
+  width: 270px;
+  border: 2px solid #F7D6A1;
+  border-radius: 10%;
+  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.7);
+}
+
+.boton-cerrar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+
+

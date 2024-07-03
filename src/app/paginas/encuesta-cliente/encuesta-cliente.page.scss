@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+
+
+ion-header ion-toolbar {
+    font-family: Mate SC, sans-serif;
+    --background:  #F27405;
+    --color: white;
+}
+
+.pantalla {
+    width: 100%;
+    min-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(241, 241, 241);
+}
+
+.subir-fotos {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+ion-fab ion-fab-button img {
+    width: 2.5rem;
+}
+
+.fab-imagenes {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1.375rem;
+    --background: rgb(211, 209, 209);
+}
+
+ion-item-divider {
+    min-height: 1.5vh!important;
+    --background: rgb(255, 227, 227);
+    margin: 1.25rem 0px;
+}
+
+ion-fab-button {
+    width: 40px;
+    --box-shadow: none;
+    color: white;
+}
+
+strong, p, label {
+    color: rgb(3, 3, 3);
+    font-family: Mate SC, serif;
+}
+
+ion-radio-group {
+    width: 90%;
+}
+
+ion-radio-group ion-item {
+    --background: #F27405;
+    --border-radius: 10px;
+    padding: 3px;
+}
+
+ion-radio-group ion-item ion-label {
+    font-family: Mate SC, serif;
+}
+
+ion-radio-group ion-item ion-radio {
+    --color-checked: white;
+    --color: white;
+}
+
+label {
+    margin-left: 1vw;
+}
+
+.contenedor-item {
+    --background: #F27405;
+    padding: 5px;
+    --border-radius: 10px;
+}
+
+ion-checkbox {
+    --checkbox-background-checked: #F27405;
+    --border-color-checked: #F27405;
+    --border-color: #F27405;
+}
+
+ion-item form {
+    background-color: #F27405;
+    text-align: center;
+}
+
+.centrarSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-select {
+    --background: black;
+}
+
+.item-range {
+    width: 80%;
+}
+
+ion-range {
+    width: 80%;
+}
+
+.item-recomendacion {
+    width: 70%;
+    padding: 4px;
+}
+
+.comentario {
+    font-family: Mate SC, serif;
+    color: black;
+    background-color: white;
+    border-radius: 5vw;
+    margin: 1vw;
+    width: 90%;
+}
+
+ion-button {
+    --background: #F27405;
+    font-family: Mate SC, serif;
+    margin-bottom: 15px;
+}
+
+.contenedor-error {
+    display: flex;
+    justify-content: center;
+}
+
+.centrar {
+    text-align: center;
+    background-color: #F27405;
+    border-radius: 5vh;
+    width: 80vw;
+}
+
+.error {
+    font-family: Mate SC, serif;
+    color: rgb(240, 240, 240);
+}
+
+.formSelect {
+    width: 100%;
+    text-align: center;
+}
+
+.contenedor-spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+@media screen and (orientation: landscape) {
+    ion-toolbar {
+        height: 13vh; 
+    }
+
+    ion-button {
+        margin-left: 3vw;
+    }
+
+    .footer-toolbar {
+        height: 15vh;
+    }
+
+    .divGracias {
+        margin-top: 10vh;
+    }
+
+    .btnEstadisticas {
+        margin-top: 10vh;
+        height: 20vh;
+        width: 70vh;
+        font-size: large;
+    }
+    
+    .btnVolver {
+        margin-top: 10vh;
+        height: 20vh;
+        width: 50vh;
+    }
+}
+
+/* POP UP */
+.popup {
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    backdrop-filter: blur(3px);
+    background-color: #F27405;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: Mate SC, serif;
+    padding: 2vh;
+}
+
+.popup ion-button {
+    font-family: Mate SC, serif;
+    --background: #F27405;
+}

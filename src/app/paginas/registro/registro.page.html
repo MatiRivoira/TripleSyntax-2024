@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true" *ngIf="!scannerActive">
+    <div class="pantalla">
+
+      <div class="toggle">
+        <ion-label>Modo<br>registro</ion-label>
+        <ion-toggle (ionChange)="cambiarModo()"></ion-toggle>
+        <ion-label>Modo<br>anónimo</ion-label>
+      </div>
+
+      <app-registro-cliente *ngIf="modoRegistro" (activarSpinner)="activarSpinner()" (escanearDNI)="startScanner()" [resultadoScanDni]="infoDni"></app-registro-cliente>
+      <app-modo-anonimo *ngIf="!modoRegistro" (activarSpinner)="activarSpinner()"></app-modo-anonimo>
+
+    </div>
+    <div class="contenedor-spinner" *ngIf="spinner">
+      <app-spinner></app-spinner>
+    </div>
+
+    <div class="popup" *ngIf="popup">
+      <h5>Se guardó su registro. Va a recibir un correo cuando se apruebe o rechace.</h5>
+      <ion-button routerLink="/login" (click)="popup = false">ACEPTAR</ion-button>
+    </div>
+  </ion-content>
+
+<div *ngIf="scannerActive" class="pantalla-scan">
+    <div class="scan-box"></div>
+    <ion-button (click)="stopScan()" class="boton-cerrar">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+</div>

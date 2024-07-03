@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title clasS="ion-text-center">ESTADÍSTICAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-fab class="volver" vertical="start" horizontal="start" >
+  <ion-fab-button color="none" routerLink="/inicio-cliente/mesa">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <div class="pantalla">
+    <div class="contenedor-grafico-barra">
+      <canvas id="barChart" height="250px"></canvas>
+    </div>
+    <div class="contenedor-grafico-circular">
+      <ion-label class="ion-text-center">Preferencias de la gente</ion-label>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+  <div class="contenedor-spinner" *ngIf="spinner">
+    <app-spinner></app-spinner>
+  </div> 
+</ion-content>

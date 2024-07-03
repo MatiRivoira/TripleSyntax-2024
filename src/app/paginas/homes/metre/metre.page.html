@@ -1,0 +1,46 @@
+<ion-fab *ngIf="!spinner" vertical="start" horizontal="end" >
+  <ion-fab-button color="none" (click)="popup = true">
+    <img src="../../../../assets/inicio-cliente/cerrar-sesion.png" alt="Cerrar sesión">
+  </ion-fab-button>
+</ion-fab>
+
+<ion-header [translucent]="true" *ngIf="!spinner">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">METRE</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="pantalla">
+
+    <h4 class="ion-text-center">LISTA DE ESPERA</h4>
+    <img class="neko" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjZocWJqc3BjNWNkdGd1NjFueGZ5YmpuNDI2Njc5Y2s0dGMwY3kybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KfxPgR9Xb6lRvlFa8x/giphy.gif">
+    
+    <div class="card" *ngFor="let cliente of listaEspera">
+      <ion-card *ngIf="!cliente.sentado">
+        <ion-card-header>
+          <ion-card-title>{{cliente.nombre}} {{cliente.apellido}}</ion-card-title>
+          <ion-card-subtitle>Mesa para {{cliente.comenzales}} personas</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-thumbnail>
+            <img src="{{cliente.rutaFoto}}"/>
+          </ion-thumbnail>
+          <ion-button (click)="sentarCliente(cliente)">SENTAR</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <div class="contenedor-spinner" *ngIf="spinner">
+    <app-spinner></app-spinner>
+  </div>
+
+  <div class="popup" *ngIf="popup">
+    <h4>¿Desea cerrar sesión?</h4>
+    <div class="botonera-popup">
+      <ion-button (click)="popup = false">CANCELAR</ion-button>
+      <ion-button (click)="cerrarSesion()">ACEPTAR</ion-button>
+    </div>
+  </div>
+
+</ion-content>

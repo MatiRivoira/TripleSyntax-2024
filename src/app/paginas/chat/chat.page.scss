@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+
+@font-face {
+    font-family: Josefin Sans;
+    src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+}
+
+ion-header ion-toolbar {
+    font-family: 'Josefin Sans', sans-serif;
+    --background: #F27405;
+    --color: white;
+}
+
+ion-footer ion-toolbar {
+    font-family: 'Josefin Sans', sans-serif;
+    --background: #F27405;
+    --color: white;
+}
+
+ion-footer ion-toolbar .enviar-mensaje {
+    width: 90%;
+    height: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+}
+
+ion-footer ion-toolbar .enviar-mensaje ion-input {
+    --background: rgba(255, 255, 255, 0.5);
+    --border-radius: 10px;
+    height: 100%;
+}
+
+ion-footer ion-toolbar ion-button {
+    font-family: 'Josefin Sans', sans-serif;
+    --background: #F27405;
+    margin-right: 5vw;
+}
+
+ion-fab-button {
+    width: 40px;
+    --box-shadow: none;
+}
+
+.pantalla {
+    width: 100%;
+    min-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+
+.popup {
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    backdrop-filter: blur(3px);
+    background-color: #F27405;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Mate SC', serif;
+    padding: 2vh;
+}
+
+.popup ion-button {
+    font-family: 'Josefin Sans', sans-serif;
+    --background: #F27405;
+}
+
+.volver ion-icon {
+    color: white;
+}
+
+.mensaje-escrito {
+    min-width: 30vw;
+    font-family: 'Mate SC', serif;
+    border-radius: 10px;
+    padding: 3vw;
+    margin: 2vw 4vw 0;
+}
+
+.mensaje-escrito .usuario {
+    font-size: 1.1em;
+    color: black;
+}
+
+.mensaje-enviado {
+    align-self: flex-end;
+    text-align: right;
+    background-color: #F27405;
+    color: white;
+}
+
+.mensaje-recibido {
+    align-self: flex-start;
+    text-align: left;
+    background-color: #F27405;
+    color: white;
+}

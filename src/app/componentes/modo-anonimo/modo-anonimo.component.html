@@ -1,0 +1,23 @@
+<div class="pantalla">
+  <h1>Modo anónimo</h1>
+  
+  <form [formGroup]="formAnonimo" (ngSubmit)="ingresar()">
+      <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+  
+      <small *ngIf=
+          "formAnonimo.controls['nombre'].errors?.['required'] &&
+          (formAnonimo.controls['nombre'].touched)">
+          El nombre es requerido
+      </small>
+    
+    <div class="registrar">
+      <ion-button routerLink="/login">CANCELAR</ion-button>
+      <ion-button type="submit"
+      [disabled]="formAnonimo.controls['nombre'].errors">INGRESAR</ion-button>
+    </div>
+
+  </form>
+</div>

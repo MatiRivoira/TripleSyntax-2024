@@ -1,0 +1,40 @@
+<ion-header [translucent]="true" *ngIf="!spinner">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">PEDIDOS BARRA</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-fab  vertical="start" horizontal="end" *ngIf="!spinner">
+  <ion-fab-button color="none" (click)="popup = true" class="sin-fondo">
+    <img class="imagen-cerrar-sesion" src="../../../../assets/inicio-cliente/cerrar-sesion.png" alt="Cerrar sesión">
+  </ion-fab-button>
+</ion-fab>
+<ion-content>
+  <div class="pantalla">
+    <h4 class="ion-text-center">PEDIDOS EN PREPARACIÓN</h4>
+    <div class="card" *ngFor="let pedido of listaPedidosBartender">
+      <ion-card *ngIf="!pedido.terminado">
+        <ion-card-header>
+          <ion-card-title>Mesa: {{pedido.idMesa}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="pedido" *ngFor="let item of pedido.items">
+            <h6>{{item.nombre}}</h6>
+            <span>x{{item.cantidad}}</span>
+          </div>
+          <ion-button (click)="terminarPedido(pedido)">TERMINAR PEDIDO</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div class="contenedor-spinner" *ngIf="spinner">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="popup" *ngIf="popup">
+    <h5>¿Desea cerrar sesión?</h5>
+    <div class="botonera-popup">
+      <ion-button (click)="popup = false">CANCELAR</ion-button>
+      <ion-button (click)="cerrarSesion()">ACEPTAR</ion-button>
+    </div>
+  </div>
+</ion-content>
+

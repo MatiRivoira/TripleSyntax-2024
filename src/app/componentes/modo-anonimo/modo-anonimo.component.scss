@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+.pantalla
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+h1
+{
+    margin-top: 0;
+}
+
+.pantalla > ion-button
+{
+    width: 70%;
+}
+
+.pantalla form
+{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 75vw;
+    font-family: 'Mate SC', serif;
+    text-transform: none;
+}
+
+.pantalla form ion-item ion-label
+{
+    font-family: 'Mate SC', serif;
+}
+
+form ion-item
+{
+    width: 100%;
+    margin: 5px;
+    border-radius: 50px;
+    --color: #333;
+}
+
+.pantalla form ion-item ion-input
+{
+    --border: none;
+    font-family: 'Mate SC', serif;
+    font-size: 1em;
+}
+
+.pantalla form .registrar
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+ion-button
+{
+    font-family: KATO;
+    --background: #F27405;
+}
+
+small
+{
+    text-align: center;
+    background-color: red;
+    color: white;
+    padding: 0 5px;
+}
+
+ion-icon
+{
+    padding: 0 2vw 0 0;
+}
+
+img
+{
+    margin: 5vw;
+    border-radius: 20%;
+    max-width: 150px;
+}

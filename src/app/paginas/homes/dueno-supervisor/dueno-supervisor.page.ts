@@ -5,6 +5,7 @@ import * as emailjs from 'emailjs-com';
 import { init } from "emailjs-com";
 import { AuthService } from 'src/app/servicios/auth.service';
 import { FirebaseCloudMessagingService } from 'src/app/servicios/fcm.service';
+import { timeout } from 'rxjs';
 init("VO3cmQ8ZsWTmJC-fG");
 
 @Component({
@@ -62,9 +63,31 @@ export class DuenoSupervisorPage implements OnInit {
     this.authServ.registrarUsuario(clienteAceptado);
     const listaAux = this.listaClientes;
     this.listaClientes = listaAux.filter(cliente => cliente != clienteAceptado);
-    this.enviarEmail(clienteAceptado, "Fuiste aceptado. Ya podés iniciar sesión", "normal");
+    console.log(clienteAceptado);
+    
+    const mensaje = `Estimado/a ${clienteAceptado.nombre} ${this.clienteARechazar.apellido},
+
+Nos complace informarle que su solicitud de registro ha sido aceptada con éxito. A continuación, encontrará los detalles de su cuenta:
+
+Email: ${clienteAceptado.email}
+Fecha de Registro: ${this.formatDate(new Date())}
+
+Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en contacto con nuestro equipo de soporte al cliente.
+
+¡Gracias por elegirnos!
+
+Atentamente,
+food SA
+
+`;
+    this.enviarEmail(clienteAceptado, mensaje, "normal", "Confirmación de Registro Aceptado");
     this.activarSpinner();
   }
+
+  formatDate(date:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(date).toLocaleDateString('es-ES', options);
+}
 
   activarSpinner() {
     this.spinnerActivo = true;
@@ -91,7 +114,21 @@ export class DuenoSupervisorPage implements OnInit {
       this.firebaseServ.borrarFoto(this.clienteARechazar.rutaFoto);
       const listaAux = this.listaClientes;
       this.listaClientes = listaAux.filter(cliente => cliente != cliente);
-      this.enviarEmail(this.clienteARechazar, this.formPopUp.getRawValue().razones, "normal");
+
+      const mensaje = `Estimado/a ${this.clienteARechazar.nombre} ${this.clienteARechazar.apellido},
+
+Lamentamos informarle que su solicitud de registro no ha sido aceptada en esta ocasión. A continuación, se detallan los posibles motivos del rechazo:
+
+${this.formPopUp.getRawValue().razones}
+
+Si cree que esto es un error o desea más información, no dude en ponerse en contacto con nuestro equipo de soporte al cliente. Estaremos encantados de ayudarle.
+
+Gracias por su comprensión.
+
+Atentamente,
+food SA`;
+
+      this.enviarEmail(this.clienteARechazar, mensaje, "normal", "Notificación de Registro Rechazado");
       this.cargarClientes();
       this.popUp.classList.add("esconder");
       this.razonesTouched = false;
@@ -99,12 +136,12 @@ export class DuenoSupervisorPage implements OnInit {
     }
   }
 
-  enviarEmail(usuario: any, mensaje: string, templateId: string) {
+  enviarEmail(usuario: any, mensaje: string, templateId: string, titulo:string) {
     const template = {
       user_email: usuario.email,
       to_name: usuario.nombre,
       message: mensaje,
-      nombre_restaurante: 'Restaurante food'
+      nombre_restaurante: titulo
     };
     emailjs.send("service", templateId, template)
       .then(res => console.log("Correo enviado.", res.status, res.text))

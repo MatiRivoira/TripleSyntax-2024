@@ -1,4 +1,5 @@
 <ion-header [translucent]="true">
+  
   <ion-toolbar>
     <ion-title class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
   </ion-toolbar>
@@ -26,8 +27,8 @@
                     <th>ACCIÓN</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let cliente of listaClientes">
+            <tbody *ngIf="listaClientes.length > 0">
+                <tr *ngFor="let cliente of listaClientes" >
                   <td><img [src]="cliente.rutaFoto" alt="Imagen cliente"></td>
                   <td>{{cliente.nombre}}<br>{{cliente.apellido}}</td>
                   <td>{{cliente.email}}</td>
@@ -40,6 +41,10 @@
                 </tr>
             </tbody>
         </table>
+        <div class="sinClientes-container" *ngIf="listaClientes.length == 0">
+          <img class="logo" src="../../../../assets/icon/icon.png" alt="Icono empresa">
+          <h6>No hay usuarios por ser aprobados</h6>
+        </div>
     </div>
     <div id="contenedor-pop-up" class="esconder pop-up">
       <form [formGroup]="formPopUp" (ngSubmit)="rechazarCliente()">

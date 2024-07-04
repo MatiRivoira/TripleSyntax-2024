@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
 
-
+ion-content {
+    --background: rgb(240, 240, 240);
+}
 
 
 ion-header,ion-toolbar
@@ -304,4 +306,27 @@ form
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
+}
+
+.sinClientes-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 200px;
+        opacity: 0.5;
+    }
+
+    h6 {
+        margin-top: -10px;
+        color: #333;
+        font-weight: 600;
+        opacity: 0.5;
+    }
 }

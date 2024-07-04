@@ -30,9 +30,12 @@ export class ChatPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.chat.obtenerMensajes().subscribe((data: any) => {
       if (data !== null) {
-        this.mensajes = data;
+        console.log(this.usuario.nombre);
+        
+        this.mensajes = data.filter((mensaje:any) => mensaje.usuarioNombre == this.usuario.nombre);
         console.log(this.mensajes);
         setTimeout(() => {
           this.deslizarPantallaHaciaAbajo();
@@ -42,6 +45,8 @@ export class ChatPage implements OnInit {
 
     this.usuario = this.firestore.obtenerClienteAnonimo();
 
+    console.log(this.usuario);
+    
     if (this.usuario == null) {
       this.firestore.obtenerColeccion('usuarios-aceptados').subscribe((res) => {
         res.forEach(async (usuario) => {
@@ -78,6 +83,7 @@ export class ChatPage implements OnInit {
     let mensaje = {
       // usuario: this.usuario ? this.usuario.perfil : this.usuarioAnonimo.perfil,
       usuario: this.usuario.perfil,
+      usuarioNombre: this.usuario.nombre,
       texto: this.nuevoMensaje,
       hora: horaMensaje,
       //mesaId: "",

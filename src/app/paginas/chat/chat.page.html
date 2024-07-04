@@ -16,7 +16,7 @@
     [ngClass]="usuario.perfil === mensaje.usuario
                 ? 'mensaje-enviado'
                 : 'mensaje-recibido'">
-            <span class="usuario">{{mensaje.usuario}} <br></span>
+            <span class="usuario">{{mensaje.usuarioNombre || "yo"}}  Mesa: {{this.mesa.id}}<br></span>
             <!-- <span *ngIf="mensaje.usuario != 'mozo'" class="usuario">- Mesa {{mensaje.mesaId}}</span><br> -->
             <span>{{mensaje.texto}}</span>
             <br/>

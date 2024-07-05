@@ -3,7 +3,7 @@
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-color: #f1f5f9; /* bg-slate-100 */
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -39,7 +39,7 @@
   
   /* Estilos para las opciones */
   .option {
-    background-color: #f97316; /* bg-orange-500 */
+    background-color: #f97316;
     height: 95%;
     width: 100%;
     border-radius: 0.75rem;
@@ -54,7 +54,7 @@
   
   .option:active {
     transform: scale(0.95); /* active:scale-95 */
-    background-color: #ea580c; /* active:bg-orange-600 */
+    background-color: #f97316; /* active:bg-orange-600 */
     box-shadow: none; /* active:shadow-none */
   }
   

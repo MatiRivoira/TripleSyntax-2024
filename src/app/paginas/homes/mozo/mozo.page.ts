@@ -81,6 +81,8 @@ export class MozoPage implements OnInit {
           this.pedidosEnPreparacion.push(pedido);
           break;
         case 'Terminado':
+          console.log(pedido);
+          
           this.pedidosTerminado.push(pedido);
           break;
       }

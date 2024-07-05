@@ -349,15 +349,18 @@ export class MesaPage implements OnInit {
           if(!this.pedidoActual.pagado)
           {
             let idMesa = resultado.content.split('-')[1];
+            
+            if (idMesa == this.mesa.id) {
+              this.actualizarPedidos();
   
-            this.actualizarPedidos();
-  
-            for (let i = 0; i < this.pedidos.length; i++) {
-              if (this.pedidos[i].mesa == idMesa) {
-                this.pedidoActual = this.pedidos[i];
-                this.chequearPedido = true;
+              for (let i = 0; i < this.pedidos.length; i++) {
+                if (this.pedidos[i].mesa == idMesa) {
+                  this.pedidoActual = this.pedidos[i];
+                  this.chequearPedido = true;
+                }
               }
             }
+            
           }
           else
           {

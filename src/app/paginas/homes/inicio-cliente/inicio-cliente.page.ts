@@ -137,7 +137,6 @@ export class InicioClientePage implements OnInit {
       
       if (resultado.hasContent) {
         this.vibration.vibrate(300);
-        alert(resultado.content);
         if (resultado.content == "lista-espera") {
           if (!this.seEnlisto)
           {

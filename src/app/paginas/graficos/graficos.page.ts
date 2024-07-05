@@ -26,6 +26,7 @@ export class GraficosPage implements OnInit {
   barChart:any;
   pieChart:any;
   pieChart2:any;
+  pieChart3:any;
   spinner:boolean = false;
   constructor(private firebaseServ:FirebaseService) {
     Chart.register(
@@ -54,6 +55,7 @@ export class GraficosPage implements OnInit {
       this.cargarValoresLimpieza();
       this.cargarValoresGustos();
       this.cargarRecomendados();
+      this.cargarEdad();
     },2000)
     console.log(this.valoracionGustos);
   }
@@ -112,6 +114,29 @@ export class GraficosPage implements OnInit {
     }
     
     this.generarGraficoCircular(2, ['Familia', 'Trabajo', 'Cumpleños']);
+  }
+
+  rangoEdad = [0,0,0];
+  cargarEdad()
+  {
+    for(let i = 0; i < this.listaEncuestas.length; i++)
+    {
+      
+      switch(this.listaEncuestas[i].rangoEdad)
+      {
+        case '13 a 20':
+          this.rangoEdad[0]++;
+          break;
+        case '20 a 30':
+          this.rangoEdad[1]++;
+          break;
+        case '30 a 40':
+          this.rangoEdad[2]++;
+          break;
+      }
+    }
+    
+    this.generarGraficoCircular(3, ['13 a 20', '20 a 30', '30 a 40']);
   }
 
   cargarValoresLimpieza()
@@ -211,6 +236,12 @@ export class GraficosPage implements OnInit {
         }
         grafic = "pieChart2"
         break;
+      case 3:
+        if (this.pieChart3) {
+          this.pieChart3.destroy(); // Destruir el gráfico existente antes de crear uno nuevo
+        }
+        grafic = "pieChart3"
+        break;
     }
     
     const ctx = (<any>document.getElementById(grafic)).getContext('2d');
@@ -241,6 +272,14 @@ export class GraficosPage implements OnInit {
         
         label = 'Recomendaciones de la gente';
         break;
+        case 3:
+          coloresGrafico = this.rangoEdad.map(
+           (_: any) => colores[(i = (i + 1) % colores.length)]
+         );
+         data = this.rangoEdad;
+         
+         label = 'Rango de edad';
+         break;
     }
    
 

@@ -62,7 +62,7 @@ export class ModoAnonimoComponent implements OnInit {
       setTimeout(() => {
         this.firestore.agregarDocumentoAnonimo(this.clienteAnonimo, "usuarios-aceptados");
         this.formAnonimo.reset();
-        this.router.navigateByUrl("/inicio-cliente");
+        this.router.navigateByUrl("/acceso-anonimo");
       }, 3000);
     }
   } 

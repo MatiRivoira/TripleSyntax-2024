@@ -12,7 +12,6 @@ import {
   LinearScale,
   registerables,
 } from 'chart.js';
-import { log } from 'console';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 @Component({
   selector: 'app-graficos',
@@ -25,7 +24,6 @@ export class GraficosPage implements OnInit {
   listaEncuestas:any = new Array();
   barChart:any;
   pieChart:any;
-  pieChart2:any;
   spinner:boolean = false;
   constructor(private firebaseServ:FirebaseService) {
     Chart.register(
@@ -46,14 +44,11 @@ export class GraficosPage implements OnInit {
   ngOnInit() {
     this.firebaseServ.obtenerColeccion('encuestas-clientes').subscribe((encuestas)=>{
       this.listaEncuestas = encuestas;
-      console.log(this.listaEncuestas);
-      
     });
     
     setTimeout(()=>{
       this.cargarValoresLimpieza();
       this.cargarValoresGustos();
-      this.cargarRecomendados();
     },2000)
     console.log(this.valoracionGustos);
   }
@@ -88,30 +83,7 @@ export class GraficosPage implements OnInit {
           break;
       }
     }
-    this.generarGraficoCircular(1, ['Decoración', 'Personal', 'Música']);
-  }
-
-  recomendados = [0,0,0];
-  cargarRecomendados()
-  {
-    for(let i = 0; i < this.listaEncuestas.length; i++)
-    {
-      
-      switch(this.listaEncuestas[i].recomendados[0])
-      {
-        case 'Familia':
-          this.recomendados[0]++;
-          break;
-        case 'Trabajo':
-          this.recomendados[1]++;
-          break;
-        case 'Cumpleaños':
-          this.recomendados[2]++;
-          break;
-      }
-    }
-    
-    this.generarGraficoCircular(2, ['Familia', 'Trabajo', 'Cumpleños']);
+    this.generarGraficoCircular();
   }
 
   cargarValoresLimpieza()
@@ -196,24 +168,12 @@ export class GraficosPage implements OnInit {
     });
   }
 
-  generarGraficoCircular(chartOption:number , labels:string[]):void {
-    let grafic = "pieChart";
-    switch(chartOption ) {
-      case 1:
-        if (this.pieChart) {
-          this.pieChart.destroy(); // Destruir el gráfico existente antes de crear uno nuevo
-        }
-        grafic = "pieChart"
-        break;
-      case 2:
-        if (this.pieChart2) {
-          this.pieChart2.destroy(); // Destruir el gráfico existente antes de crear uno nuevo
-        }
-        grafic = "pieChart2"
-        break;
+  generarGraficoCircular()
+  {
+    if (this.pieChart) {
+      this.pieChart.destroy(); // Destruir el gráfico existente antes de crear uno nuevo
     }
-    
-    const ctx = (<any>document.getElementById(grafic)).getContext('2d');
+    const ctx = (<any>document.getElementById('pieChart')).getContext('2d');
     const colores = [
       '#FCC85B',
       '#DB5F00',
@@ -221,37 +181,17 @@ export class GraficosPage implements OnInit {
     ];
 
     let i = 0;
-    
-    let data;
-    let coloresGrafico;
-    let label;
-    switch (chartOption) {
-      case 1:
-         coloresGrafico = this.valoracionGustos.map(
-          (_: any) => colores[(i = (i + 1) % colores.length)]
-        );
-        data = this.valoracionGustos;
-        label = 'Preferencias de la gente';
-        break;
-      case 2:
-         coloresGrafico = this.recomendados.map(
-          (_: any) => colores[(i = (i + 1) % colores.length)]
-        );
-        data = this.recomendados;
-        
-        label = 'Recomendaciones de la gente';
-        break;
-    }
-   
-
+    const coloresGrafico = this.valoracionGustos.map(
+      (_: any) => colores[(i = (i + 1) % colores.length)]
+    );
 
     this.pieChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: labels,
+        labels: ['Decoración', 'Personal', 'Música'],
         datasets: [{
-          label: label,
-          data: data,
+          label: 'Preferencias de la gente',
+          data: this.valoracionGustos,
           backgroundColor: coloresGrafico,
           borderColor: coloresGrafico,
           borderWidth: 1

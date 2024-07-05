@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'graficos',
     loadChildren: () => import('./paginas/graficos/graficos.module').then( m => m.GraficosPageModule)
+  },
+  {
+    path: 'acceso-anonimo',
+    loadChildren: () => import('./paginas/acceso-anonimo/acceso-anonimo.module').then( m => m.AccesoAnonimoPageModule)
   }
 
 

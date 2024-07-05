@@ -23,6 +23,7 @@ export class DuenoSupervisorPage implements OnInit {
   clienteARechazar: any;
   popup: boolean = false;
 
+
   constructor(private firebaseServ: FirebaseService,
     private formBuilder: FormBuilder,
     private authServ: AuthService,

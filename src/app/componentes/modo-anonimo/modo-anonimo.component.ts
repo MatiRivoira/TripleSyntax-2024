@@ -55,7 +55,7 @@ export class ModoAnonimoComponent implements OnInit {
       this.clienteAnonimo.perfil = "anónimo";
       this.clienteAnonimo.hora = fecha;
       this.clienteAnonimo.id = `${this.clienteAnonimo.nombre}.${this.clienteAnonimo.hora}`;
-      this.clienteAnonimo.rutaFoto = this.currentImage;
+      this.clienteAnonimo.rutaFoto = "https://play-lh.googleusercontent.com/WeeexPcw5RMGRAOW5d6c9XGg6JpiYxQpRA7My4fu1kqD-_kRlxLtcxgSK4CgqT3Py7A";
 
       this.activarSpinner.emit();
   

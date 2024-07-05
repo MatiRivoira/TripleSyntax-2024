@@ -28,6 +28,7 @@ h1
     width: 75vw;
     font-family: 'Mate SC', serif;
     text-transform: none;
+    gap: 25px;
 }
 
 .pantalla form ion-item ion-label
@@ -40,7 +41,7 @@ form ion-item
     width: 100%;
     margin: 5px;
     border-radius: 50px;
-    --color: #333;
+    --color: #fff;
 }
 
 .pantalla form ion-item ion-input
@@ -82,4 +83,12 @@ img
     margin: 5vw;
     border-radius: 20%;
     max-width: 150px;
+}
+
+form div {
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
 }

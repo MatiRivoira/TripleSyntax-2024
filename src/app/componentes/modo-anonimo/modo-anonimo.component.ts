@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
+import { Camera, CameraResultType, CameraSource, CameraPhoto } from '@capacitor/camera';
 
 @Component({
   selector: 'app-modo-anonimo',
@@ -16,6 +17,9 @@ export class ModoAnonimoComponent implements OnInit {
   spinner:boolean = false;
   clienteAnonimo:any = {};
 
+  currentImage: any;
+  imagenCargada: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private firestore: FirebaseService, private router: Router)
   {
     this.formAnonimo = this.formBuilder.group({
@@ -23,6 +27,22 @@ export class ModoAnonimoComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera
+    });
+
+    this.currentImage = image.dataUrl;
+    this.imagenCargada = true;
+
+    if(!this.currentImage) {
+      this.imagenCargada = false;
+    }
+  }
 
   ingresar()
   {
@@ -35,7 +55,7 @@ export class ModoAnonimoComponent implements OnInit {
       this.clienteAnonimo.perfil = "anónimo";
       this.clienteAnonimo.hora = fecha;
       this.clienteAnonimo.id = `${this.clienteAnonimo.nombre}.${this.clienteAnonimo.hora}`;
-      this.clienteAnonimo.rutaFoto = "/assets/metre/incognito.png";
+      this.clienteAnonimo.rutaFoto = this.currentImage;
 
       this.activarSpinner.emit();
   

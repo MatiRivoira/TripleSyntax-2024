@@ -6,7 +6,7 @@
   <form [formGroup]="formRegistro" (ngSubmit)="registrarCliente()">
 
     <div class="pagina" *ngIf="paginaRegistro === 1">
-        <ion-item>
+        <ion-item class="ionitem">
             <ion-label position="floating">Nombre</ion-label>
             <ion-input class="primera-mayuscula" formControlName="nombre" type="text"></ion-input>
         </ion-item>
@@ -17,7 +17,7 @@
             El nombre es requerido
         </small>
     
-        <ion-item>
+        <ion-item class="ionitem">
             <ion-label position="floating">Apellido</ion-label>
             <ion-input class="primera-mayuscula" formControlName="apellido" type="text"></ion-input>
         </ion-item>
@@ -27,7 +27,7 @@
             El apellido es requerido
         </small>
     
-        <ion-item>
+        <ion-item class="ionitem">
             <ion-label position="floating">DNI</ion-label>
             <ion-input formControlName="dni" type="number"></ion-input>
         </ion-item>
@@ -53,7 +53,7 @@
     </div>
   
     <div class="pagina" *ngIf="paginaRegistro === 2">
-        <ion-item>
+        <ion-item class="ionitem">
             <ion-label position="floating">Correo electrónico</ion-label>
             <ion-input formControlName="email" type="email"></ion-input>
         </ion-item>
@@ -68,7 +68,7 @@
             El correo electrónico no tiene un formato válido
         </small>
     
-        <ion-item>
+        <ion-item class="ionitem">
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
@@ -83,7 +83,7 @@
             La contraseña requiere mínimo 6 caracteres
         </small>
   
-        <ion-item>
+        <ion-item class="ionitem">
           <ion-label position="floating">Confirmar contraseña</ion-label>
           <ion-input formControlName="confirmarPassword" type="password"></ion-input>
         </ion-item>

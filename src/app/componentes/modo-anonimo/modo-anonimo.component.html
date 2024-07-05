@@ -12,11 +12,17 @@
           (formAnonimo.controls['nombre'].touched)">
           El nombre es requerido
       </small>
+<!-- 
+      <ion-label position="floating" class="text-center">Foto</ion-label> -->
+      <div class="h-auto flex items-center">
+        <ion-button disabled={{imagenCargada}} (click)="takePicture()">Tomar foto</ion-button>
+        <img *ngIf="currentImage" [src]="currentImage"/>
+      </div>
     
     <div class="registrar">
       <ion-button routerLink="/login">CANCELAR</ion-button>
       <ion-button type="submit"
-      [disabled]="formAnonimo.controls['nombre'].errors">INGRESAR</ion-button>
+      [disabled]="formAnonimo.controls['nombre'].errors || !imagenCargada">INGRESAR</ion-button>
     </div>
 
   </form>

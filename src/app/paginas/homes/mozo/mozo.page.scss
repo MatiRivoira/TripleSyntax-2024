@@ -3,6 +3,9 @@
 
 ion-header ion-toolbar
 {
+    display: flex;
+    align-items: center;
+    height: 60px;
     --background:  #F27405;
     --color: white;
 }
@@ -20,6 +23,8 @@ ion-header ion-toolbar
 }
 
 h4{
+    color: #F27405;
+    font-weight: 700;
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -101,17 +106,23 @@ h6
     font-family: 'Mate SC', serif;
 }
 
-
 ion-segment
 {
-    background: rgb(0, 0, 0);
-    
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 0%;
 }
 
 
 ion-segment ion-segment-button {
     background: #F27405;
-    width: 33.33%;
+    width: 23%;
 }
 
 
@@ -119,6 +130,7 @@ ion-segment ion-segment-button {
 .imagen-segment
 {
     margin-top: 5px;
+    margin-bottom: 3px;
     width: 35px;
 }
 

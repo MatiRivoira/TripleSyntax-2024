@@ -163,8 +163,7 @@ export class InicioClientePage implements OnInit {
                 this.asignarDatosMesa(parseInt(resultado.content.split('-')[1]));
                 this.activarSpinner();
                 this.router.navigate(['/inicio-cliente/mesa']);
-              }
-              else {
+              } else {
                 this.mensajePopUp = "La mesa está ocupada.";
                 this.popup = true;
               }

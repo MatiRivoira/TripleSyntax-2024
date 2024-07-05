@@ -53,6 +53,7 @@ form ion-item
 
 .pantalla form .registrar
 {
+    margin-top: 100px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -92,3 +93,15 @@ form div {
     flex-direction: row;
     gap: 20px;
 }
+
+.botonFoto {
+    width: 100%;
+    height: 50px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #f97316;
+    border-radius: 10px;
+    color: #fff;
+  }

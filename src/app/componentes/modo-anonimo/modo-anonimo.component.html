@@ -1,7 +1,7 @@
 <div class="pantalla">
   <h1>Modo anónimo</h1>
   
-  <form [formGroup]="formAnonimo" (ngSubmit)="ingresar()">
+  <form [formGroup]="formAnonimo">
       <ion-item>
           <ion-label position="floating">Nombre</ion-label>
           <ion-input formControlName="nombre" type="text"></ion-input>
@@ -15,14 +15,14 @@
 <!-- 
       <ion-label position="floating" class="text-center">Foto</ion-label> -->
       <div class="h-auto flex items-center">
-        <button (click)="takePicture(CameraSource.Camera)">Tomar foto</button>
-        <button (click)="takePicture(CameraSource.Photos)">Elegir de la galería</button>
+        <button (click)="takePicture(CameraSource.Camera)" class="botonFoto">Tomar foto</button>
+        <button (click)="takePicture(CameraSource.Photos)" class="botonFoto">Elegir de la galería</button>
         <img *ngIf="currentImage" [src]="currentImage"/>
       </div>
     
     <div class="registrar">
       <ion-button routerLink="/login">CANCELAR</ion-button>
-      <ion-button type="submit"
+      <ion-button (click)="ingresar()" type="submit"
       [disabled]="formAnonimo.controls['nombre'].errors || !imagenCargada">INGRESAR</ion-button>
     </div>
 

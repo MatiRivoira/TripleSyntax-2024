@@ -127,7 +127,7 @@ export class LoginPage implements OnInit {
         break;
       case "cliente":
         this.email = "mgrivoira26@gmail.com";
-        this.password = "quilmes";
+        this.password = "123123";
         break;
     }
   }

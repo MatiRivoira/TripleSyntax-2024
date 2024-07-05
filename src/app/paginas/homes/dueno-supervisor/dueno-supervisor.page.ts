@@ -23,6 +23,7 @@ export class DuenoSupervisorPage implements OnInit {
   clienteARechazar: any;
   popup: boolean = false;
 
+
   constructor(private firebaseServ: FirebaseService,
     private formBuilder: FormBuilder,
     private authServ: AuthService,
@@ -76,11 +77,8 @@ Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en 
 
 ¡Gracias por elegirnos!
 
-Atentamente,
-food SA
-
 `;
-    this.enviarEmail(clienteAceptado, mensaje, "normal", "Confirmación de Registro Aceptado");
+    this.enviarEmail(clienteAceptado, mensaje, "normal", "✅ Confirmación de Registro Aceptado ✅");
     this.activarSpinner();
   }
 
@@ -125,10 +123,9 @@ Si cree que esto es un error o desea más información, no dude en ponerse en co
 
 Gracias por su comprensión.
 
-Atentamente,
-food SA`;
+`;
 
-      this.enviarEmail(this.clienteARechazar, mensaje, "normal", "Notificación de Registro Rechazado");
+      this.enviarEmail(this.clienteARechazar, mensaje, "normal", "❌ Notificación de Registro Rechazado ❌");
       this.cargarClientes();
       this.popUp.classList.add("esconder");
       this.razonesTouched = false;

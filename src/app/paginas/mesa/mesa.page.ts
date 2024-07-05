@@ -43,6 +43,8 @@ export class MesaPage implements OnInit {
   titulo: string = "";
   scannerActive: boolean = false;
 
+  mostrarBtn : boolean = true;
+
   imagenesComida: any = [
     [
       "/assets/mesa/sushi1.jpeg",
@@ -146,6 +148,8 @@ export class MesaPage implements OnInit {
     });
 
     this.actualizarPedidos();
+
+    this.mostrarBtn = !this.firestore.getVisitaEstado();
   }
 
   ngOnDestroy() {

@@ -30,6 +30,7 @@ export class EncuestaClientePage implements OnInit {
      }
 
   ngOnInit() {
+    this.firestore.seteatVisita(true);
   }
 
 

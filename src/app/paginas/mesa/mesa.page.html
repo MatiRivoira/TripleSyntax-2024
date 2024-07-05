@@ -173,7 +173,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button routerLink="/encuesta-cliente">COMPLETAR ENCUESTA</ion-button>
+    <ion-button  *ngIf="mostrarBtn" routerLink="/encuesta-cliente">COMPLETAR ENCUESTA</ion-button>
   </div>
 
   <div class="pantalla pedir-cuenta" *ngIf="pedirCuenta">

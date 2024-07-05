@@ -8,8 +8,10 @@ import { QuerySnapshot } from 'firebase/firestore';
   providedIn: 'root'
 })
 export class FirebaseService {
+  private visitado :boolean = false;
   private usuarioAnonimo:any = null;
   private usuarioRegistrado:any = null;
+
   constructor(private angularFirestore: AngularFirestore) { }
 
   obtenerColeccion(nombreColeccion:string)
@@ -166,5 +168,14 @@ export class FirebaseService {
         this.angularFirestore.collection('chat').doc(id).delete();
       });
     });
+  }
+
+  
+  seteatVisita(visitado: boolean) {
+    this.visitado = visitado;
+  }
+
+  getVisitaEstado(): boolean {
+    return this.visitado;
   }
 }

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
 
+ion-content {
+    --background: rgb(240,240,240);
+}
+
 @font-face {
     font-family: 'Josefin Sans', sans-serif;
     src: url(../../../assets/fonts/KATO____.ttf);
@@ -77,3 +81,31 @@ ion-fab-button
     z-index: 9999;
 }
 
+/* src/app/encuestas/encuestas.component.css */
+.fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .foto-container {
+    position: relative;
+  }
+  
+  .foto img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .fecha-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  

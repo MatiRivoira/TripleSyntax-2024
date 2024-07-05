@@ -28,6 +28,9 @@ export class GraficosPage implements OnInit {
   pieChart2:any;
   pieChart3:any;
   spinner:boolean = false;
+
+  galeriaFotos:any;
+
   constructor(private firebaseServ:FirebaseService) {
     Chart.register(
       BarElement,
@@ -47,7 +50,7 @@ export class GraficosPage implements OnInit {
   ngOnInit() {
     this.firebaseServ.obtenerColeccion('encuestas-clientes').subscribe((encuestas)=>{
       this.listaEncuestas = encuestas;
-      console.log(this.listaEncuestas);
+      this.galeriaFotos = encuestas.filter(encuesta => encuesta.fotos.length > 0)
       
     });
     

@@ -27,6 +27,15 @@
       <canvas id="pieChart3"></canvas>
     </div>
   </div>
+  <h1>Fotos del local</h1>
+  <div class="fotos">
+    <div class="foto" *ngFor="let encuesta of galeriaFotos">
+      <div *ngFor="let foto of encuesta.fotos" class="foto-container">
+        <img [src]="foto.pathFoto" alt="Foto de encuesta" *ngIf="foto.pathFoto">
+        <div class="fecha-overlay" *ngIf="foto.pathFoto">{{ encuesta.fecha | date:'short' }}</div>
+      </div>
+    </div>
+  </div>
   <div class="contenedor-spinner" *ngIf="spinner">
     <app-spinner></app-spinner>
   </div> 

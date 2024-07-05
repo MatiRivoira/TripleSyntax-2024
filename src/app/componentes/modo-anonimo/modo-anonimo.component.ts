@@ -19,6 +19,7 @@ export class ModoAnonimoComponent implements OnInit {
 
   currentImage: any;
   imagenCargada: boolean = false;
+  CameraSource = CameraSource;
 
   constructor(private formBuilder: FormBuilder, private firestore: FirebaseService, private router: Router)
   {
@@ -28,17 +29,17 @@ export class ModoAnonimoComponent implements OnInit {
 
   ngOnInit() {}
 
-  async takePicture() {
+  async takePicture(source: CameraSource) {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera
+      source: source
     });
-
+  
     this.currentImage = image.dataUrl;
     this.imagenCargada = true;
-
+  
     if(!this.currentImage) {
       this.imagenCargada = false;
     }

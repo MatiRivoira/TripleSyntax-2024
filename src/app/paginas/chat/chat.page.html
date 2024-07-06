@@ -12,8 +12,9 @@
 
 <ion-content>
   <div class="pantalla">
-    <p *ngFor="let mensaje of mensajes" class="mensajes mensaje-escrito" [ngClass]="'anonimo' === mensaje.perfil ? 'mensaje-enviado' : 'mensaje-recibido'">
-            <span class="usuario">{{mensaje.usuario=="anonimo" ? "yo" : "mozo"}} - mesa {{mensaje.mesa}}<br></span>
+    <p *ngFor="let mensaje of mensajes" class="mensajes mensaje-escrito" [ngClass]="usuario.perfil === mensaje.perfil ? 'mensaje-enviado' : 'mensaje-recibido'">
+            <span *ngIf="mensaje.perfil != 'mozo'" class="usuario">{{usuario.perfil == "anonimo" ? "yo" : "Santiago"}} - mesa 1<br></span>
+            <span *ngIf="mensaje.perfil == 'mozo'" class="usuario">{{mensaje.perfil}}<br></span>
             <!-- <span *ngIf="mensaje.usuario != 'mozo'" class="usuario">- Mesa {{mensaje.mesaId}}</span><br> -->
             <span>{{mensaje.contenido}}</span>
             <br/>

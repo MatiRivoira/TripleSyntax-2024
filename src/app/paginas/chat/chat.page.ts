@@ -33,12 +33,32 @@ export class ChatPage implements OnInit {
   ngOnInit(): void {
     this.mesa = this.obtenerMesaDelCliente();
     this.usuario = this.firestore.obtenerClienteAnonimo();
+
+    if(!this.usuario) {
+      let usuario = {
+        perfil: "mozo",
+        nombre: "mozo",
+      }
+
+      this.usuario = usuario;
+    }
+
     console.log("USUARIO ACTUAL: ", this.usuario)
 
     this.chat.obtenerMensajes().subscribe((data) => {
       this.mensajes = data;
+      this.mensajes = data.sort((a: any, b: any) => {
+        const dateA = this.convertToDate(a.time);
+        const dateB = this.convertToDate(b.time);
+        return dateA.getTime() - dateB.getTime();
+      });
       console.log("MENSAJES DE LA BD: ",data);
     });
+  }
+
+  convertToDate(dateString: string): Date {
+    const [day, month, year, hour, minute, second] = dateString.split(/[\s/:]/);
+    return new Date(+year, +month - 1, +day, +hour, +minute, +second);
   }
 
   enviarMensaje() {
@@ -46,13 +66,24 @@ export class ChatPage implements OnInit {
     console.log("MESA DEL CLIENTE: ", this.obtenerMesaDelCliente())
 
     if(this.nuevoMensaje.trim() != "") {
-      let mensaje = {
-        contenido: this.nuevoMensaje,
-        time: this.formatearFecha(),
-        usuario: this.usuario.perfil ? "anonimo" : "mozo",
-        perfil: this.usuario.perfil,
-        mesa: 1,
-      };
+      let mensaje;
+      if(this.usuario.perfil == "anonimo") {
+        mensaje = {
+          contenido: this.nuevoMensaje,
+          time: this.formatearFecha(),
+          usuario: this.usuario.perfil,
+          perfil: this.usuario.perfil,
+          mesa: 1,
+        };
+      } else {
+        mensaje = {
+          contenido: this.nuevoMensaje,
+          time: this.formatearFecha(),
+          usuario: this.usuario.perfil,
+          perfil: this.usuario.perfil,
+        };
+      }
+
 
       console.log("Mensaje a guardar: ", mensaje)
 

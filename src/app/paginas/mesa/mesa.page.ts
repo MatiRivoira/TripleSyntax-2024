@@ -89,8 +89,8 @@ export class MesaPage implements OnInit {
     ],
     [
       "/assets/mesa/cheesecake1.png",
-      "/assets/mesa/cheesecake2.png",
-      "/assets/mesa/cheesecake3.png"
+      "/assets/mesa/cheesecake2.pn",
+      "/assets/mesa/cheesecake3.jpg"
     ],
     [
       "/assets/mesa/taiyaki1.jpg",

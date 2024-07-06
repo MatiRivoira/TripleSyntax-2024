@@ -44,9 +44,11 @@ export class MetrePage implements OnInit {
   }
 
   sentarCliente(cliente: any) {
-    cliente.sentado = true;
-    this.firestore.actualizarClientePorId("lista-espera", cliente);
-    this.activarSpinner();
+    if(this.listaEspera.length > 0) {
+      cliente.sentado = true;
+      this.firestore.actualizarClientePorId("lista-espera", cliente);
+      this.activarSpinner();
+    }
   }
 
 }

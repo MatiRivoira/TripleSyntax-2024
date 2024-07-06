@@ -4,7 +4,7 @@
 
 export const environment = {
     firebase: {
-      fcmServerKey: 'AAAAHLQlBJw:APA91bG_8qHdJPv03YZj6kKCVhzubhVBOVz-VwHt9YPbEraMbnCHIAEsFxXNIF2dvQq6b5zFfwg9T05YhPbiR0Xn-H0ZPx9_t1167W9YP63LlJOpVuBMs6BC-ZjwJGz2k9q7avPE2GKj',
+      fcmServerKey: 'BHrqxlXmyWVrxMif33lTeFeXKTW2Isd6A6u3MGtxwFMw-yLFIY4W_fZHAX1ez4Czp5KlbiYE7BzQ9x0UKjpb1Ak',
       apiKey: "AIzaSyD2PmEvMKQVDxCeLaxFm4G6P9iz_GeHt-M",
       authDomain: "comandas-triplesyntax.firebaseapp.com",
       projectId: "comandas-triplesyntax",

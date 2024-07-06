@@ -57,7 +57,7 @@ export class MesaPage implements OnInit {
       "/assets/mesa/bg_3.png"
     ],
     [
-      "/assets/mesa/pancho.jpg",
+      "/assets/mesa/pancho1.jpg",
       "/assets/mesa/pancho2.jpg",
       "/assets/mesa/pancho3.jpg"
     ]
@@ -70,9 +70,9 @@ export class MesaPage implements OnInit {
       "/assets/mesa/coca3.png"
     ],
     [
-      "/assets/mesa/agua1.jpg",
-      "/assets/mesa/agua2.jpg",
-      "/assets/mesa/agua3.jpg"
+      "/assets/mesa/agua1.png",
+      "/assets/mesa/agua2.png",
+      "/assets/mesa/agua3.png"
     ],
     [
       "/assets/mesa/matcha1.jpg",
@@ -83,14 +83,14 @@ export class MesaPage implements OnInit {
 
   imagenesPostre: any = [
     [
-      "/assets/mesa/flan1.jpg",
-      "/assets/mesa/flan2.jpg",
-      "/assets/mesa/flan3.jpg"
+      "/assets/mesa/flan1.jpeg",
+      "/assets/mesa/flan2.jpeg",
+      "/assets/mesa/flan3.jpeg"
     ],
     [
-      "/assets/mesa/cheesecake1.jpeg",
-      "/assets/mesa/cheesecake2.jpg",
-      "/assets/mesa/cheesecake3.jpg"
+      "/assets/mesa/cheesecake1.png",
+      "/assets/mesa/cheesecake2.png",
+      "/assets/mesa/cheesecake3.png"
     ],
     [
       "/assets/mesa/taiyaki1.jpg",

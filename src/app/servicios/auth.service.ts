@@ -3,12 +3,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { FirebaseService } from './firebase.service';
-import { of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
 
-import { Firestore, collection, getDocs, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import { AudioService } from './audio.service';
-import { FirebaseCloudMessagingService } from './fcm.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +33,8 @@ export class AuthService {
 
         this.audioService.playAudio('../../assets/audio/login.mp3');
 
+        console.log(this.usuarioAceptado);
+        
         //setTimeout(()=>{
         this.redirigirPorUsuario(this.usuarioAceptado.perfil);
 

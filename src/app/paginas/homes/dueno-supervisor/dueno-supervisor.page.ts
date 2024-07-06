@@ -66,7 +66,7 @@ export class DuenoSupervisorPage implements OnInit {
     this.listaClientes = listaAux.filter(cliente => cliente != clienteAceptado);
     console.log(clienteAceptado);
     
-    const mensaje = `Estimado/a ${clienteAceptado.nombre} ${this.clienteARechazar.apellido},
+    const mensaje = `Estimado/a ${clienteAceptado.nombre} ${clienteAceptado.apellido},
 
 Nos complace informarle que su solicitud de registro ha sido aceptada con éxito. A continuación, encontrará los detalles de su cuenta:
 

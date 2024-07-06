@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "123281409180",
-    "project_id": "bianluca-pps",
-    "storage_bucket": "bianluca-pps.appspot.com"
+    "project_number": "895911652659",
+    "project_id": "comandas-triplesyntax",
+    "storage_bucket": "comandas-triplesyntax.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123281409180:android:b9e0849278287a019c9959",
+        "mobilesdk_app_id": "1:895911652659:android:28873f830111ee5a16a246",
         "android_client_info": {
-          "package_name": "com.bianluca.pps"
+          "package_name": "com.food.pps"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "123281409180-od93cdm279bejo3uhulpg1po4ti99nls.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBfJdjbKPB5d0hXFYUFPrfKLOB2PnZpojQ"
+          "current_key": "AIzaSyBram-oKuQeJsGAF2c5kowUP1MXmb8lZco"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123281409180-od93cdm279bejo3uhulpg1po4ti99nls.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

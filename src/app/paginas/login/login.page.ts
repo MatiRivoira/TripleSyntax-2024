@@ -111,19 +111,19 @@ export class LoginPage implements OnInit {
         break;
       case "metre":
         this.email = "metre@metre.com";
-        this.password = "123123";
+        this.password = "metre1";
         break;
       case "mozo":
         this.email = "mozo1@mozos.com";
-        this.password = "123123";
+        this.password = "mozos1";
         break;
       case "cocinero":
         this.email = "cocinero@cocinero.com";
-        this.password = "123123";
+        this.password = "cocinero";
         break;
       case "bartender":
         this.email = "bartender@bartender.com";
-        this.password = "123123";
+        this.password = "bartender";
         break;
       case "cliente":
         this.email = "mgrivoira26@gmail.com";

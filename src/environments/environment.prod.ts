@@ -1,12 +1,12 @@
 export const environment = {
   firebase: {
-    fcmServerKey: 'BHrqxlXmyWVrxMif33lTeFeXKTW2Isd6A6u3MGtxwFMw-yLFIY4W_fZHAX1ez4Czp5KlbiYE7BzQ9x0UKjpb1Ak',
-    apiKey: "AIzaSyD2PmEvMKQVDxCeLaxFm4G6P9iz_GeHt-M",
-    authDomain: "comandas-triplesyntax.firebaseapp.com",
-    projectId: "comandas-triplesyntax",
-    storageBucket: "comandas-triplesyntax.appspot.com",
-    messagingSenderId: "895911652659",
-    appId: "1:895911652659:web:d1b6a26a7582de0216a246"
+    projectId: 'bianluca-pps',
+    appId: '1:123281409180:web:6b3912e3ce15e4479c9959',
+    storageBucket: 'bianluca-pps.appspot.com',
+    locationId: 'us-central',
+    apiKey: 'AIzaSyDyMBqpkaB45zbC8I7z0qhAJqSlFFewSYM',
+    authDomain: 'bianluca-pps.firebaseapp.com',
+    messagingSenderId: '123281409180',
   },
   production: true
 };

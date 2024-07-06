@@ -1,5 +1,5 @@
 {
-  "name": "La_Comanda_PPS",
+  "name": "la_comanda_pps",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -36,15 +36,20 @@
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^7.0.0",
     "@ionic/pwa-elements": "^3.1.1",
+    "body-parser": "^1.20.2",
     "chart.js": "^4.3.0",
     "cordova-plugin-email-composer": "^0.10.1",
     "cordova-plugin-vibration": "^3.1.1",
+    "dotenv": "^16.4.5",
     "emailjs": "^4.0.2",
     "emailjs-com": "^3.2.0",
+    "express": "^4.19.2",
     "firebase": "^9.22.2",
+    "firebase-admin": "^12.2.0",
     "googleapis": "^118.0.0",
     "ionicons": "^7.0.0",
     "ngx-window-token": "^7.0.0",
+    "nodemailer": "^6.9.14",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -84,5 +89,8 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.8.4"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "main": "karma.conf.js",
+  "keywords": [],
+  "license": "ISC"
 }

@@ -43,36 +43,70 @@ export class MesaPage implements OnInit {
   titulo: string = "";
   scannerActive: boolean = false;
 
-  mostrarBtn : boolean = true;
+  mostrarBtn : boolean = false;
 
+  // imagenesComida: any = [
+  //   [
+  //     "/assets/mesa/milanesa.jpg",
+  //     "/assets/mesa/milanesa_2.jpg",
+  //     "/assets/mesa/milanesa_3.jpg"
+  //   ],
+  //   [
+  //     "/assets/mesa/pancho.png",
+  //     "/assets/mesa/pancho2.png",
+  //     "/assets/mesa/pancho3.png"
+  //   ],
+  //   [
+  //     "/assets/mesa/bg.jpeg",
+  //     "/assets/mesa/bg_2.jpg",
+  //     "/assets/mesa/bg_3.png"
+  //   ]
+  // ];
+
+  // imagenesBebida: any = [
+  //   [
+  //     "/assets/mesa/agua1.jpeg",
+  //     "/assets/mesa/agua2.png",
+  //     "/assets/mesa/agua3.jpeg"
+  //   ],
+
+  // ];
+
+  // imagenesPostre: any = [
+  //   [
+  //     "/assets/mesa/flan1.png",
+  //     "/assets/mesa/flan2.png",
+  //     "/assets/mesa/flan3.png"
+  //   ],
+  // ];
   imagenesComida: any = [
     [
-      "/assets/mesa/milanesa.jpg",
-      "/assets/mesa/milanesa_2.jpg",
-      "/assets/mesa/milanesa_3.jpg"
+      "/assets/mesa/sushi1.jpeg",
+      "/assets/mesa/sushi2.jpg",
+      "/assets/mesa/sushi3.jpg"
     ],
     [
-      "/assets/mesa/bg.jpeg",
-      "/assets/mesa/bg_2.jpg",
-      "/assets/mesa/bg_3.png"
+      "/assets/mesa/onigiri1.jpeg",
+      "/assets/mesa/onigiri2.jpg",
+      "/assets/mesa/onigiri3.jpg"
     ],
     [
-      "/assets/mesa/pancho1.jpg",
-      "/assets/mesa/pancho2.jpg",
-      "/assets/mesa/pancho3.jpg"
+      "/assets/mesa/ramen1.jpg",
+      "/assets/mesa/ramen2.jpg",
+      "/assets/mesa/ramen3.jpg"
     ]
   ];
 
   imagenesBebida: any = [
     [
-      "/assets/mesa/coca1.png",
-      "/assets/mesa/coca2.png",
-      "/assets/mesa/coca3.png"
+      "/assets/mesa/leche-banana1.jpg",
+      "/assets/mesa/leche-banana2.jpeg",
+      "/assets/mesa/leche-banana3.jpg"
     ],
     [
-      "/assets/mesa/agua1.png",
-      "/assets/mesa/agua2.png",
-      "/assets/mesa/agua3.png"
+      "/assets/mesa/sake1.jpg",
+      "/assets/mesa/sake2.jpg",
+      "/assets/mesa/sake3.jpg"
     ],
     [
       "/assets/mesa/matcha1.jpg",
@@ -83,14 +117,14 @@ export class MesaPage implements OnInit {
 
   imagenesPostre: any = [
     [
-      "/assets/mesa/flan1.jpeg",
-      "/assets/mesa/flan2.jpeg",
-      "/assets/mesa/flan3.jpeg"
+      "/assets/mesa/dorayaki1.jpg",
+      "/assets/mesa/dorayaki2.jpg",
+      "/assets/mesa/dorayaki3.jpg"
     ],
     [
-      "/assets/mesa/cheesecake1.png",
-      "/assets/mesa/cheesecake2.pn",
-      "/assets/mesa/cheesecake3.jpg"
+      "/assets/mesa/mochi1.jpeg",
+      "/assets/mesa/mochi2.jpg",
+      "/assets/mesa/mochi3.jpg"
     ],
     [
       "/assets/mesa/taiyaki1.jpg",
@@ -162,6 +196,12 @@ export class MesaPage implements OnInit {
     this.usuarioAnonimo = null;
     this.activarSpinner();
     this.auth.cerrarSesion();
+  }
+
+  
+  irAEncuesta(){
+    this.mostrarBtn = true;
+    this.router.navigate(["/encuesta-cliente"])
   }
 
   activarSpinner() {

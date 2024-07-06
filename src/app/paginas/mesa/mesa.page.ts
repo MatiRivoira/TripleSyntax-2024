@@ -47,32 +47,32 @@ export class MesaPage implements OnInit {
 
   imagenesComida: any = [
     [
-      "/assets/mesa/sushi1.jpeg",
-      "/assets/mesa/sushi2.jpg",
-      "/assets/mesa/sushi3.jpg"
+      "/assets/mesa/milanesa.jpg",
+      "/assets/mesa/milanesa_2.jpg",
+      "/assets/mesa/milanesa_3.jpg"
     ],
     [
-      "/assets/mesa/onigiri1.jpeg",
-      "/assets/mesa/onigiri2.jpg",
-      "/assets/mesa/onigiri3.jpg"
+      "/assets/mesa/bg.jpeg",
+      "/assets/mesa/bg_2.jpg",
+      "/assets/mesa/bg_3.png"
     ],
     [
-      "/assets/mesa/ramen1.jpg",
-      "/assets/mesa/ramen2.jpg",
-      "/assets/mesa/ramen3.jpg"
+      "/assets/mesa/pancho.jpg",
+      "/assets/mesa/pancho2.jpg",
+      "/assets/mesa/pancho3.jpg"
     ]
   ];
 
   imagenesBebida: any = [
     [
-      "/assets/mesa/leche-banana1.jpg",
-      "/assets/mesa/leche-banana2.jpeg",
-      "/assets/mesa/leche-banana3.jpg"
+      "/assets/mesa/coca1.png",
+      "/assets/mesa/coca2.png",
+      "/assets/mesa/coca3.png"
     ],
     [
-      "/assets/mesa/sake1.jpg",
-      "/assets/mesa/sake2.jpg",
-      "/assets/mesa/sake3.jpg"
+      "/assets/mesa/agua1.jpg",
+      "/assets/mesa/agua2.jpg",
+      "/assets/mesa/agua3.jpg"
     ],
     [
       "/assets/mesa/matcha1.jpg",
@@ -83,14 +83,14 @@ export class MesaPage implements OnInit {
 
   imagenesPostre: any = [
     [
-      "/assets/mesa/dorayaki1.jpg",
-      "/assets/mesa/dorayaki2.jpg",
-      "/assets/mesa/dorayaki3.jpg"
+      "/assets/mesa/flan1.jpg",
+      "/assets/mesa/flan2.jpg",
+      "/assets/mesa/flan3.jpg"
     ],
     [
-      "/assets/mesa/mochi1.jpeg",
-      "/assets/mesa/mochi2.jpg",
-      "/assets/mesa/mochi3.jpg"
+      "/assets/mesa/cheesecake1.jpeg",
+      "/assets/mesa/cheesecake2.jpg",
+      "/assets/mesa/cheesecake3.jpg"
     ],
     [
       "/assets/mesa/taiyaki1.jpg",
@@ -354,16 +354,13 @@ export class MesaPage implements OnInit {
               this.actualizarPedidos();
               for (let i = 0; i < this.pedidos.length; i++) {
                 if (this.pedidos[i].mesa == idMesa) {
-                  alert(`${this.pedidoActual}${ this.pedidos[i].id}`)
-                  if (this.pedidoActual.id == this.pedidos[i].id) {
-                    //aca no entra nunca
-                    this.pedidoActual = this.pedidos[i];
-                    this.chequearPedido = true;
-                  }
+                  this.pedidoActual = this.pedidos[i];
+                  this.chequearPedido = true;
                 }
               }
             } else {
-              alert("esa no es la meza")
+              this.mensajePopup = "Ese QR no es el de la mesa";
+              this.popup = true;
             }
             
           }

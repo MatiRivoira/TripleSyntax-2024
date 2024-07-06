@@ -77,7 +77,9 @@ export class CocineroPage implements OnInit {
 
   actualizarPedidoMozo(pedidoCocinero: any) {
     this.listaPedidosGenerales.forEach((pedido: any) => {
+      
       if (pedido.id == pedidoCocinero.id) {
+        console.log(pedido.id, pedidoCocinero.id);
         pedido.items.forEach((item: any) => {
           if (item.tipo == 'comida' || item.tipo == 'postre') {
             item.terminado = true;

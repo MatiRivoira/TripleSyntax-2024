@@ -24,6 +24,7 @@ export class MetrePage implements OnInit {
     this.firestore.obtenerColeccion('lista-espera').subscribe((data) => {
       this.listaEspera = data;
     });
+    
 
     // Init push notifications listener
     await this.fcmService.initPush();

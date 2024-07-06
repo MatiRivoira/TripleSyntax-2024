@@ -51,6 +51,8 @@ export class MozoPage implements OnInit {
   async ngOnInit() {
     this.firebaseServ.obtenerColeccion('pedidos').subscribe((pedidos) => {
       this.listaPedidos = pedidos;
+      console.log(this.listaPedidos);
+      
       this.seccionarPedidos(this.listaPedidos);
       pedidos.forEach((pedido) => {
         if (this.verificarItems(pedido)) {

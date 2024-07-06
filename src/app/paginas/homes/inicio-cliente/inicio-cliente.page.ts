@@ -213,7 +213,7 @@ export class InicioClientePage implements OnInit {
   ponerseEnListaEspera() {
     this.clienteEsperando.comenzales = this.contadorPersonas;
     if (this.usuarioLogueado.perfil == "cliente") {
-      if (!this.verificarListaEspera()) {
+      if (true) {
         this.asignarDatos(this.usuarioLogueado);
         this.firebaseServ.agregarDocumentoGenerico(this.clienteEsperando, 'lista-espera');
       }

@@ -352,13 +352,18 @@ export class MesaPage implements OnInit {
             
             if (idMesa == this.mesa.id) {
               this.actualizarPedidos();
-  
               for (let i = 0; i < this.pedidos.length; i++) {
                 if (this.pedidos[i].mesa == idMesa) {
-                  this.pedidoActual = this.pedidos[i];
-                  this.chequearPedido = true;
+                  alert(`${this.pedidoActual}${ this.pedidos[i].id}`)
+                  if (this.pedidoActual.id == this.pedidos[i].id) {
+                    //aca no entra nunca
+                    this.pedidoActual = this.pedidos[i];
+                    this.chequearPedido = true;
+                  }
                 }
               }
+            } else {
+              alert("esa no es la meza")
             }
             
           }

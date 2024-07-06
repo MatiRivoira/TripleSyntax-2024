@@ -1,5 +1,5 @@
 <ion-fab class="volver" vertical="start" horizontal="start" >
-  <ion-fab-button color="none" (click)="verificarPerfil()">
+  <ion-fab-button color="none">
     <ion-icon name="arrow-back-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -12,15 +12,12 @@
 
 <ion-content>
   <div class="pantalla">
-    <p *ngFor="let mensaje of mensajes" class="mensajes mensaje-escrito"
-    [ngClass]="usuario.perfil === mensaje.usuario
-                ? 'mensaje-enviado'
-                : 'mensaje-recibido'">
-            <span class="usuario">{{mensaje.usuarioNombre || "yo"}}  Mesa: {{this.mesa.id}}<br></span>
+    <p *ngFor="let mensaje of mensajes" class="mensajes mensaje-escrito" [ngClass]="'anonimo' === mensaje.perfil ? 'mensaje-enviado' : 'mensaje-recibido'">
+            <span class="usuario">{{mensaje.usuario=="anonimo" ? "yo" : "mozo"}} - mesa {{mensaje.mesa}}<br></span>
             <!-- <span *ngIf="mensaje.usuario != 'mozo'" class="usuario">- Mesa {{mensaje.mesaId}}</span><br> -->
-            <span>{{mensaje.texto}}</span>
+            <span>{{mensaje.contenido}}</span>
             <br/>
-            <span class="fecha">{{mensaje.hora}}</span>
+            <span class="fecha">{{mensaje.time}}</span>
     </p>
   </div>
 </ion-content>

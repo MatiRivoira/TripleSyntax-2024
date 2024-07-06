@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { pipe, take } from 'rxjs';
 
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ChatService } from 'src/app/servicios/chat.service';
@@ -29,81 +30,147 @@ export class ChatPage implements OnInit {
     private fcmService: FirebaseCloudMessagingService
   ) { }
 
-  ngOnInit() {
-    
-    this.chat.obtenerMensajes().subscribe((data: any) => {
-      if (data !== null) {
-        console.log(this.usuario.nombre);
-        
-        this.mensajes = data.filter((mensaje:any) => mensaje.usuarioNombre == this.usuario.nombre);
-        console.log(this.mensajes);
-        setTimeout(() => {
-          this.deslizarPantallaHaciaAbajo();
-        }, 100);
-      }
-    });
-
+  ngOnInit(): void {
+    this.mesa = this.obtenerMesaDelCliente();
     this.usuario = this.firestore.obtenerClienteAnonimo();
+    console.log("USUARIO ACTUAL: ", this.usuario)
 
-    console.log(this.usuario);
-    
-    if (this.usuario == null) {
-      this.firestore.obtenerColeccion('usuarios-aceptados').subscribe((res) => {
-        res.forEach(async (usuario) => {
-          if (usuario.email == this.auth.obtenerEmailUsuarioLogueado()) {
-            this.usuario = usuario;
-            this.firestore.obtenerColeccion("mesas").subscribe((data) => {
-              data.forEach((mesa) => {
-                if (mesa.cliente != undefined && mesa.cliente.id == usuario.id) {
-                  this.mesa = mesa;
-                  console.log(this.mesa);
-                }
-              })
-            })
-          }
-        });
-      });
-    }
+    this.chat.obtenerMensajes().subscribe((data) => {
+      this.mensajes = data;
+      console.log("MENSAJES DE LA BD: ",data);
+    });
   }
 
   enviarMensaje() {
+    console.log("Contenido: ", this.nuevoMensaje);
+    console.log("MESA DEL CLIENTE: ", this.obtenerMesaDelCliente())
 
-    if (this.nuevoMensaje.trim() == '') {
+    if(this.nuevoMensaje.trim() != "") {
+      let mensaje = {
+        contenido: this.nuevoMensaje,
+        time: this.formatearFecha(),
+        usuario: this.usuario.perfil ? "anonimo" : "mozo",
+        perfil: this.usuario.perfil,
+        mesa: 1,
+      };
+
+      console.log("Mensaje a guardar: ", mensaje)
+
+      this.chat.crearMensaje(mensaje);
+      this.deslizarPantallaHaciaAbajo();
+      this.nuevoMensaje = "";
+    } else {
       this.mensajePopup = "No puede enviar mensajes vacíos";
       this.popup = true;
       return;
     }
-    //
-    const fecha = new Date();
-    const hora = fecha.getHours().toString().padStart(2, '0');
-    const minutos = fecha.getMinutes().toString().padStart(2, '0');
-    const segundos = fecha.getSeconds().toString().padStart(2, '0');
+  }
 
-    const horaMensaje = `${hora}:${minutos}:${segundos}`;
-    let mensaje = {
-      // usuario: this.usuario ? this.usuario.perfil : this.usuarioAnonimo.perfil,
-      usuario: this.usuario.perfil,
-      usuarioNombre: this.usuario.nombre,
-      texto: this.nuevoMensaje,
-      hora: horaMensaje,
-      //mesaId: "",
-    };
-    // if (this.usuario.perfil != 'mozo') {
-    //   mensaje.mesaId = this.mesa.id;
-    // }
+  obtenerMesaDelCliente() {
+    this.firestore.obtenerColeccion("mesas").pipe(take(1)).subscribe((mesas) => {
+      this.firestore.obtenerColeccion("usuarios-aceptados").pipe(take(1)).subscribe((usuarios) => {
+        for (let mesa of mesas) {
+          console.log("MESA: ", mesa.cliente.id);
+          for (let usuario of usuarios) {
+            console.log("usuario a comparar: ", usuario.id);
+            if (mesa.cliente.id == usuario.id) {
+              console.log("MESA ENCONTRADA: ", mesa);
+              return mesa.id;
+            }
+          }
+        }
+      });
+    });
+  }
 
-    this.chat.crearMensaje(mensaje);
-    this.nuevoMensaje = '';
-    this.deslizarPantallaHaciaAbajo();
+  // ngOnInit() {
+    
+  //   this.chat.obtenerMensajes().subscribe((data: any) => {
+  //     if (data !== null) {
+  //       console.log(this.usuario.nombre);
+        
+  //       this.mensajes = data.filter((mensaje:any) => mensaje.usuarioNombre == this.usuario.nombre);
+  //       console.log(this.mensajes);
+  //       setTimeout(() => {
+  //         this.deslizarPantallaHaciaAbajo();
+  //       }, 100);
+  //     }
+  //   });
 
-    if (this.usuario.perfil === 'cliente' || this.usuario.perfil === 'anónimo') {
-      // enviar push notification mensaje consulta
-      this.fcmService.nuevoMensajePushNotification(this.usuario.nombre + " " + this.usuario.apellido, mensaje.texto, 'mozo');
-    }
-    else {
-      // enviar push notification mensaje respuesta chat
-      this.fcmService.nuevoMensajePushNotification('Soporte', mensaje.texto, '');
-    }
+  //   this.usuario = this.firestore.obtenerClienteAnonimo();
+
+  //   console.log(this.usuario);
+    
+  //   if (this.usuario == null) {
+  //     this.firestore.obtenerColeccion('usuarios-aceptados').subscribe((res) => {
+  //       res.forEach(async (usuario) => {
+  //         if (usuario.email == this.auth.obtenerEmailUsuarioLogueado()) {
+  //           this.usuario = usuario;
+  //           this.firestore.obtenerColeccion("mesas").subscribe((data) => {
+  //             data.forEach((mesa) => {
+  //               if (mesa.cliente != undefined && mesa.cliente.id == usuario.id) {
+  //                 this.mesa = mesa;
+  //                 console.log(this.mesa);
+  //               }
+  //             })
+  //           })
+  //         }
+  //       });
+  //     });
+  //   }
+  // }
+
+  // enviarMensaje() {
+
+  //   if (this.nuevoMensaje.trim() == '') {
+  //     this.mensajePopup = "No puede enviar mensajes vacíos";
+  //     this.popup = true;
+  //     return;
+  //   }
+  //   //
+  //   const fecha = new Date();
+  //   const hora = fecha.getHours().toString().padStart(2, '0');
+  //   const minutos = fecha.getMinutes().toString().padStart(2, '0');
+  //   const segundos = fecha.getSeconds().toString().padStart(2, '0');
+
+  //   const horaMensaje = `${hora}:${minutos}:${segundos}`;
+  //   let mensaje = {
+  //     // usuario: this.usuario ? this.usuario.perfil : this.usuarioAnonimo.perfil,
+  //     usuario: this.usuario.perfil,
+  //     usuarioNombre: this.usuario.nombre,
+  //     texto: this.nuevoMensaje,
+  //     hora: horaMensaje,
+  //     //mesaId: "",
+  //   };
+  //   // if (this.usuario.perfil != 'mozo') {
+  //   //   mensaje.mesaId = this.mesa.id;
+  //   // }
+
+  //   this.chat.crearMensaje(mensaje);
+  //   this.nuevoMensaje = '';
+  //   this.deslizarPantallaHaciaAbajo();
+
+  //   if (this.usuario.perfil === 'cliente' || this.usuario.perfil === 'anónimo') {
+  //     // enviar push notification mensaje consulta
+  //     this.fcmService.nuevoMensajePushNotification(this.usuario.nombre + " " + this.usuario.apellido, mensaje.texto, 'mozo');
+  //   }
+  //   else {
+  //     // enviar push notification mensaje respuesta chat
+  //     this.fcmService.nuevoMensajePushNotification('Soporte', mensaje.texto, '');
+  //   }
+  // }
+
+  formatearFecha() {
+    let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let year = now.getFullYear();
+    let hours = ("0" + now.getHours()).slice(-2);
+    let minutes = ("0" + now.getMinutes()).slice(-2);
+    let seconds = ("0" + now.getSeconds()).slice(-2);
+
+    const fechaFormateada = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    return fechaFormateada;
   }
 
   deslizarPantallaHaciaAbajo() {
@@ -119,14 +186,14 @@ export class ChatPage implements OnInit {
     }
   }
 
-  verificarPerfil() {
-    if (this.usuario.perfil == "mozo") {
-      this.router.navigateByUrl("/mozo");
-    }
-    else {
-      this.router.navigateByUrl("/inicio-cliente/mesa");
-    }
+  // verificarPerfil() {
+  //   if (this.usuario.perfil == "mozo") {
+  //     this.router.navigateByUrl("/mozo");
+  //   }
+  //   else {
+  //     this.router.navigateByUrl("/inicio-cliente/mesa");
+  //   }
 
-  }
+  // }
 
 }

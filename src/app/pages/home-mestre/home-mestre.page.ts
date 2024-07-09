@@ -16,7 +16,6 @@ export class HomeMestrePage implements OnInit {
   listadoClientes: any[] = [];
   mesasDisponibles: any[] = [];
 
-
   ngOnInit() {
 
     this.pushService.getUser(); 
@@ -28,8 +27,6 @@ export class HomeMestrePage implements OnInit {
     this.mesasSrv.traerMesasDisponibles().subscribe((mesas)=>
     {
       this.mesasDisponibles = mesas;
-      console.log(this.mesasDisponibles);
-      
     })
   }
 

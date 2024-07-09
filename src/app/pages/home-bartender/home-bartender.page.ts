@@ -24,10 +24,10 @@ export class HomeBartenderPage implements OnInit {
   ngOnInit() {
 
     this.pushService.getUser();
-    this.mesasSrv.TraerPedidosNoPreparadoBartender().subscribe((pedidos: any) => {
-      this.listadoPedidosAprobados = pedidos;
-      console.log(this.listadoPedidosAprobados);
-    })
+    // this.mesasSrv.TraerPedidosNoPreparadoBartender().subscribe((pedidos: any) => {
+    //   this.listadoPedidosAprobados = pedidos;
+    //   console.log(this.listadoPedidosAprobados);
+    // })
 
     this.mesasSrv.traerMozos().subscribe((mozos: any) => {
       this.tokenMozos = []
@@ -40,9 +40,9 @@ export class HomeBartenderPage implements OnInit {
   }
 
   EntregarPedido(pedido: any) {
-    this.mesasSrv.CambiarEstadoPedidoBartender(pedido, true).then(() => {
-      this.enviarPushMozos(pedido);
-    })
+    // this.mesasSrv.CambiarEstadoPedidoBartender(pedido, true).then(() => {
+    //   this.enviarPushMozos(pedido);
+    // })
   }
 
   altaProducto() {

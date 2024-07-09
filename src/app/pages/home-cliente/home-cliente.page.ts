@@ -105,8 +105,8 @@ export class HomeClientePage implements OnInit {
 
   async entrarListaEspera() {
     this.spinner = true;
+    this.estaEnLaLista = true;
     if (!this.estaEnLaLista) {
-      this.estaEnLaLista = true;
       await this.firestoreService.agregarAListaDeEspera(this.auth.UsuarioActivo).catch(() => {
         this.presentToast('Ocurrió un error al ingresar a la lista de espera.', 'danger', 'alert-circle-outline');
         this.vibration.vibrate(1000);

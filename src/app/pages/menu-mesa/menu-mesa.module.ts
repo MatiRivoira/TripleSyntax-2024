@@ -14,7 +14,6 @@ import { DiferenciaMinutosPipe } from 'src/app/pipes/diferencia-minutos.pipe';
 
 import { PagarComponent } from 'src/app/componentes/pagar/pagar.component';
 
-import { QrPropinaComponent } from 'src/app/componentes/qr-propina/qr-propina.component';
 
 @NgModule({
   imports: [
@@ -23,6 +22,6 @@ import { QrPropinaComponent } from 'src/app/componentes/qr-propina/qr-propina.co
     IonicModule,
     MenuMesaPageRoutingModule
   ],
-  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent, QrPropinaComponent]
+  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent]
 })
 export class MenuMesaPageModule {}

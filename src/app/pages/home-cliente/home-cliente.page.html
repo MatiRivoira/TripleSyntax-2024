@@ -84,7 +84,8 @@
 
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
     <ion-fab-button color="warning">
-      <ion-icon name="log-out-outline" (click)="auth.LogOut()"></ion-icon>
+      <ion-icon name="log-out-outline" (click)="cerrarSesion()"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+<app-loading *ngIf="isLoading"></app-loading>

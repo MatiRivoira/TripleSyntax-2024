@@ -217,4 +217,9 @@ export class HomeClientePage implements OnInit {
       });
   }
 
+  isLoading: boolean = false;
+  cerrarSesion(){
+    this.isLoading = true;
+    this.auth.LogOut();
+  }
 }

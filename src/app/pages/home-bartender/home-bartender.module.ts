@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeBartenderPageRoutingModule } from './home-bartender-routing.module';
 
 import { HomeBartenderPage } from './home-bartender.page';
+import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HomeBartenderPage } from './home-bartender.page';
     IonicModule,
     HomeBartenderPageRoutingModule
   ],
-  declarations: [HomeBartenderPage]
+  declarations: [HomeBartenderPage, LoadingComponent]
 })
 export class HomeBartenderPageModule {}

@@ -38,4 +38,9 @@ export class HomeMestrePage implements OnInit {
     await this.mesasSrv.AsignarMesa(cliente, numeroMesa)
   }
 
+  isLoading: boolean = false;
+  cerrarSesion(){
+    this.isLoading = true;
+    this.auth.LogOut();
+  }
 }

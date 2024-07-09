@@ -55,7 +55,7 @@
            <div >
             <div class="d-flex justify-content-space-between">
               <button (click)="RechazarPedido(pedido)" class="boton boton_mesa" >Rechazar</button>
-              <button   (click)="AprobarPedido(pedido)" class="boton boton_mesa" >Aceptar</button>
+              <button (click)="AprobarPedido(pedido)" class="boton boton_mesa" >Aceptar</button>
             </div>
           </div>
          </div>
@@ -209,3 +209,5 @@
     </button>
   </div>
 </ion-content>
+
+<app-loading *ngIf="isLoading"></app-loading>

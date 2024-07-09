@@ -108,10 +108,9 @@ export class HomeSupervisorPage implements OnInit {
     await toast.present();
   }
 
+  isLoading: boolean = false;
   cerrarSesion(){
-    this.spinner = true;
-    this.authService.LogOut().then(()=>{
-      this.spinner = false;
-    });
+    this.isLoading = true;
+    this.authService.LogOut();
   }
 }

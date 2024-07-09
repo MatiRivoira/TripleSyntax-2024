@@ -95,7 +95,9 @@ export class HomeMozoPage implements OnInit {
     this.mesasSrv.DesaprobarPedido(pedido);
   }
 
+  isLoading: boolean = false;
   cerrarSesion(){
+    this.isLoading = true;
     this.auth.LogOut();
   }
 }

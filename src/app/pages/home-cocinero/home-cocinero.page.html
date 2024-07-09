@@ -1,18 +1,16 @@
 
 <ion-content>
   <div class="header">
-
     <ion-toolbar>
-      <ion-title class="ion-text-center">PEDIDOS COCINA</ion-title>
+      <ion-title class="ion-text-center">PEDIDOS COCINERO</ion-title>
     </ion-toolbar>
 
-    <ion-fab horizontal="end" vertical="top" slot="fixed" (click)="cerrarSesion()">
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
       <ion-fab-button color="white">
         <ion-icon name="log-out-outline" ></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </div>
-
       <div>
       <h1 class="texto" *ngIf="listadoPedidosAprobados.length == 0">No hay pedidos por preparar</h1>
       <!-- <h2 class="texto" style="font-size: 28px; margin-top: 25px;" *ngIf="listadoPedidosAprobados.length != 0">Cocinero - productos</h2> -->
@@ -38,12 +36,11 @@
 
            <div >
             <div class="div_botones_mesas">
-              <ion-button style="width: 100%;" (click)="EntregarPedido(pedido)" expand="block"><ion-icon style="margin-right: 8px;" name="restaurant-outline"></ion-icon>Entregar</ion-button>
-              <!-- <button (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button> -->
+              <button (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button>
             </div>
           </div>
          </div>
       </div> 
-    
   </div>
 </ion-content>
+<app-loading *ngIf="isLoading"></app-loading>

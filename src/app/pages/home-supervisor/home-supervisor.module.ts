@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeSupervisorPageRoutingModule } from './home-supervisor-routing.module';
 
 import { HomeSupervisorPage } from './home-supervisor.page';
+import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HomeSupervisorPage } from './home-supervisor.page';
     IonicModule,
     HomeSupervisorPageRoutingModule
   ],
-  declarations: [HomeSupervisorPage]
+  declarations: [HomeSupervisorPage, LoadingComponent]
 })
 export class HomeSupervisorPageModule {}

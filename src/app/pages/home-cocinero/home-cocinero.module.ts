@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeCocineroPageRoutingModule } from './home-cocinero-routing.module';
 
 import { HomeCocineroPage } from './home-cocinero.page';
+import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HomeCocineroPage } from './home-cocinero.page';
     IonicModule,
     HomeCocineroPageRoutingModule
   ],
-  declarations: [HomeCocineroPage]
+  declarations: [HomeCocineroPage, LoadingComponent]
 })
 export class HomeCocineroPageModule {}

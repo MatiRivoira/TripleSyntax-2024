@@ -49,6 +49,7 @@ export class HomeMozoPage implements OnInit {
       this.listadoPedidosPagados = pedidos;
     });
 
+    
 
     this.mesasSrv.traerCocineros().subscribe((mozos: any) => {
       this.tokenCocinerosBartenders = [];

@@ -21,18 +21,22 @@ export class HomeMozoPage implements OnInit {
   ) {}
 
   listadoPedidosNoAprobados: any[] = [];
+  listadoPedidosAceptados: any[] = [];
 
   listadoPedidosPreparados: any[] = [];
   tokenCocinerosBartenders: string[] = [];
 
-  MostrarPreparados: boolean = false;
-  MostrarNoAprobados: boolean = true;
+  option:number = 1;
 
   ngOnInit() {
 
     this.pushService.getUser();
     this.mesasSrv.TraerPedidos('no aceptado').subscribe((pedidos) => {
       this.listadoPedidosNoAprobados = pedidos;
+    });
+
+    this.mesasSrv.TraerPedidos('aceptado').subscribe((pedidos) => {
+      this.listadoPedidosAceptados = pedidos;
     });
 
     this.mesasSrv.TraerPedidos('cocinado').subscribe((pedidos) => {
@@ -53,16 +57,6 @@ export class HomeMozoPage implements OnInit {
   chatear()
   {
     this.router.navigate(['chat-consulta'])
-  }
-
-  MostrarVistaPreparados() {
-    this.MostrarPreparados = true;
-    this.MostrarNoAprobados = false;
-  }
-
-  MostrarVistaNoAprobados() {
-    this.MostrarPreparados = false;
-    this.MostrarNoAprobados = true;
   }
 
   AprobarPedido(pedido: any) {

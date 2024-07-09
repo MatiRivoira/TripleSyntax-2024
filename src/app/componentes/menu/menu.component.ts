@@ -2,7 +2,12 @@ import { Cliente } from './../../clases/cliente';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MesasService } from 'src/app/services/mesas.service';
 import {ToastController } from '@ionic/angular';
-import { PushService } from 'src/app/services/push.service';
+
+import { PushService } from 'src/app/servicios/push.service';
+import { CapitalizePipe } from 'src/app/pipes/capitalize.pipe';
+
+
+
 
 @Component({
   selector: 'app-menu',

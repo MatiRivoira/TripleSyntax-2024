@@ -63,6 +63,12 @@ export class HomeClientePage implements OnInit {
       });
       console.log('TOKENS', this.tokenMetres);
     });
+
+    // -------------------------------------------------------------------
+    // BORRAR ESTO
+    // this.scanCoincide = true;
+    // this.mostrarMenu = true;
+    // -------------------------------------------------------------------
   }
   async escanearDocumento() {
     document.querySelector('body').classList.add('scanner-active');
@@ -100,6 +106,7 @@ export class HomeClientePage implements OnInit {
   async entrarListaEspera() {
     this.spinner = true;
     if (!this.estaEnLaLista) {
+      this.estaEnLaLista = true;
       await this.firestoreService.agregarAListaDeEspera(this.auth.UsuarioActivo).catch(() => {
         this.presentToast('Ocurrió un error al ingresar a la lista de espera.', 'danger', 'alert-circle-outline');
         this.vibration.vibrate(1000);

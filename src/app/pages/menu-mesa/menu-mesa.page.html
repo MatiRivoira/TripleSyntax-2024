@@ -1,8 +1,11 @@
 
 
-<ion-content [ngClass]="scanActivo?'scanner-activo':''">
-  <ion-header style="font-size: 1.4rem; text-align: center; font-family: 'Schibsted Grotesk', sans-serif;">MENU MESA</ion-header>
-
+<div [ngClass]="scanActivo?'scanner-activo':''" class="bg-slate-100 h-auto overflow-y-scroll">
+  <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center z-[999]">
+    <p class="text-white font-bold text-center text-2xl">
+      Bienvenido a tu mesa
+    </p>
+  </div>
 
     <!-- Spinner -->
   <div class="spinner">
@@ -21,43 +24,34 @@
   </div>
   
 
-  <div style="height: 90%; width: 100%; margin-top: 2rem;">
-
+  <div class="mt-16 min-h-screen w-screen flex flex-col justify-start items-center p-10 gap-10 bg-slate-100 overflow-x-scroll">
     <!-- Vista cuando es scaneado -->
-    <div style="height: 100%; width: 100%; margin-top: 5%; margin-left: 10%;" *ngIf="scannerCorrecto" >
-
-      <button style="background:url('../../../assets/mozoAtendiendo.jpg  ')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado !== 'pagado'" (click)="consultarMozo()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Consultar Mozo
-        </div>
-      </button>
-      <br>
-      <br>
-
-      <button style="background:url('../../../assets/icon/fondo.png')no-repeat center center fixed;" class="boton_menu"  *ngIf="pedido.estado === 'no iniciado'"  (click)="verMenu()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Ver Menú
-        </div>
-      </button>
-
-      <button style="background:url('../../../assets/comidaPreparacion.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado === 'aceptado' || pedido.estado === 'no aceptado'" (click)="consultarPedido()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Ver estado Comida
-        </div>
-      </button>
-
-      <button style="background:url('../../../assets/mozoEntrega.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado === 'entregado'"  (click)="LlegoComida()" >
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Llego la Comida
-        </div>
-      </button>
-     
-      <button class="boton_menu" style="background:url('../../../assets/encuesta.png')no-repeat center center fixed;" *ngIf="pedido.estado === 'pagado'" (click)="verEncuesta()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Encuesta de Satisfaccion
-        </div>
-      </button>
-
+     <!-- Consultar al mozo -->
+    <div class="min-h-full w-[100%] flex flex-col gap-10 justify-start items-center overflow-y-scroll" *ngIf="scannerCorrecto" >
+      <div (click)="consultarMozo()" *ngIf="pedido.estado !== 'pagado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjE2czEzM3dqejluajFiam8wZnkyYnEybXpraDM1YjdqdnN5N2c0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VeZvq8yltmsUfq2sgX/giphy-downsized-large.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Consultar al Mozo</p>
+      </div>
+      <!-- Ver el menu -->
+      <div (click)="verMenu()" *ngIf="pedido.estado === 'no iniciado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExanQwcDJndnFiajN0N2JoaTI2ZTRnZG9ybWd3aWp6emdzbGdhbjhyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3diAVwsxPSylVJBe/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Ver el Menú</p>
+      </div>
+      <!-- Ver el estado del pedido -->
+      <div (click)="consultarPedido()" *ngIf="pedido.estado === 'aceptado' || pedido.estado === 'no aceptado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3NqZHBvaWpsM2FyZmNwMDF5cmc3MnpiNWd4ZnlqMmVkcjFjaXVjeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SVHVfHH7CvuneydXdB/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Ver estado del pedido</p>
+      </div>
+      <!-- Marcar pedido como entregado -->
+      <div (click)="LlegoComida()" *ngIf="pedido.estado === 'entregado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG1sdWN6Nm90ZjBjYjJ1aHgxOXJtbXAycWtocHMxa2tma2ZoM3dkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SasDDqOSRclNu/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Llegó la comida</p>
+      </div>
+      <!-- Encuesta de satisfacción -->
+      <div (click)="verEncuesta()" *ngIf="pedido.estado === 'pagado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZngwNmg1dndjbXZjanZvOXJ2MXFyZXgxZXduZWt4bDgwcXlrd3h1MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SWuFBpWXcSalCGFjSy/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Calificá el servicio</p>
+      </div>
+      <!-- Pagar -->
+      <div (click)="Pagar()" *ngIf="pedido.estado === 'confirmado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjFla3FkNG03dzJtMTBjOHBrdDZvMmN5czRpZWpwZTY5YWZrbXllMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3mmdNnW5hkoUxTG/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Pagar</p>
+      </div>
+      
       <!-- <button style="background:url('../../../assets/preguntados.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado !== 'confirmado' &&  pedido.estado !== 'pagado'" (click)="Jugar()">
         <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
           Juego 10%
@@ -69,33 +63,26 @@
           Juego 15%
         </div>
       </button> -->
-
-      <button style="background:url('../../../assets/pagar.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado === 'confirmado'" (click)="Pagar()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Pagar
-        </div>
-      </button>
-    </div>
-
-    <!-- MENU -->
-    <div style="height: 100%; width: 100%;" *ngIf="MostrarMenu" >
-      <app-menu [numeroMesa]="numeroMesa" (pedidoFinal)="recibirPedido($event)"></app-menu>   
-    </div>
-
-    <div style="height: 100%; width: 100%;" *ngIf="MostrarPagar" >
-      <app-pagar [pedido]="pedido" (pago)="pago()"></app-pagar>   
-    </div>
-
-    <!-- <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego" >
-      <app-juego10 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego($event)"></app-juego10>  
-    </div>
-
-    <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego15" >
-      <app-juego15 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego15($event)"></app-juego15>  
-    </div> -->
-
-  </div>
-
   
-</ion-content>
+      <!-- <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego" >
+        <app-juego10 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego($event)"></app-juego10>  
+      </div>
+  
+      <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego15" >
+        <app-juego15 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego15($event)"></app-juego15>  
+      </div> -->
+    </div>
+
+    <div *ngIf="!scannerCorrecto" class="h-full w-full flex justify-center"> 
+      <!-- MENU -->
+      <div class="min-h-screen h-auto w-full" *ngIf="MostrarMenu" >
+        <app-menu [numeroMesa]="numeroMesa" (pedidoFinal)="recibirPedido($event)"></app-menu>   
+      </div>
+  
+      <div class="min-h-screen h-auto w-full" *ngIf="MostrarPagar" >
+        <app-pagar [pedido]="pedido" (pago)="pago()"></app-pagar>   
+      </div>
+    </div>
+  </div>  
+</div>
 

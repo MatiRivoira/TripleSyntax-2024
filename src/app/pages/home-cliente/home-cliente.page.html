@@ -1,77 +1,115 @@
 <ion-content [ngClass]="scanActivo?'scanner-activo':''">
   <div class="spinner">
-    <img src="../../../assets/icon/icon.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
-      *ngIf="this.spinner" />
+    <img
+      src="../../../assets/icon/icon.png "
+      width="60%"
+      [ngClass]="{'rotate-center' : this.spinner}"
+      *ngIf="this.spinner"
+    />
   </div>
 
   <div *ngIf="!this.scanActivo && !this.mostrarMenu">
-    <div (click)="escanearDocumento()" class="container bg-dark col-10 mt-5 py-2 rounded-3 bg-opacity-50">
-
-      <button class="qr_cliente" ></button>
-      <ion-col *ngIf="!this.scanActivo">
-        <label
-        style="font-size: 24px;font-weight: bold; color:rgb(255, 255, 255)">
-        ESCANEAR QR DEL LOCAL
-      </label>
-    </ion-col>
-  </div>
-  </div>
-
-  <div *ngIf="this.scanCoincide && this.mostrarMenu">
-    <div *ngIf="!this.scanActivo && !verEncuestas">
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <div class=" container h-75 col-8 mt-2 gap-2 justify-content-center align-items-center d-flex flex-column">
-          <div class="" style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <button class="btn " (click)="entrarListaEspera()">
-              <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="../../../assets/fila.png" alt="">
-                Inscribirse a lista de espera
-              </div>
-            </button>
-          </div>
-          <div style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <button class="btn  bg-opacity-50" (click)="mostrarEncuestas()">
-              <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="../../../assets/resenas.png" alt="" style="max-height: 30vh; max-width: 100%;">
-                Encuestas
-              </div>
-            </button>
-          </div>
-          <div class="bg-dark bg-opacity-50 "
-            style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <button class="btn  bg-opacity-50" (click)="escanearQRmesa()">
-              <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="../../../assets/qr-scanner.png" alt="" style="max-height: 100%; max-width: 100%;">
-                Escanear QR de la mesa
-              </div>
-            </button>
-          </div>
+    <div
+      (click)="escanearDocumento()"
+      class="h-screen w-screen bg-slate-100 flex flex-col justify-start items-center gap-5"
+    >
+      <div
+        class="top-0 w-full h-20 rounded-b-xl bg-customOrange flex justify-center items-center"
+      >
+        <p class="text-white font-bold text-center text-2xl">
+          Ingreso al local
+        </p>
+      </div>
+      <div class="h-full w-full flex flex-col justify-center items-center -mt-20 gap-16">
+        <div class="bg-white shadow-2xl shadow-customOrange p-8 rounded-3xl active:scale-95 active:shadow-none transition-all duration-300">
+          <img src="/assets/qr-scanner.png" alt="" class="h-52 w-52" />
+        </div>
+        <div >
+          <p class="text-zinc-900 font-bold text-3xl text-center px-10">Escaneá el QR de la puerta para continuar</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- DESDE ACA -->
+  <div *ngIf="this.scanCoincide && this.mostrarMenu && !estaEnLaLista">
+    <div *ngIf="!this.scanActivo && !verEncuestas">
+      <div class="h-screen w-screen bg-slate-100 flex flex-col justify-start items-center">
+        <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center">
+          <p class="text-white font-bold text-center text-2xl">
+            ¿Que quieres hacer?
+          </p>
+        </div>
+        <div class="h-full w-full flex flex-col items-center justify-start gap-12 p-12 mt-16">
+          <div (click)="entrarListaEspera()" class="w-full h-full flex flex-col items-center justify-center rounded-xl bg-customOrange shadow-2xl px-6 gap-10 active:scale-95 active:shadow-none transition-all duration-300">
+            <img src="/assets/fila.png" alt="" class="h-24 w-24">
+            <p class="text-white text-3xl font-bold">Ir a fila de espera</p>
+          </div>
+          <div (click)="mostrarEncuestas()" class="w-full h-full flex flex-col items-center justify-center rounded-xl bg-customOrange shadow-2xl px-6 gap-10 active:scale-95 active:shadow-none transition-all duration-300">
+            <img src="/assets/resenas.png" alt="" class="h-24 w-24">
+            <p class="text-white text-3xl font-bold">Ver encuestas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- HASTA ACA -->
+   
+  <div *ngIf="estaEnLaLista">
+    <div class="h-screen w-screen bg-slate-100 flex flex-col justify-center items-center gap-14 p-10">
+      <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center">
+        <p class="text-white font-bold text-center text-2xl">
+          Escaneá tu mesa
+        </p>
+      </div>
+      <div *ngIf="numeroMesa == 0" class="h-full flex flex-col justify-center items-center gap-14">
+        <div>
+          <img src="/assets/icon/icon.png" alt="" class="h-32 w-32">
+        </div>
+        <p class="text-3xl font-extrabold text-center text-black">Estamos buscando una <b class="text-customOrange">mesa</b> para vos<br/><br/>Agradecemos tu paciencia</p>
+        <div style="width:100%;height:0;padding-bottom:60%;position:relative;" class="rounded-xl"><iframe src="https://giphy.com/embed/pFZTlrO0MV6LoWSDXd" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/waiting-mr-bean-checking-time-pFZTlrO0MV6LoWSDXd"></a></p>
+      </div>
+      <div *ngIf="numeroMesa != 0" class="flex flex-col items-center gap-6 mt-24">
+        <div (click)="escanearQRmesa()" class="bg-white rounded-3xl flex justify-center items-center p-10 shadow-2xl shadow-customOrange mt-2 active:scale-95 active:shadow-sm transition-all duration-300">
+          <img src="/assets/qr-scanner.png" alt="" class="w-48 h-48">
+        </div>
+        <div>
+          <p class="text-3xl font-extrabold text-center text-black">Escaneá el QR de la mesa que el <b class="text-customOrange">metre</b> te indique</p>
+        </div>
+        <div class="w-[90vw]">
+          <div style="width:100%;height:0;padding-bottom:74%;position:relative;"><iframe src="https://giphy.com/embed/3wogjgqFfr2z6" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/hungry-food-eat-3wogjgqFfr2z6"></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-
-  <div *ngIf="verEncuestas && this.scanCoincide" style="height: 100%; width: 100%;">
+  <div
+    *ngIf="verEncuestas && this.scanCoincide"
+    style="height: 100%; width: 100%"
+  >
     <div>
       <ion-fab horizontal="start" vertical="top" slot="fixed">
         <ion-fab-button color="warning">
-          <ion-icon (click)="esconderEncuestas()" style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
+          <ion-icon
+            (click)="esconderEncuestas()"
+            style="font-size: 50px"
+            name="arrow-back-circle-outline"
+          ></ion-icon>
         </ion-fab-button>
       </ion-fab>
     </div>
 
-    <div style="height: 100%; width: 100%;" *ngIf="this.escanerMesaOk && !this.mostrarMenu">
-      <br>
-      <h1 style="font-size: xx-large;">Su numero de mesa es </h1>
+    <div
+      style="height: 100%; width: 100%"
+      *ngIf="this.escanerMesaOk && !this.mostrarMenu"
+    >
+      <br />
+      <h1 style="font-size: xx-large">Su numero de mesa es</h1>
 
       <h1 class="numero_mesa">{{numeroMesa}}</h1>
     </div>
     <app-charts-encuesta-clientes></app-charts-encuesta-clientes>
   </div>
-
 
   <div *ngIf="scanActivo">
     <div class="scan">
@@ -79,7 +117,9 @@
       <div class="border"></div>
     </div>
     <!-- <h3 class="wobble-hor-bottom my-5">Escaneando QR...</h3> -->
-    <button class="boton" style="margin-top: 50%;" (click)="pararScan()">Deja de escanear</button>
+    <button class="boton" style="margin-top: 50%" (click)="pararScan()">
+      Deja de escanear
+    </button>
   </div>
 
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
@@ -88,4 +128,6 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
 <app-loading *ngIf="isLoading"></app-loading>
+

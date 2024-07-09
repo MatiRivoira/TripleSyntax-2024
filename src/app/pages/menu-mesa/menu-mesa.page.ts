@@ -49,6 +49,11 @@ export class MenuMesaPage implements OnInit {
         }
       });
     })
+
+    // -----------------------------------------------
+    // BORRAR ESTO
+
+    // -----------------------------------------------
   }
 
   verEncuesta()

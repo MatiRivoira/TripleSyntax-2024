@@ -4,8 +4,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { QrPropinaComponent } from './componentes/qr-propina/qr-propina.component';
 import { EncuestaEmpleadoGuard } from './guards/encuesta-empleado.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
-import { Juego10Component } from './juegos/juego10/juego10.component';
-import { Juego15Component } from './juegos/juego15/juego15.component';
 
 const routes: Routes = [
   {
@@ -95,12 +93,6 @@ const routes: Routes = [
   {
     path: 'home-mozo',
     loadChildren: () => import('./pages/home-mozo/home-mozo.module').then( m => m.HomeMozoPageModule)
-  },
-  {
-    path: 'juego10', component:Juego10Component
-  },
-  {
-    path: 'juego15', component:Juego15Component
   },
   {
     path: 'home-cocinero',

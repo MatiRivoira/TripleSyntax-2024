@@ -8,6 +8,7 @@ import { HomeClientePageRoutingModule } from './home-cliente-routing.module';
 
 import { HomeClientePage } from './home-cliente.page';
 import { ChartsEncuestaClientesPage } from '../charts-encuesta-clientes/charts-encuesta-clientes.page';
+import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ChartsEncuestaClientesPage } from '../charts-encuesta-clientes/charts-e
     HomeClientePageRoutingModule,
     
   ],
-  declarations: [HomeClientePage,ChartsEncuestaClientesPage]
+  declarations: [HomeClientePage, ChartsEncuestaClientesPage, LoadingComponent]
 })
 export class HomeClientePageModule {}

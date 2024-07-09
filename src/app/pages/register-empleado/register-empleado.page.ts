@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { QrscannerService } from '../../servicios/qrscanner.service';
+import { QrscannerService } from '../../services/qrscanner.service';
 import { IonSlides, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 

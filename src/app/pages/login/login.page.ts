@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
@@ -9,15 +7,9 @@ import {
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
-import {
-  AngularFirestoreCollection,
-  AngularFirestore,
-} from '@angular/fire/compat/firestore';
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { EmailService } from 'src/app/servicios/email.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
+import { PushService } from 'src/app/services/push.service';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 @Component({
@@ -49,8 +41,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private emailService: EmailService,
     private pushService: PushService,
-    private vibration: Vibration,
-    private mesa : MesasService
+    private vibration: Vibration
   ) {
     this.forma = this.fb.group({
       correo: ['', [Validators.required]],
@@ -58,17 +49,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // this.sonidoInicio.volume = 0.5;
-    // this.mesa.desasignarCliente(1);
-    // this.mesa.desasignarCliente(2);
-    // this.mesa.desasignarCliente(3);
-
-    // this.mesa.traerMesasDisponibles().subscribe((mesas) => {
-    //   console.log('Mesas disponibles:', mesas);
-    // });
-    
-  }
+  ngOnInit() {}
 
   verPass() {
     if (this.visible) {

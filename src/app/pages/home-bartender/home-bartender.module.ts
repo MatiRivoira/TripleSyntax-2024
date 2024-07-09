@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomeCocineroPageRoutingModule } from './home-cocinero-routing.module';
+import { HomeBartenderPageRoutingModule } from './home-bartender-routing.module';
 
-import { HomeCocineroPage } from './home-cocinero.page';
+import { HomeBartenderPage } from './home-bartender.page';
 import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
@@ -14,8 +14,8 @@ import { LoadingComponent } from 'src/app/componentes/loading/loading.component'
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeCocineroPageRoutingModule
+    HomeBartenderPageRoutingModule
   ],
-  declarations: [HomeCocineroPage, LoadingComponent]
+  declarations: [HomeBartenderPage, LoadingComponent]
 })
-export class HomeCocineroPageModule {}
+export class HomeBartenderPageModule {}

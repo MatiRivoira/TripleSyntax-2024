@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { QrscannerService } from '../../servicios/qrscanner.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
+import { QrscannerService } from '../../services/qrscanner.service';
+import { MesasService } from 'src/app/services/mesas.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ThisReceiver } from '@angular/compiler';

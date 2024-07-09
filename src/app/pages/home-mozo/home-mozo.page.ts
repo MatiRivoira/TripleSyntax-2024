@@ -1,8 +1,8 @@
-import { AuthService } from './../../servicios/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { PushService } from 'src/app/servicios/push.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
+import { PushService } from 'src/app/services/push.service';
+import { MesasService } from 'src/app/services/mesas.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 
 
@@ -23,6 +23,8 @@ export class HomeMozoPage implements OnInit {
   listadoPedidosNoAprobados: any[] = [];
   listadoPedidosAceptados: any[] = [];
 
+  listadoPedidosPagados: any[] = [];
+
   listadoPedidosPreparados: any[] = [];
   tokenCocinerosBartenders: string[] = [];
 
@@ -42,6 +44,11 @@ export class HomeMozoPage implements OnInit {
     this.mesasSrv.TraerPedidos('cocinado').subscribe((pedidos) => {
       this.listadoPedidosPreparados = pedidos;
     });
+
+    this.mesasSrv.TraerPedidos('pagado').subscribe((pedidos) => {
+      this.listadoPedidosPagados = pedidos;
+    });
+
 
     this.mesasSrv.traerCocineros().subscribe((mozos: any) => {
       this.tokenCocinerosBartenders = [];
@@ -88,7 +95,9 @@ export class HomeMozoPage implements OnInit {
     this.mesasSrv.DesaprobarPedido(pedido);
   }
 
+  isLoading: boolean = false;
   cerrarSesion(){
+    this.isLoading = true;
     this.auth.LogOut();
   }
 }

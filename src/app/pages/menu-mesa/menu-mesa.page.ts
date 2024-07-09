@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { QrscannerService } from '../../servicios/qrscanner.service';
-import {  ToastController } from '@ionic/angular';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { PushService } from 'src/app/servicios/push.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
+import { QrscannerService } from '../../services/qrscanner.service';
+import { ToastController } from '@ionic/angular';
+import { MesasService } from 'src/app/services/mesas.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { PushService } from 'src/app/services/push.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 
 

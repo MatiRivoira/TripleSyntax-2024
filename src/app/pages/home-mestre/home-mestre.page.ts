@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { MesasService } from 'src/app/services/mesas.service';
+import { PushService } from 'src/app/services/push.service';
 
 @Component({
   selector: 'app-home-mestre',
@@ -38,4 +38,9 @@ export class HomeMestrePage implements OnInit {
     await this.mesasSrv.AsignarMesa(cliente, numeroMesa)
   }
 
+  isLoading: boolean = false;
+  cerrarSesion(){
+    this.isLoading = true;
+    this.auth.LogOut();
+  }
 }

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register-mesa',

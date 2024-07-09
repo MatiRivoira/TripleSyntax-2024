@@ -4,15 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { QrPropinaComponent } from './componentes/qr-propina/qr-propina.component';
 import { EncuestaEmpleadoGuard } from './guards/encuesta-empleado.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
-import { Juego10Component } from './juegos/juego10/juego10.component';
-import { Juego15Component } from './juegos/juego15/juego15.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomePageModule),
-  },
   {
     path: 'splash',
     loadChildren: () =>
@@ -102,18 +95,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home-mozo/home-mozo.module').then( m => m.HomeMozoPageModule)
   },
   {
-    path: 'juego10', component:Juego10Component
-  },
-  {
-    path: 'juego15', component:Juego15Component
-  },
-  {
     path: 'home-cocinero',
     loadChildren: () => import('./pages/home-cocinero/home-cocinero.module').then( m => m.HomeCocineroPageModule)
   },
   {
     path: 'chat-consulta',
     loadChildren: () => import('./pages/chat-consulta/chat-consulta.module').then( m => m.ChatConsultaPageModule)
+  },
+  {
+    path: 'home-bartender',
+    loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
   },
 ];
 

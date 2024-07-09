@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { IonSlides, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType } from '@capacitor/camera';
-import { EncuestasService } from 'src/app/servicios/encuestas.service';
+import { EncuestasService } from 'src/app/services/encuestas.service';
 import {
   Chart,
   BarElement,
@@ -35,9 +32,7 @@ export class ChartsEncuestaClientesPage implements OnInit {
 
   mostrarGraficos = false;
   constructor(
-    private toastController: ToastController,
     public authService: AuthService,
-    private router: Router,
     private encuestas: EncuestasService) {
     Chart.register(
       BarElement,

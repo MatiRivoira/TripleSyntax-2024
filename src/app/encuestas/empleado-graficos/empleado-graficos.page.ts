@@ -20,7 +20,7 @@ import { ToastController } from '@ionic/angular';import {
   registerables,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { EncuestasService } from 'src/app/servicios/encuestas.service';
+import { EncuestasService } from 'src/app/services/encuestas.service';
 
 @Component({
   selector: 'app-empleado-graficos',
@@ -29,10 +29,7 @@ import { EncuestasService } from 'src/app/servicios/encuestas.service';
 })
 export class EmpleadoGraficosPage implements OnInit {
 
-  constructor(private fb: FormBuilder,
-    private router: Router,
-    private toastController: ToastController,
-    private encuestasSrv: EncuestasService) 
+  constructor( private encuestasSrv: EncuestasService) 
     {
       Chart.register(
         BarElement,

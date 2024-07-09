@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeMestrePageRoutingModule } from './home-mestre-routing.module';
 
 import { HomeMestrePage } from './home-mestre.page';
+import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HomeMestrePage } from './home-mestre.page';
     IonicModule,
     HomeMestrePageRoutingModule
   ],
-  declarations: [HomeMestrePage]
+  declarations: [HomeMestrePage, LoadingComponent]
 })
 export class HomeMestrePageModule {}

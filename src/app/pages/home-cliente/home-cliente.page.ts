@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { PushService } from 'src/app/servicios/push.service';
-import { QrscannerService } from 'src/app/servicios/qrscanner.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { MesasService } from 'src/app/services/mesas.service';
+import { PushService } from 'src/app/services/push.service';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 @Component({
@@ -224,4 +224,9 @@ export class HomeClientePage implements OnInit {
       });
   }
 
+  isLoading: boolean = false;
+  cerrarSesion(){
+    this.isLoading = true;
+    this.auth.LogOut();
+  }
 }

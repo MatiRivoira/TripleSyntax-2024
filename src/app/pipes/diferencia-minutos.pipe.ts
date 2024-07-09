@@ -1,4 +1,3 @@
-import { NodeWithI18n } from '@angular/compiler';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

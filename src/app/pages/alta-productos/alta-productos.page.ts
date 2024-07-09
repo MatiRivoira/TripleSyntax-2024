@@ -5,7 +5,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { Producto } from 'src/app/clases/producto';

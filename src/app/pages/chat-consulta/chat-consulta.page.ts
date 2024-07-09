@@ -1,9 +1,9 @@
-import { AuthService } from 'src/app/servicios/auth.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { ChatService } from 'src/app/servicios/chat.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
+import { ChatService } from 'src/app/services/chat.service';
+import { MesasService } from 'src/app/services/mesas.service';
 @Component({
   selector: 'app-chat-consulta',
   templateUrl: './chat-consulta.page.html',

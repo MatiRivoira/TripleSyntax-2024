@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { EmailService } from 'src/app/servicios/email.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-home-supervisor',
@@ -12,106 +10,88 @@ import { PushService } from 'src/app/servicios/push.service';
   styleUrls: ['./home-supervisor.page.scss'],
 })
 export class HomeSupervisorPage implements OnInit {
-  spinner: boolean = false;
-  listadoClientes: any[] = [];
+  spinnerActivo = false;
+  listaClientes: any[] = [];
+  popUp: any;
+  formPopUp: FormGroup;
+  razonesTouched: boolean = false;
+  verificarCuentaCliente: boolean = false;
+  clienteARechazar: any;
+  popup: boolean = false;
 
-  verListaDeClientes: boolean = false;
 
-  constructor(
-    private router: Router,
-    public authService: AuthService,
-    private firestoreService: FirestoreService,
-    private toastController: ToastController,
-    private emailService: EmailService,
-    private pushService: PushService
-  ) {
-    this.pushService.getUser();
+  constructor(private firebaseServ: FirestoreService,
+    private formBuilder: FormBuilder,
+    private authServ: AuthService,
+    private emailService: EmailService,) {
+    this.formPopUp = this.formBuilder.group({
+      razones: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(40)]]
+    })
   }
 
-  ngOnInit() {
-    this.firestoreService.traerClientes().subscribe((clientes: any) => {
-      this.listadoClientes = [];
-      clientes.forEach((c) => {
-        if (c.tipo == 'registrado') {
-          this.listadoClientes.push(c);
-        }
-      });
-      // this.listadoClientes = clientes;
-      // console.log('CLIENTES: ', clientes);
+  async ngOnInit() {
+    this.cargarClientes();
+  }
+
+  ngAfterViewInit() {
+    this.popUp = document.getElementById('contenedor-pop-up');
+
+  }
+
+  cargarClientes() {
+    this.listaClientes = [];
+    this.firebaseServ.traerClientes().subscribe((res) => {
+      this.listaClientes = res;
     });
   }
 
-  irAEncuestas() {
-    this.spinner = true;
+  aceptarCliente(clienteAceptado: any) {
+    const listaAux = this.listaClientes;
+    this.listaClientes = listaAux.filter(cliente => cliente != clienteAceptado);
+    this.emailService.enviarAvisoCuentaAprobada(clienteAceptado);
+    this.activarSpinner();
+  }
+
+  formatDate(date:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(date).toLocaleDateString('es-ES', options);
+}
+
+  activarSpinner() {
+    this.spinnerActivo = true;
     setTimeout(() => {
-      this.spinner = false;
-      this.router.navigate(['encuesta-supervisor']);
-    }, 1000);
+      this.spinnerActivo = false;
+    }, 2000);
   }
 
-  irAAltas() {
-    this.spinner = true;
-    setTimeout(() => {
-      this.spinner = false;
-      this.router.navigate(['menu-altas']);
-    }, 1000);
+  accionRechazar(cliente: any) {
+    this.popUp = document.getElementById('contenedor-pop-up');
+    this.popUp.classList.remove("esconder");
+    this.clienteARechazar = cliente;
   }
 
-  irAClientes() {
-    this.spinner = true;
-    setTimeout(() => {
-      this.spinner = false;
-      this.verListaDeClientes = true;
-    }, 1000);
+  cancelarRechazo() {
+    this.popUp.classList.add("esconder");
   }
 
-  irAHomeSupervisor() {
-    this.spinner = true;
-    setTimeout(() => {
-      this.spinner = false;
-      this.verListaDeClientes = false;
-    }, 1000);
+  async rechazarCliente() {
+    this.razonesTouched = true;
+    if (this.formPopUp.valid) {
+      const listaAux = this.listaClientes;
+      this.listaClientes = listaAux.filter(cliente => cliente != cliente);
+
+      this.emailService.enviarAvisoCuentaDeshabilitada(this.clienteARechazar)
+
+      this.cargarClientes();
+      this.popUp.classList.add("esconder");
+      this.razonesTouched = false;
+      this.activarSpinner();
+    }
   }
 
-  habilitarDeshabilitarCliente(cliente: any) {
-    this.spinner = true;
-    cliente.aprobado = !cliente.aprobado;
-    this.firestoreService
-      .actualizarUsuario(cliente)
-      .then(() => {
-        this.spinner = false;
-        this.presentToast('Cliente actualizado', 'success', 'person-outline');
-        if (cliente.aprobado) {
-          this.emailService.enviarAvisoCuentaAprobada(cliente);
-        } else {
-          this.emailService.enviarAvisoCuentaDeshabilitada(cliente);
-        }
-      })
-      .catch(() => {
-        this.spinner = false;
-        this.presentToast(
-          'No se actualizo el cliente',
-          'danger',
-          'close-circle-outline'
-        );
-      });
-  }
-
-  async presentToast(mensaje: string, color: string, icono: string) {
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 1500,
-      icon: icono,
-      color: color,
-    });
-
-    await toast.present();
-  }
-
+  isLoading: boolean = false;
   cerrarSesion(){
-    this.spinner = true;
-    this.authService.LogOut().then(()=>{
-      this.spinner = false;
-    });
+    this.isLoading = true;
+    this.authServ.LogOut();
   }
 }

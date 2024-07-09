@@ -16,8 +16,6 @@ import { PagarComponent } from 'src/app/componentes/pagar/pagar.component';
 
 import { QrPropinaComponent } from 'src/app/componentes/qr-propina/qr-propina.component';
 
-import { Juego10Component } from 'src/app/juegos/juego10/juego10.component';
-import { Juego15Component } from 'src/app/juegos/juego15/juego15.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,6 +23,6 @@ import { Juego15Component } from 'src/app/juegos/juego15/juego15.component';
     IonicModule,
     MenuMesaPageRoutingModule
   ],
-  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent,QrPropinaComponent,Juego10Component, Juego15Component]
+  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent,QrPropinaComponent]
 })
 export class MenuMesaPageModule {}

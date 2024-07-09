@@ -1,11 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@505&display=swap');
 
 ion-content{
-  --background: #fff;
-  font-family: "Schibsted Grotesk", sans-serif;
+  --background: #F2F2F2;
   font-optical-sizing: auto;
   font-weight: 505;
   font-style: normal;
+}
+
+ion-toolbar {
+    --background: #F27405;
+    height: fit-content;
+    color: white;
+    padding: 5px;
+    border-radius: 0px 0px 30px 30px;
+}
+
+:host {
+  --handle-background-checked: ;
+}
+
+.toggle
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 0px 150px;
+    margin: 0;
+}
+
+ .toggle ion-label
+{
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+ .toggle ion-toggle
+{
+  padding: 0.7rem;
+  --background: rgb(228, 228, 228);
+  --handle-background-checked: white;
+  --background-checked: rgb(228, 228, 228);
+  --track-background-checked: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.39);
 }
 
 .scanner-activo {
@@ -30,22 +68,22 @@ ion-content{
 }
 ::placeholder
 {
-    color: rgb(0, 0, 0);
+  color: #333 !important;
     padding-left: 3px;
 }
 
 #logoLogIn{
 
   font-size: 24px;
-  color: #000000;
+  color: white;
   transform:translateY(1%);
   margin-right: 15px;
 }
 
 .input{
   appearance: none;
-  background: #F27405;;
-  border: 1px solid rgb(0, 0, 0);
+  background: white;
+  border: none;
   line-height: 0;
   font-size: 17px;
   width: 100%;
@@ -55,20 +93,24 @@ ion-content{
   border-radius: 60px;
   letter-spacing: 0.01em;
   position: relative;
-  color: #000000;
+  color: #333 !important;
   font-weight: bold;
   margin-bottom: 10px;
+  outline: none;
   // z-index: 1;
 }
   
 ion-button{
   margin-top: 10px;
-  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.7);
   --background: #F27405;
-  // margin-bottom: 20px;
-  // border-radius: 30px;
+  --border-radius: 30px !important;
   height: 50px;
-  color: #000000;
+  color: white;
+  font-weight: bold;
+}
+
+small {
+  color: #F27405;
 }
 
 form
@@ -83,7 +125,7 @@ form
   }
   .boton {
     background-color: #dd6262;
-    color: #000000;
+    color: white;
     border-radius: 10px;
     font-weight: 700;
     font-size: 200%;
@@ -474,4 +516,16 @@ ion-note {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.fto-cliente {
+  background-color: white;
+  margin: 5vw;
+  border-radius: 20%;
+  max-width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
 }

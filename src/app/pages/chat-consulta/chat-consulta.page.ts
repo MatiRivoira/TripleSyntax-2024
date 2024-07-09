@@ -15,15 +15,14 @@ export class ChatConsultaPage implements OnInit {
   mensajes:any[];
   mensaje:string;
 
-  chatroom = 'mensajes-pps4a';
   constructor(public mesasSrv:MesasService,private toastController: ToastController,public router:Router,public chatService: ChatService,public authService:AuthService) 
   {
     window.scrollTo(0, document.body.scrollHeight);
   }
 
   ngOnInit() {
-   
     this.chatService.cargarMensajes();
+    this.mensajes = this.chatService.mensajes;
   }
 
   atras()

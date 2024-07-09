@@ -19,9 +19,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+
 
 @NgModule({
-  declarations: [ AppComponent],
+  declarations: [ AppComponent, CapitalizePipe],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

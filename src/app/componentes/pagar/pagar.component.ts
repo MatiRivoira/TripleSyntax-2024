@@ -26,7 +26,8 @@ export class PagarComponent implements OnInit {
   scanActivo=false;
 
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   agregarPropina()
   {

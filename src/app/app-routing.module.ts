@@ -106,6 +106,10 @@ const routes: Routes = [
     path: 'home-bartender',
     loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
   },
+  {
+    path: 'graficos',
+    loadChildren: () => import('./pages/graficos/graficos.module').then( m => m.GraficosPageModule)
+  },
 ];
 
 @NgModule({

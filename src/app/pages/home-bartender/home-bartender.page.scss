@@ -1,23 +1,12 @@
-ion-content{
-    --background: rgb(228, 224, 224);;
-      align-items: center;
-      align-content: center;
-      text-align: center;
-      --color: #000;
-  }
-
- ion-toolbar{
-    --background:  #F27405;
-    --color: white;
+*{
+    color: white;
 }
 
-  ion-button{
-    margin-top: 18px;
-    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
-    --background: #d8a198;    
-    margin-bottom: 8px;
-    color: black;
-    
+ion-content{
+    --background: #F2F2F2;
+    align-items: center;
+    align-content: center;
+    text-align: center;
 }
 
 .header {
@@ -33,18 +22,45 @@ ion-content{
     }
 }
 
-.div_botones_mesas
+.div_cambio_vista
 {
-    // width: 18rem;
-    margin: 0px;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
     align-items: center;
     align-content: center;
     text-align: center;
     display: flex;
-    text-align: center;
-    align-items: center;
-    align-content: center;
+    padding: 3%;
 }
+.texto
+{
+    margin-top: 17%;
+    font-weight: 600;
+    font-size: 200%;
+}
+// .div_botones_mesas
+// {
+//     width: 18rem;
+//     align-items: center;
+//     align-content: center;
+//     text-align: center;
+//     display: flex;
+//     justify-content: space-between;
+
+// }
+
+ion-fab-button {
+    --top: 0;
+    --background: transparent;
+    --color: white ;
+    --box-shadow: none;
+}
+
+.body{
+    color: #333;
+}
+
 .boton
 {
     display: flex;
@@ -61,11 +77,12 @@ ion-content{
     justify-content: center;
     align-items: center;
 }
+
 .boton_mesa
 {
     margin-left: auto;
     margin-right: auto;
-
+    width: 48%;
 }
 
 
@@ -75,12 +92,6 @@ ion-content{
     height: 90%;
 }
 
-.texto
-{
-    margin-top: 17%;
-    font-weight: 600;
-    font-size: 200%;
-}
 
 .img-producto
 {
@@ -90,6 +101,9 @@ ion-content{
     background-size: cover;
 }
 
+h1 {
+    color: #333;
+}
 
 .card_producto
 {
@@ -116,8 +130,26 @@ ion-content{
     }
 }
 
-h3
-{
-    font-weight: 600;
-    color:white;
+.fab-vertical-top {
+    top: 5px;
+}
+
+.sinClientes-container {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 200px;
+        opacity: 0.5;
+    }
+
+    h1 {
+        margin-top: -10px;
+        color: #333;
+        font-weight: 600;
+        opacity: 0.5;
+    }
 }

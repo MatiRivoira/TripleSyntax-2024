@@ -12,7 +12,10 @@
     </ion-fab>
   </div>
       <div>
-      <h1 class="texto" *ngIf="listadoPedidosAprobados.length == 0">No hay pedidos por preparar</h1>
+        <div class="sinClientes-container" *ngIf="listadoPedidosAprobados.length == 0">
+          <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+          <h1 class="texto"  style="color: #333;">No hay pedidos por preparar.</h1>
+        </div>
       <!-- <h2 class="texto" style="font-size: 28px; margin-top: 25px;" *ngIf="listadoPedidosAprobados.length != 0">Cocinero - productos</h2> -->
         <div class="card_producto"  *ngFor="let pedido of listadoPedidosAprobados">
          <div>

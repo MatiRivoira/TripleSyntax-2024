@@ -162,8 +162,9 @@ export class FirestoreService {
    // Método para borrar todos los documentos de una colección
    BorrarCollection(collection: string): Subscription {
     const subscription = this.getDocuments(collection).subscribe(documents => {
+      console.log(documents);
       documents.forEach(doc => {
-        this.deleteDocument(collection, doc.id);
+        this.deleteDocument(collection, doc.uid);
       });
       subscription.unsubscribe(); // Desuscribirse después de completar la eliminación
     });

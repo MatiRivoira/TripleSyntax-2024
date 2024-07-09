@@ -1,7 +1,6 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { QrPropinaComponent } from './componentes/qr-propina/qr-propina.component';
 import { EncuestaEmpleadoGuard } from './guards/encuesta-empleado.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
 
@@ -67,9 +66,6 @@ const routes: Routes = [
   {
     path: 'home-supervisor',
     loadChildren: () => import('./pages/home-supervisor/home-supervisor.module').then( m => m.HomeSupervisorPageModule)
-  },
-  {
-    path:"qr-propina", component:QrPropinaComponent
   },
   {
     path: 'menu-mesa',

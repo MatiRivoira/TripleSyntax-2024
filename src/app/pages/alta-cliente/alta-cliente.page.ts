@@ -31,7 +31,7 @@ export class AltaClientePage implements OnInit {
 
   tokenSupervisores: string[] = [];
 
-  src_imagen = '../../../assets/anonimo.png';
+  src_imagen = '/assets/icon/foto-avatar.avif';
   contenido: string[] = [];
 
   constructor(
@@ -55,6 +55,14 @@ export class AltaClientePage implements OnInit {
       dni: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
     this.cliente.tipo = 'registrado';
+  }
+
+  cambiarModo() {
+    if (this.cliente.tipo === 'registrado') {
+      this.cliente.tipo = "anonimo";
+    } else {
+      this.cliente.tipo = 'registrado';
+    }
   }
 
   ngOnInit() {

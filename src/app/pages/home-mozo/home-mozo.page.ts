@@ -23,6 +23,8 @@ export class HomeMozoPage implements OnInit {
   listadoPedidosNoAprobados: any[] = [];
   listadoPedidosAceptados: any[] = [];
 
+  listadoPedidosPagados: any[] = [];
+
   listadoPedidosPreparados: any[] = [];
   tokenCocinerosBartenders: string[] = [];
 
@@ -42,6 +44,11 @@ export class HomeMozoPage implements OnInit {
     this.mesasSrv.TraerPedidos('cocinado').subscribe((pedidos) => {
       this.listadoPedidosPreparados = pedidos;
     });
+
+    this.mesasSrv.TraerPedidos('pagado').subscribe((pedidos) => {
+      this.listadoPedidosPagados = pedidos;
+    });
+
 
     this.mesasSrv.traerCocineros().subscribe((mozos: any) => {
       this.tokenCocinerosBartenders = [];

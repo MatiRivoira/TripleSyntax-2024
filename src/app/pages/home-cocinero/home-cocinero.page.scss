@@ -1,13 +1,15 @@
 ion-content{
-    --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+    --background: rgb(228, 224, 224);;
       align-items: center;
       align-content: center;
       text-align: center;
-  }
-  *{
-    color: #000000;
+      --color: #000;
   }
 
+ ion-toolbar{
+    --background:  #F27405;
+    --color: white;
+}
 
   ion-button{
     margin-top: 18px;
@@ -15,6 +17,7 @@ ion-content{
     --background: #d8a198;    
     margin-bottom: 8px;
     color: black;
+    
 }
 
 

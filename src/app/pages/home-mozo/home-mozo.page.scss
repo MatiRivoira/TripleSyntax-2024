@@ -117,8 +117,39 @@ h1 {
     h1 {
         color: white !important;
     }
+
+    td {
+        color: white !important;
+    }
+
+    .boton {
+        background-color: #F2F2F2;
+        color: #F27405;
+        font-weight: bold;
+        font-size: 20px;
+    }
 }
 
 .fab-vertical-top {
     top: 5px;
+}
+
+.sinClientes-container {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 200px;
+        opacity: 0.5;
+    }
+
+    h1 {
+        margin-top: -10px;
+        color: #333;
+        font-weight: 600;
+        opacity: 0.5;
+    }
 }

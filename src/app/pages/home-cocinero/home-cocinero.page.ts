@@ -70,4 +70,9 @@ export class HomeCocineroPage implements OnInit {
       });
   }
 
+  cerrarSesion(){
+    this.auth.LogOut();
+  }
+
+
 }

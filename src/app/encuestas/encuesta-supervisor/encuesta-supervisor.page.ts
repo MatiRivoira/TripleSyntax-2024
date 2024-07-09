@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import {
   Chart,
   BarElement,
@@ -26,7 +25,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-encuesta-supervisor',
@@ -51,7 +50,7 @@ export class EncuestaSupervisorPage implements OnInit {
   public forma!: FormGroup;
   public formaEmpleado!: FormGroup;
 
-  chart: Chart;
+  chart: any;
   vistasChartsCliente: boolean = false;
   vistasChartsEmpleado: boolean = false;
   clienteTieneAlgunaEncuesta: boolean = false;

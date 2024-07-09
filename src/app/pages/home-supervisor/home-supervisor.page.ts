@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { EmailService } from 'src/app/servicios/email.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { PushService } from 'src/app/services/push.service';
 
 @Component({
   selector: 'app-home-supervisor',

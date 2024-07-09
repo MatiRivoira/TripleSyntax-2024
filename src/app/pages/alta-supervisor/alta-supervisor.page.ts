@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { QrscannerService } from '../../servicios/qrscanner.service';
+import { QrscannerService } from '../../services/qrscanner.service';
 import { ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 // SLIDES
 import { ViewChild } from '@angular/core';

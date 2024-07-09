@@ -4,19 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChartsEncuestaClientesPageRoutingModule } from './charts-encuesta-clientes-routing.module';
-
-import { ChartsEncuestaClientesPage } from './charts-encuesta-clientes.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    ChartsEncuestaClientesPageRoutingModule
-  ],
-  declarations: [
-    ChartsEncuestaClientesPage 
+    IonicModule
   ]
 })
 export class ChartsEncuestaClientesPageModule {}

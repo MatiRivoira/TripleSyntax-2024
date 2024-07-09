@@ -9,11 +9,11 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { QrscannerService } from 'src/app/servicios/qrscanner.service';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { PushService } from 'src/app/services/push.service';
 @Component({
   selector: 'app-alta-cliente',
   templateUrl: './alta-cliente.page.html',

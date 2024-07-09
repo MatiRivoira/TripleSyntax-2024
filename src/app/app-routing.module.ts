@@ -9,11 +9,6 @@ import { Juego15Component } from './juegos/juego15/juego15.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomePageModule),
-  },
-  {
     path: 'splash',
     loadChildren: () =>
       import('./pages/splash/splash.module').then((m) => m.SplashPageModule),
@@ -114,6 +109,10 @@ const routes: Routes = [
   {
     path: 'chat-consulta',
     loadChildren: () => import('./pages/chat-consulta/chat-consulta.module').then( m => m.ChatConsultaPageModule)
+  },
+  {
+    path: 'home-bartender',
+    loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
   },
 ];
 

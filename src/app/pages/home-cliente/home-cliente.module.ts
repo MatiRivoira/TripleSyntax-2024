@@ -17,6 +17,6 @@ import { ChartsEncuestaClientesPage } from '../charts-encuesta-clientes/charts-e
     HomeClientePageRoutingModule,
     
   ],
-  declarations: [HomeClientePage,ChartsEncuestaClientesPage]
+  declarations: [HomeClientePage, ChartsEncuestaClientesPage]
 })
 export class HomeClientePageModule {}

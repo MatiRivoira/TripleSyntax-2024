@@ -14,10 +14,10 @@ import {
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { EmailService } from 'src/app/servicios/email.service';
-import { PushService } from 'src/app/servicios/push.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { MesasService } from 'src/app/services/mesas.service';
+import { EmailService } from 'src/app/services/email.service';
+import { PushService } from 'src/app/services/push.service';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 @Component({

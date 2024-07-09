@@ -1,8 +1,8 @@
-import { AuthService } from './../../servicios/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { PushService } from 'src/app/servicios/push.service';
-import { MesasService } from 'src/app/servicios/mesas.service';
-import { FirestoreService } from 'src/app/servicios/firestore.service';
+import { PushService } from 'src/app/services/push.service';
+import { MesasService } from 'src/app/services/mesas.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 
 

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonSlides, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { EncuestasService } from 'src/app/servicios/encuestas.service';
+import { EncuestasService } from 'src/app/services/encuestas.service';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 import {

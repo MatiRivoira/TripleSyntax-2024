@@ -8,6 +8,7 @@ import { HomeBartenderPageRoutingModule } from './home-bartender-routing.module'
 
 import { HomeBartenderPage } from './home-bartender.page';
 import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
+import { FilterProductByTypePipe } from 'src/app/pipes/filter-product-by-type.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { LoadingComponent } from 'src/app/componentes/loading/loading.component'
     IonicModule,
     HomeBartenderPageRoutingModule
   ],
-  declarations: [HomeBartenderPage, LoadingComponent]
+  declarations: [HomeBartenderPage, LoadingComponent, FilterProductByTypePipe]
 })
 export class HomeBartenderPageModule {}

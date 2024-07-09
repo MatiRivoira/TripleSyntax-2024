@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="color: rgb(0, 0, 0);"   *ngFor="let producto of pedido.productos">
+                    <tr style="color: rgb(0, 0, 0);"   *ngFor="let producto of pedido.productos | filterProductByType: 'bartender'">
                         <td style="color: rgb(0, 0, 0);" >{{producto.nombre}}</td>
                         <td style="color: rgb(0, 0, 0);" >{{producto.tiempoElaboracion}} min</td>
                     </tr>

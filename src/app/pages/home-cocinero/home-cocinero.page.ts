@@ -24,10 +24,10 @@ export class HomeCocineroPage implements OnInit {
   ngOnInit() {
 
     this.pushService.getUser(); 
-    this.mesasSrv.TraerPedidos("aceptado").subscribe((pedidos:any)=>
+    this.mesasSrv.TraerPedidos("aceptado", "cocinado-b").subscribe((pedidos:any)=>
     {
       this.listadoPedidosAprobados = pedidos;
-      console.log(this.listadoPedidosAprobados);
+      console.log(pedidos);
       
     })
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {  Observable, Subscription } from 'rxjs';
+import {  map  } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -159,5 +159,16 @@ export class FirestoreService {
     );
   }
 
+   // Método para borrar todos los documentos de una colección
+   BorrarCollection(collection: string): Subscription {
+    const subscription = this.getDocuments(collection).subscribe(documents => {
+      documents.forEach(doc => {
+        this.deleteDocument(collection, doc.id);
+      });
+      subscription.unsubscribe(); // Desuscribirse después de completar la eliminación
+    });
+
+    return subscription;
+  }
   
 }

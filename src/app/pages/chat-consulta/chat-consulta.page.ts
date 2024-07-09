@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChatService } from 'src/app/services/chat.service';
 import { MesasService } from 'src/app/services/mesas.service';
 import { Subscription } from 'rxjs';
+import { element } from 'protractor';
 @Component({
   selector: 'app-chat-consulta',
   templateUrl: './chat-consulta.page.html',
@@ -16,17 +17,20 @@ export class ChatConsultaPage implements OnInit {
   mensajes:any[];
   mensaje:string;
 
-  constructor(public mesasSrv:MesasService,private toastController: ToastController,public router:Router,public chatService: ChatService,public authService:AuthService) 
-  {
+  constructor(public mesasSrv:MesasService,private toastController: ToastController,public router:Router,public chatService: ChatService,public authService:AuthService) {
     window.scrollTo(0, document.body.scrollHeight);
   }
 
   ngOnInit() {
     this.chatService.cargarMensajes();
+    console.log("Usuario Activo:", this.authService.UsuarioActivo)
+    console.log("MENSAJES: ")
+    this.chatService.mensajes.forEach(element => {
+      console.log(element);
+    })
   }
 
-  atras()
-  {
+  atras() {
     if(this.authService.UsuarioActivo.perfil == "cliente")
     {
       this.router.navigate(['menu-mesa'])

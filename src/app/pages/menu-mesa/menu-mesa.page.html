@@ -11,18 +11,19 @@
       *ngIf="this.spinner" />
   </div>
 
-  <div class="fondo_blur" *ngIf="MostrarDetallePedido">
-    <div class="div_Detalle" >
+  <div class="absolute h-screen w-screen z-[998] top-0 left-0 flex justify-center items-center bg-white/30" *ngIf="MostrarDetallePedido">
+    <div class="bg-white h-auto p-4 flex flex-col items-center gap-5">
        <!-- <p><b>{{auth.UsuarioActivo.nombre}}</b></p> -->
-       <p *ngIf="pedido.estado === 'no aceptado'"><b>Su pedido todavia no fue aprobado</b></p>
-      <p *ngIf="pedido.estado === 'aceptado'"><b>Su pedido esta en preparacion</b></p>
-      <p *ngIf="pedido.estado === 'aceptado'"><b>Faltan {{ pedido.comienzo | diferenciaMinutos:pedido.tiempoPreparacion}} minutos</b></p>
-      <button class="boton" (click)="cerrarDetallePedido()">Cerrar</button>
+       <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'no aceptado'"><b>Su pedido todavia no fue aprobado</b></p>
+      <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'aceptado'"><b>Su pedido esta en preparacion</b></p>
+      <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'aceptado'"><b>Faltan {{ pedido.comienzo | diferenciaMinutos:pedido.tiempoPreparacion}} minutos</b></p>
+      <button class="w-40 h-12 rounded-lg bg-customOrange text-white flex justify-center items-center" (click)="cerrarDetallePedido()">Cerrar</button>
     </div>
   </div>
   
 
   <div class="mt-16 min-h-screen w-screen flex flex-col justify-start items-center p-10 gap-10 bg-slate-100 overflow-x-scroll">
+    <img src="/assets/icon/icon.png" alt="" class="h-40 w-40">
     <!-- Vista cuando es scaneado -->
      <!-- Consultar al mozo -->
     <div class="min-h-full w-[100%] flex flex-col gap-10 justify-start items-center overflow-y-scroll" *ngIf="scannerCorrecto" >
@@ -49,26 +50,6 @@
       <div (click)="Pagar()" *ngIf="pedido.estado === 'confirmado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjFla3FkNG03dzJtMTBjOHBrdDZvMmN5czRpZWpwZTY5YWZrbXllMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3mmdNnW5hkoUxTG/giphy.gif)]">
         <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Pagar</p>
       </div>
-      
-      <!-- <button style="background:url('../../../assets/preguntados.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado !== 'confirmado' &&  pedido.estado !== 'pagado'" (click)="Jugar()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Juego 10%
-        </div>
-      </button> -->
-
-      <!-- <button style="background:url('../../../assets/mayorMenor.jpg')no-repeat center center fixed;" class="boton_menu" *ngIf="pedido.estado !== 'confirmado' &&  pedido.estado !== 'pagado'" (click)="Jugar15()">
-        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
-          Juego 15%
-        </div>
-      </button> -->
-  
-      <!-- <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego" >
-        <app-juego10 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego($event)"></app-juego10>  
-      </div>
-  
-      <div style="height: 100%; width: 100%;" *ngIf="MostrarJuego15" >
-        <app-juego15 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego15($event)"></app-juego15>  
-      </div> -->
     </div>
 
     <div *ngIf="!scannerCorrecto" class="h-full w-full flex justify-center"> 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { QrscannerService } from '../../services/qrscanner.service';
 import { ToastController } from '@ionic/angular';
 import { MesasService } from 'src/app/services/mesas.service';
@@ -6,15 +6,14 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PushService } from 'src/app/services/push.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
-
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu-mesa',
   templateUrl: './menu-mesa.page.html',
   styleUrls: ['./menu-mesa.page.scss'],
 })
-export class MenuMesaPage implements OnInit {
+export class MenuMesaPage implements OnInit, OnDestroy {
 
   constructor(private firestoreService: FirestoreService,
     private toastController: ToastController,
@@ -38,17 +37,21 @@ export class MenuMesaPage implements OnInit {
 
   pedido : any = {estado:"no iniciado"};
 
+  private subscriptions: Subscription[] = [];
+
   ngOnInit() {
     this.numeroMesa = this.mesaSrv.numeroMesa
-    this.mesaSrv.traerMozos().subscribe((mozos:any)=>
-    {
-      this.tokenMozos = []
-      mozos.forEach(element => {
-        if (element.token != '') {
-          this.tokenMozos.push(element.token);
-        }
-      });
-    })
+    this.subscriptions.push(
+      this.mesaSrv.traerMozos().subscribe((mozos:any)=>
+        {
+          this.tokenMozos = []
+          mozos.forEach(element => {
+            if (element.token != '') {
+              this.tokenMozos.push(element.token);
+            }
+          });
+        })
+    );
 
     // -----------------------------------------------
     // BORRAR ESTO
@@ -87,10 +90,12 @@ export class MenuMesaPage implements OnInit {
     this.MostrarMenu = false;
     this.scannerCorrecto = true;
     this.pedido = $event;
-    this.mesaSrv.traerPedido(this.pedido.uid).subscribe((pedido)=>
-    {
-      this.pedido = pedido;
-    })
+    this.subscriptions.push(
+      this.mesaSrv.traerPedido(this.pedido.uid).subscribe((pedido)=>
+        {
+          this.pedido = pedido;
+        })
+    )
   }
 
   consultarPedido()
@@ -147,7 +152,8 @@ export class MenuMesaPage implements OnInit {
 
   enviarPushMozos() {
     console.log(this.tokenMozos)
-    this.pushService
+    this.subscriptions.push(
+      this.pushService
       .sendPushNotification({
         registration_ids: this.tokenMozos,
         notification: {
@@ -158,7 +164,8 @@ export class MenuMesaPage implements OnInit {
       .subscribe((data) => {
         this.presentToast('Sera atendido en un segundo!', 'success', 'thumbs-up-outline');
         console.log(data);
-      });
+      })
+    )
   }
 
   async presentToast(mensaje:string, color:string, icono:string) {
@@ -172,5 +179,7 @@ export class MenuMesaPage implements OnInit {
     await toast.present();
   }
 
-
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }

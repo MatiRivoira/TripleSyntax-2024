@@ -3,10 +3,10 @@
   <img src="/assets/icon/icon.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}" />
 </div>
 
-<div *ngIf="MostrarMenu">
-  <div class="mb-5">
-    <button *ngIf="total ==0" [disabled]="true" class=" bg-green-900 w-full py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300">Ver Pedido</button>
-    <button *ngIf="total !=0" (click)="verPedido()" class=" bg-green-900 w-full py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300">Ver Pedido ({{total}})</button>
+<div *ngIf="MostrarMenu" class="w-full flex justify-center">
+  <div class="mb-5 fixed flex justify-center items-center  bottom-0 z-[997]">
+    <button *ngIf="total ==0" [disabled]="true" class=" bg-customOrange w-[90vw] py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300">Ver Pedido</button>
+    <button *ngIf="total !=0" (click)="verPedido()" class=" bg-customOrange w-[90vw] py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300 gap-2">Ver Pedido <b class="text-2xl font-black text-blue-600">(${{total}})</b></button>
   </div>
 
   <div class="h-auto min-h-screen w-full flex flex-col gap-8 items-center bg-slate-100">

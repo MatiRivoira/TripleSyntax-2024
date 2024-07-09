@@ -20,6 +20,8 @@ export class HomeMozoPage implements OnInit {
     private router:Router
   ) {}
 
+  title:string = "Pedidos solicitados";
+
   listadoPedidosNoAprobados: any[] = [];
   listadoPedidosAceptados: any[] = [];
 

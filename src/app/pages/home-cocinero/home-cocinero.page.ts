@@ -24,9 +24,11 @@ export class HomeCocineroPage implements OnInit {
   ngOnInit() {
 
     this.pushService.getUser(); 
-    this.mesasSrv.TraerPedidos("aceptado").subscribe((pedidos:any)=>
+    this.mesasSrv.TraerPedidos("aceptado", "cocinado-b").subscribe((pedidos:any)=>
     {
       this.listadoPedidosAprobados = pedidos;
+      console.log(pedidos);
+      
     })
 
     this.mesasSrv.traerMozos().subscribe((mozos:any)=>
@@ -42,10 +44,17 @@ export class HomeCocineroPage implements OnInit {
 
   EntregarPedido(pedido:any)
   {
-    this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado").then(()=>
-    {
-      this.enviarPushMozos(pedido)
-    })
+    if (pedido.estado == "cocinado-b") {
+      this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado").then(()=>
+      {
+        this.enviarPushMozos(pedido)
+      })
+    } else {
+      this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado-c").then(()=>
+        {
+          this.enviarPushMozos(pedido)
+        })
+    }
   }
 
   altaProducto()

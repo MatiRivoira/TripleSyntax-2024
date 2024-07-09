@@ -8,6 +8,7 @@ import { HomeCocineroPageRoutingModule } from './home-cocinero-routing.module';
 
 import { HomeCocineroPage } from './home-cocinero.page';
 import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
+import { FilterProductByTypePipe } from 'src/app/pipes/filter-product-by-type.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { LoadingComponent } from 'src/app/componentes/loading/loading.component'
     IonicModule,
     HomeCocineroPageRoutingModule
   ],
-  declarations: [HomeCocineroPage, LoadingComponent]
+  declarations: [HomeCocineroPage, LoadingComponent, FilterProductByTypePipe]
 })
 export class HomeCocineroPageModule {}

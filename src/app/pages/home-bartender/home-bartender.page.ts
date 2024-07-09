@@ -23,13 +23,14 @@ export class HomeBartenderPage implements OnInit {
 
   ngOnInit() {
 
-    this.pushService.getUser();
-    // this.mesasSrv.TraerPedidosNoPreparadoBartender().subscribe((pedidos: any) => {
-    //   this.listadoPedidosAprobados = pedidos;
-    //   console.log(this.listadoPedidosAprobados);
-    // })
+    this.pushService.getUser(); 
+    this.mesasSrv.TraerPedidos("aceptado", "cocinado-c").subscribe((pedidos:any)=>
+    {
+      this.listadoPedidosAprobados = pedidos;
+    })
 
-    this.mesasSrv.traerMozos().subscribe((mozos: any) => {
+    this.mesasSrv.traerMozos().subscribe((mozos:any)=>
+    {
       this.tokenMozos = []
       mozos.forEach(element => {
         if (element.token != '') {
@@ -39,10 +40,19 @@ export class HomeBartenderPage implements OnInit {
     })
   }
 
-  EntregarPedido(pedido: any) {
-    // this.mesasSrv.CambiarEstadoPedidoBartender(pedido, true).then(() => {
-    //   this.enviarPushMozos(pedido);
-    // })
+  EntregarPedido(pedido:any)
+  {
+    if (pedido.estado == "cocinado-c") {
+      this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado").then(()=>
+      {
+        this.enviarPushMozos(pedido)
+      })
+    } else {
+      this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado-b").then(()=>
+        {
+          this.enviarPushMozos(pedido)
+        })
+    }
   }
 
   altaProducto() {

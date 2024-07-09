@@ -20,6 +20,8 @@ export class HomeMozoPage implements OnInit {
     private router:Router
   ) {}
 
+  title:string = "Pedidos solicitados";
+
   listadoPedidosNoAprobados: any[] = [];
   listadoPedidosAceptados: any[] = [];
 
@@ -33,22 +35,17 @@ export class HomeMozoPage implements OnInit {
   ngOnInit() {
 
     this.pushService.getUser();
-    this.mesasSrv.TraerPedidos('no aceptado').subscribe((pedidos) => {
-      this.listadoPedidosNoAprobados = pedidos;
-    });
 
-    this.mesasSrv.TraerPedidos('aceptado').subscribe((pedidos) => {
-      this.listadoPedidosAceptados = pedidos;
+    this.mesasSrv.TraerTodosLosPedidos().subscribe((pedidos) => {
+      console.log(pedidos);
+      
+      this.listadoPedidosNoAprobados = pedidos.filter((pedidos:any) => pedidos.estado === "no aceptado");
+      this.listadoPedidosAceptados = pedidos.filter((pedidos:any) => pedidos.estado === "aceptado" || pedidos.estado === "cocinado-b" || pedidos.estado === "cocinado-c");
+      this.listadoPedidosPreparados = pedidos.filter((pedidos:any) => pedidos.estado === "cocinado");
+      this.listadoPedidosPagados = pedidos.filter((pedidos:any) => pedidos.estado === "pagado");
+      console.log(this.listadoPedidosAceptados);
+      
     });
-
-    this.mesasSrv.TraerPedidos('cocinado').subscribe((pedidos) => {
-      this.listadoPedidosPreparados = pedidos;
-    });
-
-    this.mesasSrv.TraerPedidos('pagado').subscribe((pedidos) => {
-      this.listadoPedidosPagados = pedidos;
-    });
-
 
     this.mesasSrv.traerCocineros().subscribe((mozos: any) => {
       this.tokenCocinerosBartenders = [];
@@ -89,6 +86,10 @@ export class HomeMozoPage implements OnInit {
 
   EntregarPedido(pedido: any) {
     this.mesasSrv.CambiarEstadoPedido(pedido, 'entregado');
+  }
+
+  pagarPedido(pedido: any) {
+    this.mesasSrv.CambiarEstadoPedido(pedido, 'pagado-verificado');
   }
 
   RechazarPedido(pedido: any) {

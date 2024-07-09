@@ -71,6 +71,7 @@ export class MenuMesaPage implements OnInit, OnDestroy {
     this.MostrarPagar = false;
     this.scannerCorrecto = true;
     this.mesaSrv.desasignarCliente(this.pedido.mesa);
+    this.mesaSrv.CambiarEstadoPedido(this.pedido, "pagado");
   }
 
   consultarMozo()

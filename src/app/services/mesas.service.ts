@@ -8,6 +8,8 @@ import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import * as firebase from 'firebase/compat';
 import { ToastController } from '@ionic/angular';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -45,9 +47,25 @@ export class MesasService {
     }
   }
 
-  TraerPedidos(estado:string)
-  {
-    const coleccion = this.afs.collection('pedidos', (ref) => ref.where('estado', '==', estado));
+  TraerPedidos(estado: string, estado2?: string) {
+    if (estado2) {
+      const coleccion1 = this.afs.collection('pedidos', (ref) => ref.where('estado', '==', estado));
+      const coleccion2 = this.afs.collection('pedidos', (ref) => ref.where('estado', '==', estado2));
+      
+      return combineLatest([
+        coleccion1.valueChanges(),
+        coleccion2.valueChanges()
+      ]).pipe(
+        map(([res1, res2]) => [...res1, ...res2])
+      );
+    } else {
+      const coleccion = this.afs.collection('pedidos', (ref) => ref.where('estado', '==', estado));
+      return coleccion.valueChanges();
+    }
+  }
+
+  TraerTodosLosPedidos() {
+    const coleccion = this.afs.collection('pedidos');
     return coleccion.valueChanges();
   }
 

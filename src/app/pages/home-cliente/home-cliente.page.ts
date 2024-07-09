@@ -48,8 +48,6 @@ export class HomeClientePage implements OnInit {
               this.presentToast('Se le asigno la mesa ' + this.numeroMesa + '!', 'success', 'thumbs-up-outline');
               this.estaEnLaLista = true;
             }
-          } else {
-            this.estaEnLaLista = false;
           }
         });
       });
@@ -66,8 +64,10 @@ export class HomeClientePage implements OnInit {
 
     // -------------------------------------------------------------------
     // BORRAR ESTO
+    // this.scanActivo = false;
     // this.scanCoincide = true;
     // this.mostrarMenu = true;
+    // this.numeroMesa = 1;
     // -------------------------------------------------------------------
   }
   async escanearDocumento() {
@@ -81,12 +81,10 @@ export class HomeClientePage implements OnInit {
         this.mostrarMenu = true;
       }
       else {
-        this.presentToast('El código QR escaneado no pertenece al local!', 'danger', 'qr-code-outline');
+        this.presentToast("Ese no es el codigo del local!", 'danger', 'qr-code-outline');
         this.scanActivo = false;
         this.vibration.vibrate(1000);
       }
-
-
     }).catch((error) => {
       console.log('ERROR ESCANER HOME-CLIENTE: ', error);
       this.vibration.vibrate(1000);
@@ -140,7 +138,10 @@ export class HomeClientePage implements OnInit {
   async escanearQRmesa() {
     document.querySelector('body').classList.add('scanner-active');
     this.scanActivo = true;
-    await this.scaner.startScan().then(async (result) => {
+    
+    document.querySelector('body').classList.add('scanner-active');
+    this.scanActivo = true;
+    await this.scaner.startScan().then( async (result) => {
       this.numeroMesaQR = parseInt(result);
       if (this.numeroMesaQR === 1 || this.numeroMesaQR === 2 || this.numeroMesaQR === 3)
       {
@@ -166,7 +167,7 @@ export class HomeClientePage implements OnInit {
                   })
                 }
                 else {
-                  this.presentToast('Escanee la mesa correcta', 'error', 'qr-code-outline');
+                  this.presentToast('Esa no es su mesa. Escanee la mesa correcta', 'error', 'qr-code-outline');
                   this.scanActivo = false;
                   this.vibration.vibrate(1000);
                 }
@@ -189,6 +190,7 @@ export class HomeClientePage implements OnInit {
           if (!await this.mesasService.ConsultarMesaActiva(this.numeroMesaQR)) {
             this.presentToast('Mesa disponible', 'success', 'thumbs-up-outline');
                this.scanActivo = false;
+               alert("mesa disponible");
           } else {
             this.presentToast('Error mesa no disponible!', 'danger', 'alert-circle-outline');
             this.scanActivo = false;
@@ -207,7 +209,6 @@ export class HomeClientePage implements OnInit {
       this.scanActivo = false;
       this.vibration.vibrate(1000);
     });
-
   }
 
   enviarPushAMetre() {
@@ -229,4 +230,6 @@ export class HomeClientePage implements OnInit {
     this.isLoading = true;
     this.auth.LogOut();
   }
+
+  ngon
 }

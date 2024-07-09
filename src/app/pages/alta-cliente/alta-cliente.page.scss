@@ -25,8 +25,8 @@ ion-toolbar {
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    padding: 0px 150px;
     margin: 0;
+    margin-top: 100px;
 }
 
  .toggle ion-label
@@ -528,4 +528,100 @@ ion-note {
   margin-right: auto;
   margin-top: 1.8rem;
   margin-bottom: 1rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
+.pantalla
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    h1
+  {
+    font-size: 20px;
+    color: #333;
+    margin-top: 0;
+    font-weight: bold;
+  }
+
+  ion-button {
+    --border-radius: 5px !important;
+    .button-native {
+      --border-radius: 5px !important;
+    }
+  }
+}
+
+
+
+.pantalla > ion-button
+{
+    width: 70%;
+}
+
+.pantalla .form
+{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 75vw;
+    font-family: 'Mate SC', serif;
+    text-transform: none;
+}
+
+.pantalla .form .pagina
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pantalla .form ion-item {
+  --background: white;
+}
+
+.form .pagina ion-item
+{
+    width: 100%;
+    margin: 5px;
+    border-radius: 50px;
+    --color: #000;
+}
+
+.pantalla .form ion-item ion-input
+{
+  
+    --border: none;
+    font-family: 'Mate SC', serif;
+    font-size: 1em;
+}
+
+.primera-mayuscula
+{
+    text-transform: capitalize;
+}
+
+.pantalla .form .registrar
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+ion-button
+{
+    --background: #F27405;
+}
+
+ion-icon
+{
+    padding: 0 2vw 0 0;
 }

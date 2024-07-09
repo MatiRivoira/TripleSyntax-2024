@@ -23,6 +23,6 @@ import { QrPropinaComponent } from 'src/app/componentes/qr-propina/qr-propina.co
     IonicModule,
     MenuMesaPageRoutingModule
   ],
-  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent,QrPropinaComponent]
+  declarations: [MenuMesaPage, MenuComponent,DiferenciaMinutosPipe, PagarComponent, QrPropinaComponent]
 })
 export class MenuMesaPageModule {}

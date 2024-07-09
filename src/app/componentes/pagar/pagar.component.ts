@@ -3,8 +3,6 @@ import { QrscannerService } from '../../services/qrscanner.service';
 import { MesasService } from 'src/app/services/mesas.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { ThisReceiver } from '@angular/compiler';
-import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 
 @Component({
@@ -14,7 +12,7 @@ import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 })
 export class PagarComponent implements OnInit {
 
-  constructor(private vibration: Vibration,public scaner : QrscannerService, public mesasSrv : MesasService, private router:Router, private toastController: ToastController) { }
+  constructor(public scaner : QrscannerService, public mesasSrv : MesasService, private router:Router, private toastController: ToastController) { }
 
   @Input() pedido:any;
   @Output() pago?: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -76,7 +74,6 @@ export class PagarComponent implements OnInit {
           'danger',
           'cash-outline'
         );
-        this.vibration.vibrate(1000);
 
         this.scanActivo = false;
       }      

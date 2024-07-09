@@ -42,6 +42,7 @@ export class HomeSupervisorPage implements OnInit {
     this.listaClientes = [];
     this.firebaseServ.traerClientes().subscribe((res) => {
       this.listaClientes = res;
+       
     });
   }
 

@@ -15,7 +15,7 @@ export class ChatService {
   constructor(private authService: AuthService, private afs: AngularFirestore) {}
 
   cargarMensajes() {
-    this.itemsCollection = this.afs.collection<any>('chat', ref => ref.limit(20));
+    this.itemsCollection = this.afs.collection<any>('chats', ref => ref.limit(20));
     return this.itemsCollection.valueChanges().subscribe(mensajes => {
       this.mensajes = [];
       mensajes.forEach(mensaje => {

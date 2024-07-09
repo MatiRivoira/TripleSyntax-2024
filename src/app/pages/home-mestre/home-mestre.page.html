@@ -1,11 +1,10 @@
 <ion-content>
   <div class="header">
-
     <ion-toolbar>
       <ion-title class="ion-text-center">METRE</ion-title>
     </ion-toolbar>
 
-    <ion-fab horizontal="end" vertical="top" style="margin-top: -3%;" slot="fixed" (click)="cerrarSesion()">
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
       <ion-fab-button color="white">
         <ion-icon name="log-out-outline" ></ion-icon>
       </ion-fab-button>
@@ -18,7 +17,7 @@
   <br>
   <div style="text-align:center">
     
-    <h1 class="texto" style="margin-top: 40%;" *ngIf="listadoClientes.length == 0">No hay clientes por acomodar</h1>
+    <h1 class="texto" style="margin-top: 40%;" *ngIf="listadoClientes.length == 0">No hay clientes para acomodar</h1>
         <div class="card_producto"  *ngFor="let cliente of listadoClientes">
           
          <div>

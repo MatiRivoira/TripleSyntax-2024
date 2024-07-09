@@ -88,6 +88,10 @@ export class HomeMozoPage implements OnInit {
     this.mesasSrv.CambiarEstadoPedido(pedido, 'entregado');
   }
 
+  pagarPedido(pedido: any) {
+    this.mesasSrv.CambiarEstadoPedido(pedido, 'pagado-verificado');
+  }
+
   RechazarPedido(pedido: any) {
     this.mesasSrv.DesaprobarPedido(pedido);
   }

@@ -156,7 +156,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr    *ngFor="let producto of pedido.productos">
+                    <tr *ngFor="let producto of pedido.productos">
                         <td  >{{producto.nombre}}</td>
                         <td  >{{producto.precio}}</td>
                         <td  >----------</td>
@@ -172,7 +172,7 @@
 
            <div >
             <div class="div_botones_mesas">
-              <button   (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button>
+              <button   (click)="pagarPedido(pedido)" class="boton boton_mesa">Confirmar pago</button>
             </div>
           </div>
          </div>

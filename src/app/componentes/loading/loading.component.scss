@@ -1,0 +1,141 @@
+.loading-registro{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 100vw;
+    z-index: 1;
+}
+
+@-webkit-keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+}
+@keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+}
+.shake-bottom {
+	-webkit-animation: shake-bottom 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+	        animation: shake-bottom 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+}
+
+
+
+
+/* NUEVO */
+.llamas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vmin; /* Ajusta el ancho del contenedor en unidades relativas */
+  height: 60vmin; /* Ajusta la altura del contenedor en unidades relativas */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.llamas::before,
+.llamas::after {
+  content: "";
+  position: absolute;
+  top: 17%;
+  left: 17%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #FFC300 0%,#FFC300 50%, #ff9500 55%,#ff8800 60%,transparent 100%);
+  z-index: -1;
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: flames 1.5s ease-in-out infinite;
+}
+
+.llamas::before {
+  animation-delay: 0.2s;
+}
+
+.llamas::after {
+  animation-delay: 0.4s;
+}
+
+.llamas img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes flames {
+  0% {
+    transform: rotate(45deg) scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(135deg) scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(225deg) scale(0.9);
+    opacity: 0.8;
+  }
+}

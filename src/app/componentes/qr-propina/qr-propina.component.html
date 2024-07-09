@@ -1,0 +1,53 @@
+
+<ion-content [ngClass]="scanActivo?'scanner-activo':''">
+  <div *ngIf="MostrarPagar">
+
+    <!-- 
+    <ion-fab *ngIf="!scanActivo" horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon (click)="escanear()" name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  
+  
+  
+    <h1 *ngIf="!scanActivo">Mi Pedido</h1>
+    <div *ngIf="!scanActivo" style="overflow-y: scroll;">
+  
+      <div class="card_producto" *ngFor="let prod of pedido.productos">
+        <div style="float: left; text-align: left;">
+          <h4 >{{prod.nombre}}</h4>
+        </div>
+
+        <div style="float: right; text-align: right;">
+          <h4 >{{prod.precio}}</h4>
+        </div>
+      </div>    
+    </div>
+    
+     
+    
+    <div *ngIf="!scanActivo" class="div_ver_pedido">
+      <h4><b>Subtotal:   {{pedido.total}}</b></h4>
+      <h4><b>Descuento Juego:   {{(pedido.total * pedido.descuentoJuego)/100}}</b></h4>
+      <h4><b>Propina:    {{pedido.propina}}</b></h4>
+      <h4><b>Total:      {{pedido.propina + pedido.total - ((pedido.total * pedido.descuentoJuego)/100)}}</b></h4>
+      <button class="boton boton_pedido" (click)="escanear()"><ion-icon style="margin-right: 5px;" name="thumbs-up-outline"></ion-icon>Propina</button>
+      <button class="boton boton_pedido" (click)="Pagar()"><ion-icon style="margin-right: 5px;" name="cash-outline"></ion-icon>Pagar</button>
+
+    </div>
+  </div>
+
+  <app-qr-propina [pedidoRecibido]="pedido" (PasamosPedidoConPropina)="recibirPropina($event)" *ngIf="MostrarPropina"></app-qr-propina>
+
+  <div *ngIf="scanActivo">
+    <div class="scan">
+      <div class="qrcode"></div>
+      <div class="border"></div>
+    </div>
+    <h3 class="scanH3">Escaneando QR...</h3>
+    <button class="botonqr" (click)="pararScan()">Detener</button>
+  </div>
+</ion-content>
+
+

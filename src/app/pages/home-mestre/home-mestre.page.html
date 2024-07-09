@@ -1,0 +1,34 @@
+<ion-content>
+  <h1 style="margin-bottom: 0px; margin-left: 2.6rem;">Metre - Asignar Mesas</h1>
+  <br>
+  <div style="text-align:center">
+    
+    <h1 class="texto" *ngIf="listadoClientes.length == 0">No hay clientes por acomodar</h1>
+        <div class="card_producto"  *ngFor="let cliente of listadoClientes">
+          <img class="img-producto" src="{{cliente.foto}}">
+         <div>
+           <div>
+             <h3>Cliente: {{cliente.nombre}}</h3>
+           </div>
+
+           <div *ngIf="cliente.mesaAsignada==null">
+            <h3>Seleccione la mesa que quiera asignar</h3>
+            <div class="div_botones_mesas">
+              <button (click)="asignarMesa(cliente,mesa.numero)" class="boton boton_mesa" *ngFor="let mesa of mesasDisponibles">{{mesa.numero}}</button>
+            </div>
+          </div>
+
+          <div *ngIf="cliente.mesaAsignada!=null">
+            <h3>El cliente ya tiene una mesa asignada</h3>
+          </div>
+         </div>
+       </div> 
+
+    
+    <ion-fab horizontal="start" vertical="top" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon name="log-out-outline" (click)="auth.LogOut()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>

@@ -1,0 +1,92 @@
+<ion-content>
+
+  <div >
+
+
+    <!-- VISTA DEL SPINNER -->
+    <div class="spinner">
+      <img src="../../../assets/icon/icon.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+        *ngIf="this.spinner" />
+    </div>
+
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="cerrarSesion()">
+      <ion-fab-button color="warning">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <!-- BOTON DE RETORNO AL HOME DEL SUPERVISOR -->
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed" *ngIf="verListaDeClientes">
+      <ion-fab-button color="white" (click)="irAHomeSupervisor()">
+        <ion-icon style="font-size: 4rem" name="arrow-undo-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <!-- MENU SELECCION DE LISTADO CLIENTES O EMPLEADOS -->
+    <div *ngIf="!verListaDeClientes">
+      <div class="d-flex justify-content-center align-items-center gap-2">
+        <div class="d-flex mt-2 flex-column">
+         
+          <button type="button" class="btn btn-light rounded-circle d-flex flex-column align-items-center justify-content-end" style="height: 30vh; width: 30vh; background-image: url('../../../assets/lista-de-verificacion.gif'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;" (click)="irAEncuestas()">
+            <h3 class="d-flex bg-dark text-light p-1 w-50 text-center  rounded-2 bg-opacity-75">
+              ENCUESTAS
+            </h3>
+          </button>
+      
+          <button type="button" class="btn btn-light mt-2 rounded-circle d-flex flex-column align-items-center justify-content-end" style="height: 30vh; width: 30vh; background-image: url('../../../assets/undraw_conversation_re_c26v.svg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;" (click)="irAClientes()">
+            <h3 class="d-flex bg-dark text-light p-1 w-50 text-center rounded-2 bg-opacity-75">
+              GESTIONAR CLIENTES
+            </h3>
+          </button>
+      
+          <button type="button" class="btn btn-light mt-2 rounded-circle d-flex flex-column align-items-center justify-content-end" style="height: 30vh; width: 30vh; background-image: url('../../../assets/undraw_hire_re_gn5j.svg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;" (click)="irAAltas()">
+            <h3 class="d-flex bg-dark text-light p-1 w-50 text-center  rounded-2 bg-opacity-75">
+              ALTAS
+            </h3>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- LISTADO CLIENTES -->
+    <div *ngIf="verListaDeClientes">
+      <ion-card class="tarjeta-usuario" *ngFor="let item of listadoClientes;">
+        <img style="
+          display: block;
+          width: 8rem;
+          height: 8rem;
+          object-fit: cover;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 1rem;
+          border-radius: 50%;
+          border: 2px solid #fff;
+          box-shadow: 2px 2px 4px #000;
+        " src="{{item.foto}}" />
+        <ion-card-header>
+          <ion-card-title>{{item.apellido}} {{item.nombre}}</ion-card-title>
+          <button style="
+            width: 100%;
+            font-size: 1.5rem;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 4px #000;
+          " class="btn btn-success" *ngIf="!item.aprobado" (click)="habilitarDeshabilitarCliente(item)">
+            Habilitar
+          </button>
+          <button style="
+            width: 100%;
+            font-size: 1.5rem;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 4px #000;
+          " class="btn btn-warning" *ngIf="item.aprobado" (click)="habilitarDeshabilitarCliente(item)">
+            Deshabilitar
+          </button>
+        </ion-card-header>
+        <!-- <div class="btn-estadisticas heartbeat">
+        <ion-icon name="bar-chart"></ion-icon>
+      </div> -->
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

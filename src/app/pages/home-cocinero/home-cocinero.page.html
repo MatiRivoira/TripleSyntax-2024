@@ -1,0 +1,50 @@
+<ion-content>
+  <br>
+  <!-- <div class="d-flex justify-content-center">
+    <ion-button style="width: 90%; margin-top: 10px;" (click)="altaProducto()" expand="block"><ion-icon style="padding-right: 8px;" name="fast-food-outline"></ion-icon>Alta producto</ion-button>
+  </div> -->
+  <div>
+      <h1 class="texto" *ngIf="listadoPedidosAprobados.length == 0">No hay pedidos por preparar</h1>
+      <h2 class="texto" style="font-size: 28px; margin-top: 25px;" *ngIf="listadoPedidosAprobados.length != 0">Cocinero - productos</h2>
+        <div class="card_producto"  *ngFor="let pedido of listadoPedidosAprobados">
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table style="color: rgb(0, 0, 0);" class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color: rgb(0, 0, 0);"   *ngFor="let producto of pedido.productos">
+                        <td style="color: rgb(0, 0, 0);" >{{producto.nombre}}</td>
+                        <td style="color: rgb(0, 0, 0);" >{{producto.tiempoElaboracion}} min</td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="div_botones_mesas">
+              <ion-button style="width: 100%;" (click)="EntregarPedido(pedido)" expand="block"><ion-icon style="margin-right: 8px;" name="restaurant-outline"></ion-icon>Entregar</ion-button>
+              <!-- <button (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button> -->
+            </div>
+          </div>
+         </div>
+       </div> 
+    
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon name="log-out-outline" (click)="auth.LogOut()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <!-- <ion-fab horizontal="start" vertical="top" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon (click)="altaProducto()" name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  </div>
+</ion-content>

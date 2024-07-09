@@ -1,0 +1,87 @@
+ion-content{
+    --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+  }
+  *{
+    color: #000000;
+  }
+
+
+  ion-button{
+    margin-top: 18px;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
+    --background: #d8a198;    
+    margin-bottom: 8px;
+    color: black;
+}
+
+
+.div_botones_mesas
+{
+    // width: 18rem;
+    margin: 0px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+.boton
+{
+    background-color: #DD6262;
+    color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    font-weight: 700;
+    font-size: 200%;
+    text-shadow: 2px 2px #000000;
+}
+.boton_mesa
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.slides
+{
+    width: 100%;
+    height: 90%;
+}
+
+.texto
+{
+    margin-top: 17%;
+    font-weight: 600;
+    font-size: 200%;
+}
+
+.img-producto
+{
+    width: 100%;
+    height: 30%;
+
+    background-size: cover;
+}
+
+.card_producto
+{
+    background-color: #ffc5bb;
+    border-radius: 10px;
+    margin: 3%;
+    padding: 3%;
+    text-align: center;
+}
+
+h3
+{
+    font-weight: 600;
+    color:white;
+}

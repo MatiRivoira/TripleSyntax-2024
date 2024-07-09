@@ -1,0 +1,102 @@
+<ion-content >
+  <ion-header class="bg-dark" style="height: 45px;" >
+    <ion-toolbar style="height: 45px;">
+      <ion-buttons slot="start">
+        <a routerLink="/menu-altas"><ion-icon style="color: white; font-size: 25px; margin-left: 7px;" name="arrow-back-outline"></ion-icon></a> 
+      </ion-buttons>
+      
+      <ion-title class="ion-text-center">
+        ALTA MESA
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  
+  <div class="spinner">
+    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+      *ngIf="this.spinner" />
+  </div>
+  <img class="imagen_usuario" src="{{src_imagen}}">
+
+  <form [formGroup]="forma" (ngSubmit)="registrar()">
+     
+    <!-- <input type="number" formControlName="comensales" class="input" Placeholder="Nº Comensales"> -->
+    <div class="d-flex justify-content-center">
+      <ion-item class="item-background-color ion-margin-bottom itemsFormLogin">
+        <ion-label class="text-dark">Comensales:</ion-label>
+        <ion-input class="text-dark" formControlName="comensales" name="comensales" placeholder="Nº Comensales" ></ion-input>
+      </ion-item>
+    </div>
+    <small class="invalid"
+      *ngIf="forma.controls.comensales.errors?.required &&
+      forma.controls.comensales.touched">
+        El numero de comensales es requerido
+    </small>
+    <small class="invalid"
+      *ngIf="forma.controls.comensales.errors?.pattern &&
+      forma.controls.comensales.touched">
+      Solo puede contener numeros
+    </small>
+    <small class="invalid texto_rojo"
+      *ngIf="forma.controls.comensales.errors?.min || 
+      forma.controls.comensales.errors?.max &&
+      forma.controls.comensales.touched">
+      Debe ser entre 1 y 12
+    </small>
+
+    <!-- <input type="number" formControlName="numero" class="input" Placeholder="Numero"> -->
+    <div class="d-flex justify-content-center">
+      <ion-item class="item-background-color ion-margin-bottom itemsFormLogin">
+        <ion-label class="text-dark">Numero:</ion-label>
+        <ion-input class="text-dark" type="number" formControlName="numero" name="numero" placeholder="Numero" ></ion-input>
+      </ion-item>
+    </div>
+    <small class="invalid"
+      *ngIf="forma.controls.numero.errors?.required &&
+      forma.controls.numero.touched">
+        El numero es requerido
+    </small>
+    <small class="invalid"
+      *ngIf="forma.controls.numero.errors?.pattern &&
+      forma.controls.numero.touched">
+      Solo puede contener numeros
+    </small>
+    <small class="invalid texto_rojo"
+      *ngIf="forma.controls.numero.errors?.min &&
+      forma.controls.numero.touched">
+      Debe ser mayor a 1
+    </small>
+
+    <div class="d-flex justify-content-center">
+      <ion-item class="item-background-color ion-margin-bottom itemsFormLogin" lines="none">
+        <ion-select class="" formControlName="tipo" placeholder="Tipo" >
+          <ion-select-option value="">Seleccione el tipo...</ion-select-option>
+          <ion-select-option value="vip">VIP</ion-select-option>
+          <ion-select-option value="discapacitados">Para Discapacitados</ion-select-option>
+          <ion-select-option value="estandar">Estándar</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <small class="invalid"
+      *ngIf="forma.controls.tipo.errors?.required &&
+      forma.controls.tipo.touched">
+        El tipo es requerido
+    </small>
+
+    <!-- <button type="submit" [disabled]="forma.invalid" class="boton">Registrar</button> -->
+    <div class="d-flex justify-content-center">
+      <ion-button expand="block" (click)="sacarFoto()"><ion-icon name="camera-outline"></ion-icon>Tomar foto</ion-button>
+    </div>
+    <div class="d-flex justify-content-center">
+      <ion-button  [disabled]="forma.invalid" expand="block" type="submit">Registrar</ion-button>
+    </div>
+  </form>
+
+  <!-- <ion-fab horizontal="end" vertical="top" slot="fixed" >
+    <ion-fab-button (click)="sacarFoto()" color="dark">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+</ion-content>

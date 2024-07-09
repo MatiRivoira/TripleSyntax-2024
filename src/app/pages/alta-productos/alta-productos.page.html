@@ -1,0 +1,86 @@
+<ion-content>
+  <div class="spinner">
+    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+      *ngIf="this.spinner" />
+  </div>
+  <ion-header style="height: 45px;">
+    <ion-toolbar style="height: 45px;">
+      <ion-buttons slot="start">
+        <a routerLink="/home-cocinero"><ion-icon style="color: white; font-size: 25px; margin-left: 7px;"
+            name="arrow-back-outline"></ion-icon></a>
+      </ion-buttons>
+
+      <ion-title class="ion-text-center">
+        ALTA PRODUCTOS
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <img class="imagen_usuario" src="{{src_imagen}}" style="margin-bottom: 0px; margin-top: 15px;">
+
+  <form [formGroup]="formularioAlta" (ngSubmit)="registrar()" style="width: 90%; display: block; margin-left: auto; margin-right: auto; margin-top: 30px;">
+
+    <ion-input [(ngModel)]="producto.nombre" class="input" id="nombre" placeholder="Nombre" formControlName="nombre">
+    </ion-input>
+    <ion-note slot="error" *ngIf="(nombre.dirty || nombre.touched) && nombre.errors">El nombre es requerido.
+    </ion-note>
+
+    <ion-input [(ngModel)]="producto.descripcion" class="input" id="descripcion" placeholder="Descripción"
+      formControlName="descripcion">
+    </ion-input>
+    <ion-note slot="error" *ngIf="(descripcion.dirty || descripcion.touched) && descripcion.errors">La descripción
+      es
+      requerida.
+    </ion-note>
+
+    <ion-input [(ngModel)]="producto.tiempoElaboracion" class="input" id="tiempoElaboracion"
+      placeholder="Elaboración (minutos)" formControlName="tiempoElaboracion"></ion-input>
+    <ion-note slot="error"
+      *ngIf="(tiempoElaboracion.dirty || tiempoElaboracion.touched) && tiempoElaboracion.errors?.required">El
+      tiempo de elaboración es
+      requerido.
+    </ion-note>
+    <ion-note slot="error" *ngIf="formularioAlta.controls.tiempoElaboracion.errors?.pattern &&
+          formularioAlta.controls.tiempoElaboracion.touched">
+      El tiempo de elaboración solo puede contener numeros
+    </ion-note>
+
+
+    <ion-input [(ngModel)]="producto.precio" class="input" id="precio" placeholder="Precio" formControlName="precio">
+    </ion-input>
+    <ion-note slot="error" *ngIf="(precio.dirty || precio.touched) && precio.errors?.required">El precio es
+      requerido.
+    </ion-note>
+    <ion-note slot="error" *ngIf="formularioAlta.controls.precio.errors?.pattern &&
+          formularioAlta.controls.precio.touched">
+      El precio solo puede contener numeros
+    </ion-note>
+
+    <ion-button style="margin-top: 15px;" (click)="sacarFoto()"><ion-icon name="cloud-upload-outline"></ion-icon>Subir imagen</ion-button>
+
+    <!--FOTOS-->
+    <div class="image-item">
+      <p style="color: black; margin-top: 0px;">Imágenes subidas {{numeroImagen }} de 3 </p>
+    </div>
+    <ion-row class="uploaded-images">
+      <ion-avatar *ngFor="let item of this.fotos; let index=index">
+        <img class="img-prod" [src]="item">
+      </ion-avatar>
+    </ion-row>
+    <!---->
+    <ion-card-content>
+      <ion-button type="submit" [disabled]="formularioAlta.invalid || this.fotos.length != 3">
+        Registrar
+      </ion-button>
+      <p *ngIf="formularioAlta.invalid || this.fotos.length != 3" style="color: black; margin-top: 0px; font-size: 12px;">*El boton se habilitara cuando todos los campos esten correctos*</p>
+    </ion-card-content>
+  </form>
+
+
+
+  <!-- <ion-fab horizontal="end" vertical="top" slot="fixed">
+    <ion-fab-button (click)="sacarFoto()" color="dark">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+</ion-content>

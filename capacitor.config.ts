@@ -1,17 +1,15 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.food.pps',
+  appId: 'io.ionic.starter',
   appName: 'food',
   webDir: 'www',
-  server: {
-    androidScheme: 'https'
-  },
-  "plugins": {
+  bundledWebRuntime: false,
+  plugins: {
     "SplashScreen": {
-      "launchShowDuration": 1200,
-      "launchAutoHide": true,
-      "launchFadeOutDuration": 1200,
+     // "launchShowDuration": 1000,
+      "launchAutoHide": false,
+      //"launchFadeOutDuration": 1000,
       "backgroundColor": "#ffffffff",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
@@ -24,10 +22,15 @@ const config: CapacitorConfig = {
       "layoutName": "launch_screen",
       "useDialog": true
     },
-    LocalNotifications: {
-      iconColor: "#488AFF",
+    PushNotifications: {
+      presentationOptions: ['badge', 'sound', 'alert'],
+      
     },
-  }
+  
+   
+    
+  },
+  
 };
 
 export default config;

@@ -1,0 +1,108 @@
+<body>
+  <ion-content>
+    <ion-header style="margin: 0px;"><ion-title style="margin: 0px; font-weight: 600;"  style="color: black;" size="large">ENCUESTA CLIENTE</ion-title></ion-header>
+    <div class="spinner" *ngIf="this.spinner">
+      <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+         />
+    </div>
+    <div *ngIf="!this.realizoEncuesta">
+
+      <form [formGroup]="forma" (ngSubmit)="agregarRespuesta()" style="margin-top: 0px;">
+
+        <div>
+          <h4 class="mb-1" style="margin-top: 10px;">¿Crees que el precio del producto es adecuado a lo que recibiste?</h4>
+
+          <select class="form-select-input select" placeholder="Precio adecuado" formControlName="precioAdecuado">
+            <option value="">Elija...</option>
+            <option>Si</option>
+            <option>No</option>
+          </select>
+          <small class="invalid" *ngIf="forma.controls.precioAdecuado.errors?.required &&
+          forma.controls.precioAdecuado.touched">
+            Este campo es requerido
+          </small>
+        </div>
+
+        <hr>
+
+        <div class="radio">
+          <h4 class="mb-1" style="margin-top: 10px;">¿Cómo es la variedad del menú?</h4>
+
+          <div class="form-check">
+            <input value="0" formControlName="variedadMenu" type="radio" class="form-check-input ">
+            <label class="form-check-label">Adecuada</label>
+          </div>
+
+          <div class="form-check">
+            <input value="1" formControlName="variedadMenu" type="radio" class="form-check-input " required>
+            <label class="form-check-label">Muy pocas opciones</label>
+          </div>
+
+          <div class="form-check">
+            <input value="2" type="radio" formControlName="variedadMenu" class="form-check-input " required>
+            <label class="form-check-label">Excelente</label>
+          </div>
+          <small class="invalid" *ngIf="forma.controls.variedadMenu.errors?.required &&
+            forma.controls.variedadMenu.touched">
+            Este campo es requerido
+          </small>
+        </div>
+        <hr>
+
+        <h4 class="mb-1" style="margin-top: 10px;">¿El servicio fue?</h4>
+        <ion-icon name="heart-dislike-outline" style="margin-right:5%; font-size:25px"></ion-icon>
+        <input style="width: 70%;" type="range" formControlName="satisfaccion" min="0" max="10">
+        <small class="invalid" *ngIf="forma.controls.satisfaccion.errors?.required &&
+            forma.controls.satisfaccion.touched">
+          Este campo es requerido
+        </small>
+        <ion-icon name="heart-outline" style="margin-left:5%; font-size:25px"></ion-icon>
+        <small style="display: flex; justify-content: space-between;text-transform: uppercase"><span
+            style="margin-left: 5%">Malo</span><span style="margin-left: 5%">Bueno</span><span
+            style="margin-right: 2%">Excelente</span></small>
+
+
+        <hr>
+
+        <h4 class="mb-1" style="margin-top: 8px;">¿Recomendarías el Bodegón?</h4>
+        <div class="checkbox" style="display: flex;">
+          <h4 class="checkbox" style="margin-left: 10px; float: left; margin-top: 2px;"><input type="checkbox"
+              formControlName="recomendarias" (click)="onValorCapturado(1)" [checked]="si"> Sí</h4>
+          <h4 class="checkbox" style="margin-left: 10px; float: right; margin-top: 2px;"><input type="checkbox"
+              formControlName="recomendarias" (click)="onValorCapturado(2)" [checked]="no"> No</h4>
+          <small class="invalid" *ngIf="forma.controls.recomendarias.errors?.required &&
+          forma.controls.recomendarias.touched">
+            Este campo es requerido
+          </small>
+        </div>
+        <hr style="margin:0px">
+        <input style="margin-top: 5px; margin-bottom: 5px;" type="text" class="input" placeholder="Agrega un comentario" formControlName="comentario">
+        <hr style="margin-top:0px">
+        <!--FOTOS-->
+        <ion-button style="margin: 0px;" (click)="sacarFoto()"><ion-icon style="padding-right: 10px;" name="cloud-upload-outline"></ion-icon>Subir
+          imagen</ion-button>
+
+        <div class="image-item">
+          <p>Imágenes subidas {{numeroImagen }} de 3 </p>
+        </div>
+        <ion-row class="uploaded-images">
+          <ion-avatar *ngFor="let item of this.fotos; let index=index">
+            <img width="90px" height="90px" class="img-prod" [src]="item">
+          </ion-avatar>
+        </ion-row>
+        <!---->
+        <ion-button type="submit">
+          Enviar
+        </ion-button>
+      </form>
+
+
+      <!-- <ion-fab horizontal="end" vertical="top" slot="fixed">
+        <ion-fab-button color="light">
+          <ion-icon (click)="sacarFoto()" name="camera-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
+    </div>
+
+  </ion-content>
+</body>

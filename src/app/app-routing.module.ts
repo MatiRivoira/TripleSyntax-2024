@@ -1,77 +1,128 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { QrPropinaComponent } from './componentes/qr-propina/qr-propina.component';
+import { EncuestaEmpleadoGuard } from './guards/encuesta-empleado.guard';
+import { MenuComponent } from './componentes/menu/menu.component';
+import { Juego10Component } from './juegos/juego10/juego10.component';
+import { Juego15Component } from './juegos/juego15/juego15.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'splash',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'splash',
-    loadChildren: () => import('./paginas/splash/splash.module').then( m => m.SplashPageModule)
+    loadChildren: () =>
+      import('./pages/splash/splash.module').then((m) => m.SplashPageModule),
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./paginas/registro/registro.module').then( m => m.RegistroPageModule)
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'dueno-supervisor',
-    loadChildren: () => import('./paginas/homes/dueno-supervisor/dueno-supervisor.module').then( m => m.DuenoSupervisorPageModule)
+    path: '',
+    redirectTo: 'splash',
+    pathMatch: 'full',
   },
   {
-    path: 'inicio-cliente',
-    loadChildren: () => import('./paginas/homes/inicio-cliente/inicio-cliente.module').then( m => m.InicioClientePageModule)
+    path: 'register-empleado',
+    loadChildren: () => import('./pages/register-empleado/register-empleado.module').then( m => m.RegisterEmpleadoPageModule)
   },
   {
-    path: 'metre',
-    loadChildren: () => import('./paginas/homes/metre/metre.module').then( m => m.MetrePageModule)
+    path: 'register-mesa',
+    loadChildren: () => import('./pages/register-mesa/register-mesa.module').then( m => m.RegisterMesaPageModule)
   },
   {
-    path: 'inicio-cliente/mesa',
-    loadChildren: () => import('./paginas/mesa/mesa.module').then( m => m.MesaPageModule)
+    path: 'alta-cliente',
+    loadChildren: () => import('./pages/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
   },
   {
-    path: 'mozo',
-    loadChildren: () => import('./paginas/homes/mozo/mozo.module').then( m => m.MozoPageModule)
+    path: 'alta-productos',
+    loadChildren: () => import('./pages/alta-productos/alta-productos.module').then( m => m.AltaProductosPageModule)
   },
   {
-    path: 'cocinero',
-    loadChildren: () => import('./paginas/homes/cocinero/cocinero.module').then( m => m.CocineroPageModule)
+    path: 'alta-supervisor',
+    loadChildren: () => import('./pages/alta-supervisor/alta-supervisor.module').then( m => m.AltaSupervisorPageModule)
   },
   {
-    path: 'bartender',
-    loadChildren: () => import('./paginas/homes/bartender/bartender.module').then( m => m.BartenderPageModule)
+    path: 'menu-altas',
+    loadChildren: () => import('./pages/menu-altas/menu-altas.module').then( m => m.MenuAltasPageModule)
   },
   {
-    path: 'chat',
-    loadChildren: () => import('./paginas/chat/chat.module').then( m => m.ChatPageModule)
-  },  {
+    path: 'empleado-encuesta',
+    loadChildren: () => import('./encuestas/empleado-encuesta/empleado-encuesta.module').then( m => m.EmpleadoEncuestaPageModule),
+    canActivate: [EncuestaEmpleadoGuard],
+    canDeactivate: [EncuestaEmpleadoGuard]
+  },
+     {
+    path: 'encuesta-supervisor',
+    loadChildren: () => import('./encuestas/encuesta-supervisor/encuesta-supervisor.module').then( m => m.EncuestaSupervisorPageModule)
+
+  },
+  {
     path: 'encuesta-cliente',
-    loadChildren: () => import('./paginas/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
+    loadChildren: () => import('./encuestas/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
   },
   {
-    path: 'graficos',
-    loadChildren: () => import('./paginas/graficos/graficos.module').then( m => m.GraficosPageModule)
+    path: 'empleado-graficos',
+    loadChildren: () => import('./encuestas/empleado-graficos/empleado-graficos.module').then( m => m.EmpleadoGraficosPageModule)
   },
   {
-    path: 'acceso-anonimo',
-    loadChildren: () => import('./paginas/acceso-anonimo/acceso-anonimo.module').then( m => m.AccesoAnonimoPageModule)
-  }
-
-
-
-
+    path: 'home-supervisor',
+    loadChildren: () => import('./pages/home-supervisor/home-supervisor.module').then( m => m.HomeSupervisorPageModule)
+  },
+  {
+    path:"qr-propina", component:QrPropinaComponent
+  },
+  {
+    path: 'menu-mesa',
+    loadChildren: () => import('./pages/menu-mesa/menu-mesa.module').then( m => m.MenuMesaPageModule)
+  },
+  {
+    path: 'home-cliente',
+    loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+  },
+  {
+    path: 'charts-encuesta-clientes',
+    loadChildren: () => import('./pages/charts-encuesta-clientes/charts-encuesta-clientes.module').then( m => m.ChartsEncuestaClientesPageModule)
+  },
+  {
+    path:"menu", component:MenuComponent
+  },
+  {
+    path: 'home-mestre',
+    loadChildren: () => import('./pages/home-mestre/home-mestre.module').then( m => m.HomeMestrePageModule)
+  },
+  {
+    path: 'home-mozo',
+    loadChildren: () => import('./pages/home-mozo/home-mozo.module').then( m => m.HomeMozoPageModule)
+  },
+  {
+    path: 'juego10', component:Juego10Component
+  },
+  {
+    path: 'juego15', component:Juego15Component
+  },
+  {
+    path: 'home-cocinero',
+    loadChildren: () => import('./pages/home-cocinero/home-cocinero.module').then( m => m.HomeCocineroPageModule)
+  },
+  {
+    path: 'chat-consulta',
+    loadChildren: () => import('./pages/chat-consulta/chat-consulta.module').then( m => m.ChatConsultaPageModule)
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+    
+

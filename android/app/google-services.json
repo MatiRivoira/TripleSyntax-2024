@@ -1,26 +1,65 @@
 {
   "project_info": {
-    "project_number": "895911652659",
-    "project_id": "comandas-triplesyntax",
-    "storage_bucket": "comandas-triplesyntax.appspot.com"
+    "project_number": "194598635597",
+    "project_id": "lacomanda-c8c6b",
+    "storage_bucket": "lacomanda-c8c6b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:895911652659:android:28873f830111ee5a16a246",
+        "mobilesdk_app_id": "1:194598635597:android:e20b5096c732c01140f404",
         "android_client_info": {
-          "package_name": "com.food.pps"
+          "package_name": "io.ionic.starter"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "194598635597-cfcd4onl4uup5ec7jp4jr5n3t7djiiev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBram-oKuQeJsGAF2c5kowUP1MXmb8lZco"
+          "current_key": "AIzaSyAxOjou6lwfF-J4n4FgKBtx7AZFPmD35iY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194598635597-cfcd4onl4uup5ec7jp4jr5n3t7djiiev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194598635597:android:c79c8033579f4e6940f404",
+        "android_client_info": {
+          "package_name": "la.comanda.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194598635597-cfcd4onl4uup5ec7jp4jr5n3t7djiiev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxOjou6lwfF-J4n4FgKBtx7AZFPmD35iY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194598635597-cfcd4onl4uup5ec7jp4jr5n3t7djiiev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

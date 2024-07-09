@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@505&display=swap');
+
+*{
+
+  font-family: "Schibsted Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 505;
+  font-style: normal;
+}
+ion-content
+{
+  --background: #fff;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+h1
+{
+    color: #fff;
+    
+}
+
+.numero_mesa
+{
+    font-size: 2500%;
+}
+
+.scanner-activo {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+ion-fab {
+
+  margin-top: 45px;
+}
+
+.titulo
+{
+  margin-top: 1%;
+    color: #fff;
+    margin-bottom: 10%;
+    font-weight: 600;
+    font-size: 200%;
+}
+.form-label
+{
+    margin-bottom: 0%;
+    margin-top: 3%;
+    font-weight: 600;
+    font-size: larger;
+}
+::placeholder
+{
+    color: gray;
+    padding-left: 10px;
+}
+
+.input{
+
+    display: block;  
+    margin-left: auto;  
+    margin-right: auto;   
+    border-radius: 10px; 
+    color: #000000;
+    background-color: white!important;
+    width: 70%;
+    height: 3.5rem;
+    margin-top: 3%;
+    border-color: grey;
+    border-width: 1px;
+    border-style: solid;
+}
+
+
+.heartbeat {
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transform-origin: center center;
+      transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+      transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+      transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+  }
+  @keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transform-origin: center center;
+      transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+      transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+      transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+  }
+
+.boton
+{
+    background-color: #F27405;
+    color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    font-weight: 700;
+    font-size: 200%;
+    text-shadow: 2px 2px #000000;
+    width: 80%;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-bottom: 5%;
+}
+
+button
+{
+  background-color: #F27405;
+}
+
+
+//QR
+
+// QR TEMPLATE
+
+.scan {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  top: 3rem;
+}
+
+.qr_cliente{
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  background: url("../../../assets/qr-scanner.png");
+  background-size: 20rem;
+}
+.scan .qrcode {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  background-size: 20rem;
+}
+
+.scan .qrcode::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-size: 20rem;
+  overflow: hidden;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    height: 20px;
+  }
+  50% {
+    height: calc(100% - 20px);
+  }
+}
+
+.scan .qrcode::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  width: calc(100% - 40px);
+  height: 2px;
+  background: #35fd5c;
+  filter: drop-shadow(0 0 20px #35fd5c) drop-shadow(0 0 60px #35fd5c);
+  animation: animateLine 4s ease-in-out infinite;
+}
+@keyframes animateLine {
+  0% {
+    top: 20px;
+  }
+  50% {
+    top: calc(100% - 20px);
+  }
+}
+
+.border {
+  width: 20rem;
+  height: 20rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // inset: 0;
+  background: url("../../../assets/qrborder.png");
+  background-size: 20rem;
+  background-repeat: no-repeat;
+}
+
+.scanH3 {
+
+  font-size: 2em;
+  text-align: center;
+  margin-top: 5rem;
+  color: #fff;
+  letter-spacing: 2px;
+  filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 60px #fff);
+  animation: heartbeat 1s steps(1) infinite;
+}
+@keyframes animateText {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/*SPINNER*/
+.spinner {
+  position: absolute;
+  margin-top: 35%;
+  text-align: center;
+  padding: 20%;
+  z-index: 101;
+}
+
+
+.rotate-center {
+  -webkit-animation: rotate-center 0.9s ease-in-out infinite both;
+  animation: rotate-center 0.9s ease-in-out infinite both;
+  box-shadow: 2px -1px 15px 1px rgb(0, 0, 0);
+  -webkit-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  -moz-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  border-radius: 50%;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2022-10-21 22:40:2
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation rotate-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+/*scan qr lista espera*/
+.qr_cliente{
+  margin-top: 30%;
+  margin-bottom: 25%;
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  background-size: 20rem;
+}
+
+.wobble-hor-bottom{-webkit-animation:wobble-hor-bottom .8s infinite both;animation:wobble-hor-bottom .8s infinite both}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2023-6-17 20:50:55
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+ @-webkit-keyframes wobble-hor-bottom{0%,100%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-transform-origin:50% 50%;transform-origin:50% 50%}15%{-webkit-transform:translateX(-30px) rotate(-6deg);transform:translateX(-30px) rotate(-6deg)}30%{-webkit-transform:translateX(15px) rotate(6deg);transform:translateX(15px) rotate(6deg)}45%{-webkit-transform:translateX(-15px) rotate(-3.6deg);transform:translateX(-15px) rotate(-3.6deg)}60%{-webkit-transform:translateX(9px) rotate(2.4deg);transform:translateX(9px) rotate(2.4deg)}75%{-webkit-transform:translateX(-6px) rotate(-1.2deg);transform:translateX(-6px) rotate(-1.2deg)}}@keyframes wobble-hor-bottom{0%,100%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-transform-origin:50% 50%;transform-origin:50% 50%}15%{-webkit-transform:translateX(-30px) rotate(-6deg);transform:translateX(-30px) rotate(-6deg)}30%{-webkit-transform:translateX(15px) rotate(6deg);transform:translateX(15px) rotate(6deg)}45%{-webkit-transform:translateX(-15px) rotate(-3.6deg);transform:translateX(-15px) rotate(-3.6deg)}60%{-webkit-transform:translateX(9px) rotate(2.4deg);transform:translateX(9px) rotate(2.4deg)}75%{-webkit-transform:translateX(-6px) rotate(-1.2deg);transform:translateX(-6px) rotate(-1.2deg)}}

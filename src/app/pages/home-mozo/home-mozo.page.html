@@ -1,0 +1,123 @@
+
+
+<ion-content>
+  <div class="header">
+    <ion-fab horizontal="end" vertical="top" slot="fixed" >
+      <ion-fab-button color="white">
+        <ion-icon name="chatbubble" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-toolbar>
+      <ion-title class="ion-text-center">PEDIDOS MOZO</ion-title>
+    </ion-toolbar>
+
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
+      <ion-fab-button color="white">
+        <ion-icon name="log-out-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+    
+  
+  <div *ngIf="MostrarNoAprobados">
+    <h1 style="width: 100%;margin-top: 17%;text-align: center;">Mozo - Pedidos esperando a ser aprobados.</h1>
+    
+      <h1 class="texto" *ngIf="listadoPedidosNoAprobados.length == 0">No hay pedidos por aprobar.</h1>
+
+      
+
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosNoAprobados" >
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table style="color: black;" class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color: black;"   *ngFor="let producto of pedido.productos">
+                        <td style="color: black;" >{{producto.nombre}}</td>
+                        <td style="color: black;" >{{producto.precio}}</td>
+                        <td style="color: black;" >----------</td>
+                    </tr>
+                    <tr  >
+                      <td ></td>
+                      <td ></td>
+                      <td style="color: black;" >{{pedido.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="d-flex justify-content-space-between">
+              <button (click)="RechazarPedido(pedido)" class="boton boton_mesa" >Rechazar</button>
+              <button   (click)="AprobarPedido(pedido)" class="boton boton_mesa" >Aceptar</button>
+            </div>
+          </div>
+         </div>
+       </div> 
+
+
+
+
+  </div>
+
+  <div *ngIf="MostrarPreparados">
+    <h1 style="width: 100%;margin-top: 17%;text-align: center;" >Mozo - Pedidos esperando a ser entregados.</h1>
+
+  
+      <h1 class="texto" *ngIf="listadoPedidosPreparados.length == 0">No hay pedidos para entregar.</h1>
+
+ 
+
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosPreparados">
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table style="color: black;" class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color: black;"   *ngFor="let producto of pedido.productos">
+                        <td style="color: black;" >{{producto.nombre}}</td>
+                        <td style="color: black;" >{{producto.precio}}</td>
+                        <td style="color: black;" >----------</td>
+                    </tr>
+                    <tr  >
+                      <td ></td>
+                      <td ></td>
+                      <td style="color: black;" >{{pedido.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="div_botones_mesas">
+              <button   (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button>
+            </div>
+          </div>
+         </div>
+       </div> 
+
+
+
+  </div>
+
+  
+  <div class="div_cambio_vista">
+    <button (click)="MostrarVistaNoAprobados()" class="boton boton_mesa" >Por aprobar</button>
+    <button  (click)="MostrarVistaPreparados()"  class="boton boton_mesa" >Para entregar</button>
+  </div>
+</ion-content>

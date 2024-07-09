@@ -1,0 +1,53 @@
+<ion-toolbar class="new-background-color">
+  <ion-buttons slot="start">
+    <ion-button (click)="atras()"><ion-icon style="color: black;" name="arrow-back-outline" ></ion-icon></ion-button>
+  </ion-buttons>
+  <ion-title style="color: black; font-weight: 600;">Consultas</ion-title>
+    </ion-toolbar>
+
+<ion-content >
+  <div class="fondo" id="fondo">
+    <br>
+    <div *ngFor="let mensaje of chatService.mensajes">
+      <div *ngIf="mensaje.uid==authService.UsuarioActivo.uid; else noUsuario">
+          <div class="card_mensaje derecha" >
+              <p><b style="color: black; ">{{mensaje.texto}}</b></p>
+              <div>
+                <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+              </div>
+          </div>
+        </div>
+        <ng-template #noUsuario>
+          <div>
+          <div class="card_mensaje izquierda" >
+            <h3 class="autor_nombre">{{mensaje.nombre}}</h3>
+
+              <p><b style="color: black;">{{mensaje.texto}}</b></p>
+              <div>
+                <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+              </div>
+
+          </div>
+        </div>
+        </ng-template>  
+        <br>
+        <br>
+    </div>
+    
+
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-input slot="start" placeholder="Escribe algo..." [(ngModel)]="mensaje" style="color: black;"></ion-input>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button size="large" class="boton_enviar" (click)="enviarMensaje()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

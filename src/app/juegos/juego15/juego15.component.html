@@ -1,0 +1,45 @@
+<ion-content>
+  <!-- VISTA DEL SPINNER -->
+  <div class="spinner">
+    <img
+      src="../../assets/spinner.png "
+      width="60%"
+      [ngClass]="{ 'rotate-center': this.spinner }"
+      *ngIf="this.spinner"
+    />
+  </div>
+  
+<section class="mayormenor-container">
+  <div class="container d-flex flex-column justify-content-center" >
+    <h1 class="titulo-mayormenor">MAYOR MENOR</h1>
+    <p class="puntuacion">
+      Puntuación: {{ score }}
+      <span class="intentos">(Intentos: {{ attempts }}/10)</span>
+    </p>
+    <!-- <p class="juego-terminado" *ngIf="gameOver">
+      {{ textGameOver }}
+    </p> -->
+    <div class="row">
+      <div class="col">
+        <img class="carta-izquierda" src="{{ cardImage }}" alt="" />
+      </div>
+      <div class="col">
+        <img
+          class="carta-derecha"
+          src="../../../../assets/mayor menor/reverso.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div *ngIf="!activeGame">
+      <button class="btn-comenzar-reiniciar" (click)="startGame()">
+        {{ startButtonText }}
+      </button>
+    </div>
+    <div class="btn-mayormenor" *ngIf="activeGame">
+      <button class="btn-menor" (click)="playMayorMenor('menor')">Menor</button>
+      <button class="btn-mayor" (click)="playMayorMenor('mayor')">Mayor</button>
+    </div>
+  </div>
+</section>
+</ion-content>

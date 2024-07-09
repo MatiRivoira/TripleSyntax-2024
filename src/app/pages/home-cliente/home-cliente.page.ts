@@ -38,24 +38,19 @@ export class HomeClientePage implements OnInit {
   }
 
   async ngOnInit() {
-    let flag = false;
     this.mesasService.traerListaEspera()
       .subscribe(async (listadoEncuestasClientes) => {
         await listadoEncuestasClientes.forEach(async (cliente: any) => {
-          if (!flag) {
-            if (cliente.uid === this.auth.UsuarioActivo.uid) {//si esta en la lista y tiene mesa asignada
-              if (cliente.mesaAsignada != null) {
-                flag = true;
-                this.numeroMesa = cliente.mesaAsignada;
-                console.log(cliente.email);
-                this.presentToast('Se le asigno la mesa ' + this.numeroMesa + '!', 'success', 'thumbs-up-outline');
-                this.estaEnLaLista = true;
-              }
-            } else {
-              this.estaEnLaLista = false;
+          if (cliente.uid === this.auth.UsuarioActivo.uid) {//si esta en la lista y tiene mesa asignada
+            if (cliente.mesaAsignada != null) {
+              this.numeroMesa = cliente.mesaAsignada;
+              console.log(cliente.email);
+              this.presentToast('Se le asigno la mesa ' + this.numeroMesa + '!', 'success', 'thumbs-up-outline');
+              this.estaEnLaLista = true;
             }
+          } else {
+            this.estaEnLaLista = false;
           }
-          
         });
       });
     this.firestoreService.traerMetres().subscribe((metres: any) => {

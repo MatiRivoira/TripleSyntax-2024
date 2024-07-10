@@ -15,7 +15,7 @@ export class ChatService {
   constructor(private authService: AuthService, private afs: AngularFirestore) {}
 
   cargarMensajes() {
-    this.itemsCollection = this.afs.collection<any>('chats3', ref => ref.limit(20));
+    this.itemsCollection = this.afs.collection<any>('chats4', ref => ref.limit(20));
     return this.itemsCollection.valueChanges().subscribe(mensajes => {
       this.mensajes = [];
       // Ordena los mensajes por la fecha 'time' en formato DD/MM/YYYY HH:MM:SS
@@ -40,7 +40,7 @@ export class ChatService {
       uid: message.uid
     };
 
-    return this.afs.collection('chats3').add(newMessage);
+    return this.afs.collection('chats4').add(newMessage);
   }
 
   formatearFecha() {

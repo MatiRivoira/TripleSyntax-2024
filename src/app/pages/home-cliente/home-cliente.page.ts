@@ -64,10 +64,10 @@ export class HomeClientePage implements OnInit {
 
     // -------------------------------------------------------------------
     // BORRAR ESTO
-    // this.scanActivo = false;
-    // this.scanCoincide = true;
-    // this.mostrarMenu = true;
-    // this.numeroMesa = 1;
+    this.scanActivo = false;
+    this.scanCoincide = true;
+    this.mostrarMenu = true;
+    this.numeroMesa = 1;
     // -------------------------------------------------------------------
   }
   async escanearDocumento() {

@@ -47,6 +47,7 @@ export class HomeMozoPage implements OnInit {
       
     });
 
+
     this.mesasSrv.traerCocineros().subscribe((mozos: any) => {
       this.tokenCocinerosBartenders = [];
       mozos.forEach((element) => {
@@ -90,6 +91,7 @@ export class HomeMozoPage implements OnInit {
 
   pagarPedido(pedido: any) {
     this.mesasSrv.CambiarEstadoPedido(pedido, 'pagado-verificado');
+    this.mesasSrv.desasignarCliente(1);
   }
 
   RechazarPedido(pedido: any) {

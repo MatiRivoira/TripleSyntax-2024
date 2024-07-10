@@ -76,6 +76,11 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
     <td><img width="200px" src="src/assets/readme/cliente_11.jpg"></td>
     <td><img width="200px" src="src/assets/readme/cliente_12.jpg"></td>
   </tr>
+    <tr>
+    <td><img width="200px" src="src/assets/readme/cliente_13.jpg"></td>
+    <td><img width="200px" src="src/assets/readme/cliente_14.jpg"></td>
+    <td><img width="200px" src="src/assets/readme/cliente_15.jpg"></td>
+  </tr>
 </table>
 
 <h2 style="font-size: 20px;">📅 Tareas por semana</h2>

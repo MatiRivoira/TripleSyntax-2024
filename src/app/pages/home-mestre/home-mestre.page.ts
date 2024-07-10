@@ -17,6 +17,7 @@ export class HomeMestrePage implements OnInit {
   mesasDisponibles: any[] = [];
 
   ngOnInit() {
+    this.fire.BorrarCollection("lista-de-espera");
 
     this.pushService.getUser(); 
     this.mesasSrv.traerListaEspera().subscribe((clientes)=>

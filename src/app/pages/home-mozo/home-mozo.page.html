@@ -139,11 +139,11 @@
   </div>
 
   <div *ngIf="option == 4">
-    <div class="sinClientes-container" *ngIf="listadoPedidosPreparados.length == 0">
+    <div class="sinClientes-container" *ngIf="listadoPedidosPagados.length == 0">
       <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
       <h1 class="texto" >No hay pedidos pagados.</h1>
     </div>
-        <div class="card_producto" *ngFor="let pedido of listadoPedidosPreparados">
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosPagados">
          <div>
            <div>
               <h1>{{"Mesa: " + pedido.mesa}}</h1>

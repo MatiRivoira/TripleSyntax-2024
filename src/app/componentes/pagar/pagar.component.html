@@ -20,18 +20,15 @@
       </div>    
     </div>
     
-     
-    
     <div *ngIf="!scanActivo" class="absolute w-screen bottom-0 left-0 h-96 p-4 bg-white shadow-2xl flex flex-col justify-center items-center gap-3">
-      <h4 class="text-lg font-semibold ">Subtotal:<b class="text-customOrange">{{pedido.total}}</b></h4>
+      <h4 class="text-xl font-semibold ">Subtotal:<b class="text-customOrange font-bold">{{pedido.total}}</b></h4>
       <h4 class="text-lg font-semibold ">Propina: <b class="text-customOrange">{{pedido.propina}}</b></h4>
-      <h4 class="text-lg font-semibold ">Total:   <b class="text-customOrange">{{pedido.propina + pedido.total - ((pedido.total * pedido.descuentoJuego)/100)}}</b></h4>
+      <h4 class="text-3xl font-semibold ">Total:   <b class="text-customOrange font-bold">{{pedido.propina + pedido.total - ((pedido.total * pedido.descuentoJuego)/100)}}</b></h4>
       <button class="w-4/5 h-16 rounded-lg bg-customOrange text-white flex justify-center items-center font-bold gap-3 text-lg" (click)="escanear()"><p>Agregar propina</p><ion-icon name="thumbs-up-outline"></ion-icon></button>
       <button class="w-4/5 h-16 rounded-lg bg-customOrange text-white flex justify-center items-center font-bold gap-3 text-xl" (click)="Pagar()"><p>Pagar</p><ion-icon name="cash-outline"></ion-icon></button>
 
     </div>
   </div>
-
 
   <div *ngIf="scanActivo">
     <div class="scan">

@@ -55,8 +55,12 @@ export class MenuMesaPage implements OnInit, OnDestroy {
 
     // -----------------------------------------------
     // BORRAR ESTO
-
+    
     // -----------------------------------------------
+  }
+
+  ver() {
+    console.log("TIEMPO: ", this.pedido.comienzo)
   }
 
   verEncuesta()

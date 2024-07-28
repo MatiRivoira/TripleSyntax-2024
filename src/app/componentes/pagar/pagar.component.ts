@@ -18,6 +18,7 @@ export class PagarComponent implements OnInit {
   @Output() pago?: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   propina : number= 0;
+  porcentajePropina : number= 0;
 
   MostrarPropina=false
   MostrarPagar=true
@@ -25,19 +26,6 @@ export class PagarComponent implements OnInit {
 
 
   ngOnInit() {
-  }
-
-  agregarPropina()
-  {
-    this.MostrarPropina = true;
-    this.MostrarPagar = false;
-  }
-
-  recibirPropina($event: any)
-  {
-    this.pedido = $event;
-    this.MostrarPropina = false;
-    this.MostrarPagar = true;
   }
 
   async Pagar()
@@ -51,7 +39,7 @@ export class PagarComponent implements OnInit {
        
         
       );
-      
+      this.MostrarPagar = false
       this.pago.emit(true);
     })
   }
@@ -60,23 +48,24 @@ export class PagarComponent implements OnInit {
     document.querySelector('body').classList.add('scanner-active');
     this.scanActivo = true;
     this.scaner.startScan().then((result) => {
-      if(result == "propina")
-      {
-        this.scanActivo = false;
-        this.MostrarPagar = false
-        this.MostrarPropina = true
+      this.porcentajePropina = parseInt(result);
+      this.propina = (this.pedido.total/100)*this.porcentajePropina;
+      this.scanActivo = false;
+      // if(result == "propina")
+      // {
+      //   this.scanActivo = false;
+      //   this.MostrarPagar = false
+      // }
+      // else
+      // {
+      //   this.presentToast(
+      //     `QR incorrecto!`,
+      //     'danger',
+      //     'cash-outline'
+      //   );
 
-      }
-      else
-      {
-        this.presentToast(
-          `QR incorrecto!`,
-          'danger',
-          'cash-outline'
-        );
-
-        this.scanActivo = false;
-      }      
+      //   this.scanActivo = false;
+      // }      
     }).catch((err)=>{console.log("Erorr: ", err.message)});
   }
 

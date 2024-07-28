@@ -63,6 +63,10 @@ export class MenuComponent implements OnInit {
         console.log(data);
       });
   }
+
+  ver(obj:any) {
+    console.log("VIENDOOOO", obj);
+  }
   
   async hacerPedido()
   {
@@ -109,19 +113,19 @@ export class MenuComponent implements OnInit {
   actualizarTotal()
   {
     this.total =0
-    let banderaPrime = true;
+    let flag = true;
     this.pedido.forEach(prod => {
-
-    if(banderaPrime)
-    {
-      this.tiempoMaximo = prod.tiempoElaboracion
-      banderaPrime = false
-    }
-    else
-    {
-      if(prod.tiempoElaboracion > this.tiempoMaximo){this.tiempoMaximo = prod.tiempoElaboracion}
-    }
-    this.total = this.total + parseFloat( prod.precio)
+      if(flag) {
+        this.tiempoMaximo = prod.tiempoElaboracion
+        flag = false
+      }
+      else {
+        if(prod.tiempoElaboracion > this.tiempoMaximo) {
+          this.tiempoMaximo = prod.tiempoElaboracion
+        }
+      }
+      
+      this.total = this.total + parseFloat( prod.precio)
     });
   }
 

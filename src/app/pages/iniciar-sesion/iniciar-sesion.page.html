@@ -1,84 +1,65 @@
 <ion-content>
-  <ion-card class="card-center-botones">
-    <h4 class="text-center">Accesos directos</h4>
-    <div class="row">
-      <div class="col-12">
-        <ion-row>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('cliente')"  
-              >
-              Cliente</ion-button>
-          </ion-col>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('metre')" 
-              >Metre
-            </ion-button>
-          </ion-col>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('dueño')" 
-             >
-              Dueño</ion-button>
-          </ion-col>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('mozo')" 
-              >Mozo
-            </ion-button>
-          </ion-col>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('cocinero')" 
-              >
-              Cocinero</ion-button>
-          </ion-col>
-          <ion-col size='4'>
-            <ion-button type="button" class="mt-2" fill="solid" expand="block" style="font-size:12px; margin-bottom: 5px;" (click)="cargarUsuarioRapido('bartender')" 
-              >
-              Bartender</ion-button>
-          </ion-col>
-        </ion-row>
-      </div>
+
+
+  <div class="container">
+    <div class="logo-container">
+      <img src="../../../assets/icon/icon.png" alt="Logo" class="logo">
     </div>
-  </ion-card>
 
-
-  <ion-card class="card-center">
-    <ion-card-header>
-      <div class="d-flex justify-content-center">
-        <img src="../../../assets/login.gif" alt="" style="width: 200px; margin-bottom: 15px; text-align: center;" >
+    <div class="form-container">
+      <div class="header">
+        <h1>Iniciar Sesión</h1>
       </div>
-      <ion-card-title>Iniciar sesión</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form [formGroup]="forma" (ngSubmit)="logIn()">
-        <ion-item class="item-background-color ion-margin-bottom itemsFormLogin">
-          <ion-label class="text-dark"><ion-icon name="mail" item-start class="text-dark"></ion-icon>Correo:</ion-label>
-          <ion-input class="text-dark" formControlName="correo" name="email" ></ion-input>
-        </ion-item>
-        <small class="invalid" *ngIf="forma.controls.correo.errors?.required &&
-        forma.controls.correo.touched">
-      El Correo Electrónico es requerido
-    </small>
-        <ion-item class="item-background-color itemsFormLogin" style="position: relative;">
-          <ion-label class="text-dark"><ion-icon name="key" item-start
-              class="text-dark"></ion-icon>Contraseña:</ion-label>
-          <ion-input class="text-dark" formControlName="contrasena" name="password" [type]="changetype?'password':'text'">
-          </ion-input>
-          <span class="eyeicon" (click)="verPass()"><ion-icon name={{icon}} item-start
-              class="text-dark"></ion-icon></span>
-        </ion-item>
-        <small class="invalid" *ngIf="forma.controls.contrasena.errors?.required &&
-        forma.controls.contrasena.touched">
-      La Contraseña es requerida
-    </small>
 
-        <ion-button  [disabled]="forma.invalid" expand="block" type="submit"><ion-icon id="logoLogIn" name="log-in"></ion-icon>Ingresar</ion-button>
-        <div class="d-flex justify-content-center">
-          <p style="margin-top: 1rem; color: black; font-size: 17px;">
-            ¿Aun no tenes cuenta?
-            <a style="padding-left: 7px; color: #363cf6; font-weight: bolder" routerLink="/alta-cliente">REGISTRATE</a>
-          </p>
+      <form [formGroup]="forma" (ngSubmit)="logIn()" class="input-group">
+        <div class="input-container">
+          <ion-input formControlName="correo" name="email" placeholder="Correo electrónico" class="input"></ion-input>
+          <ion-label class="label">Correo Electrónico</ion-label>
         </div>
+        <small class="invalid" *ngIf="forma.controls.correo.errors?.required && forma.controls.correo.touched">
+          El Correo Electrónico es requerido
+        </small>
 
+        <div class="input-container">
+          <ion-input formControlName="contrasena" name="password" [type]="changetype?'password':'text'" placeholder="Contraseña" class="input"></ion-input>
+          <ion-label class="label">Contraseña</ion-label>
+          <span class="eyeicon" (click)="verPass()">
+            <ion-icon [name]="icon"></ion-icon>
+          </span>
+        </div>
+        <small class="invalid" *ngIf="forma.controls.contrasena.errors?.required && forma.controls.contrasena.touched">
+          La Contraseña es requerida
+        </small>
+
+        <button style="margin-bottom: 10px;" class="google-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-google" viewBox="0 0 16 16">
+            <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+          </svg>
+        </button>
+        <ion-button [disabled]="forma.invalid" expand="block" type="submit" class="login-button">
+            
+          <ion-icon id="logoLogIn" name="log-in"></ion-icon>Ingresar
+        </ion-button>
+
+        <div class="register-container">
+          <p class="register-text">¿Aún no tienes cuenta?</p>
+          <p class="register-link" routerLink="/alta-cliente">REGÍSTRATE</p>
+        </div>
       </form>
-    </ion-card-content>
-  </ion-card>
+    </div>
+
+    <ion-fab slot="fixed" horizontal="start" vertical="bottom">
+      <ion-fab-button>
+        <ion-icon name="chevron-up"></ion-icon>ACCESOS<br>RÁPIDOS
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-button (click)="cargarUsuarioRapido('dueño')"><ion-icon name="briefcase"></ion-icon>DUEÑO</ion-button>
+        <ion-button (click)="cargarUsuarioRapido('metre')"><ion-icon name="footsteps"></ion-icon>METRE</ion-button>
+        <ion-button (click)="cargarUsuarioRapido('mozo')"><ion-icon name="cafe"></ion-icon>MOZO</ion-button>
+        <ion-button (click)="cargarUsuarioRapido('cocinero')"><ion-icon name="restaurant"></ion-icon>COCINERO</ion-button>
+        <ion-button (click)="cargarUsuarioRapido('bartender')"><ion-icon name="wine"></ion-icon>BARTENDER</ion-button>
+        <ion-button (click)="cargarUsuarioRapido('cliente')"><ion-icon name="person"></ion-icon>CLIENTE</ion-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
 </ion-content>

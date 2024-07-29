@@ -78,6 +78,8 @@ export class LoginPage implements OnInit {
       if (this.authService.UsuarioActivo.perfil == 'empleado') {
         this.presentToast('Exito!', 'success', 'thumbs-up-outline');    
         this.sonidoInicio.play();  
+        console.log(this.authService.UsuarioActivo.tipo);
+        
         switch(this.authService.UsuarioActivo.tipo)
         {
           case "mozo":
@@ -94,7 +96,7 @@ export class LoginPage implements OnInit {
     
             break;
     
-          case "cocinero":
+          case "cociero":
             this.router.navigate(["home-cocinero"])
     
             break;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { init } from 'emailjs-com';
-init('W9r-wAJwdvg44ww5g');
+init('VO3cmQ8ZsWTmJC-fG');
 
 @Injectable({
   providedIn: 'root',
@@ -10,36 +10,30 @@ export class EmailService {
   constructor() {}
 
   enviarAvisoPendienteAprobacion(usuario: any) {
-    const templateParams = {
-      to_name: usuario.nombre,
-      message:
-        'Para poder acceder a tu cuenta debes esperar que sea aprobada. Por favor ten paciencia.',
-      from_name: 'La mano de Dios Bodegon',
-      reply_to: usuario.email,
-    };
-
-    emailjs
-      .send('service', 'template_nn095tr', templateParams)
-      .then((res) => {
-        console.log('Email enviado.', res.status, res.text);
-      })
-      .catch((error) => {
-        console.log('Error al enviar el email.', error.message);
-      });
+  
   }
 
 enviarAvisoCuentaAprobada(usuario: any) {
   const templateParams = {
     to_name: usuario.nombre,
-    message: `
-      Tu cuenta ha sido aprobada, ya puedes ingresar a la aplicación.
-    `,
-    from_name: 'La Mano de Dios Bodegon',
-    reply_to: usuario.email,
+    message: `Estimado/a ${usuario.nombre} ${usuario.apellido},
+
+  Nos complace informarle que su solicitud de registro ha sido aceptada con éxito. A continuación, encontrará los detalles de su cuenta:
+
+  Email: ${usuario.email}
+  Fecha de Registro: ${this.formatDate(new Date())}
+
+  Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en contacto con nuestro equipo de soporte al cliente.
+
+  ¡Gracias por elegirnos!
+
+  `,
+    nombre_restaurante: '✅ Confirmación de Registro Aceptado ✅',
+    user_email: usuario.email,
   };
 
     emailjs
-      .send('service_1l4gkns', 'template_y5llrna', templateParams)
+      .send('service', 'aceptado', templateParams)
       .then((res) => {
         console.log('Email enviado.', res.status, res.text);
       })
@@ -52,13 +46,21 @@ enviarAvisoCuentaAprobada(usuario: any) {
     const templateParams = {
       to_name: usuario.nombre,
       message:
-        'Tu cuenta ha sido deshabilitada, por favor comunicate con nosotros para saber las causas.',
-      from_name: 'La mano de Dios Bodegon',
+        `Estimado/a ${usuario.nombre} ${usuario.apellido},
+
+Lamentamos informarle que su solicitud de registro no ha sido aceptada en esta ocasión.
+
+Si cree que esto es un error o desea más información, no dude en ponerse en contacto con nuestro equipo de soporte al cliente. Estaremos encantados de ayudarle.
+
+Gracias por su comprensión.
+
+`,
+      nombre_restaurante: '❌ Notificación de Registro Rechazado ❌',
       reply_to: usuario.email,
     };
 
     emailjs
-      .send('service_1l4gkns', 'template_y5llrna', templateParams)
+      .send('service', 'rechazado', templateParams)
       .then((res) => {
         console.log('Email enviado.', res.status, res.text);
       })
@@ -66,4 +68,8 @@ enviarAvisoCuentaAprobada(usuario: any) {
         console.log('Error al enviar el email.', error.message);
       });
   }
+  formatDate(date:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(date).toLocaleDateString('es-ES', options);
+}
 }

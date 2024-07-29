@@ -22,7 +22,7 @@ export class ReservaComponent implements OnInit {
 
   async pedirCitaA() {
 
-    let clienteAux = this.auth.UsuarioActivo.value;
+    let clienteAux = this.auth.UsuarioActivo;
 
     if (clienteAux != null && this.horaSeleccionada) {
 

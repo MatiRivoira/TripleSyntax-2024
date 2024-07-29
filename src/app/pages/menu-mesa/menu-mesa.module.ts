@@ -15,6 +15,7 @@ import { DiferenciaMinutosPipe } from 'src/app/pipes/diferencia-minutos.pipe';
 import { PagarComponent } from 'src/app/componentes/pagar/pagar.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,

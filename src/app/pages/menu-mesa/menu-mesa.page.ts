@@ -108,16 +108,16 @@ export class MenuMesaPage implements OnInit, OnDestroy {
     this.MostrarDetallePedido = true;
   }
 
-  jugar()
-  {
+
+
+  jugar() {
     this.scannerCorrecto = false;
-    this.MostrarJuego=true;
+    this.MostrarJuego = true;
   }
 
-  jugar15()
-  {
+ jugar15() {
     this.scannerCorrecto = false;
-    this.MostrarJuego15=true;
+    this.MostrarJuego15 = true;
   }
 
   Pagar()

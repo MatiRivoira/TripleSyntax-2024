@@ -87,9 +87,9 @@ export class MenuComponent implements OnInit {
       uid:""
     }
     await this.mesasSrv.hacerPedido(pedidoFormato)
-    this.spinner = false
-    this.pedidoFinal.emit(pedidoFormato)
-    this.enviarPushMozos()
+    this.spinner = false;
+    this.pedidoFinal.emit(pedidoFormato);
+    this.enviarPushMozos();
     
   }
 

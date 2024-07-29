@@ -30,6 +30,8 @@ export class HomeClientePage implements OnInit {
   numeroMesa = 0;
   escanerMesaOk = false;
 
+  verReserva = false;
+
   constructor(public scaner: QrscannerService, private toastController: ToastController,
     private firestoreService: FirestoreService, public auth: AuthService, private mesasService: MesasService,
     public afs: AngularFirestore, private pushService: PushService,

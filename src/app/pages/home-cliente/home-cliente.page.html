@@ -35,7 +35,7 @@
   <div *ngIf="this.scanCoincide && this.mostrarMenu && !estaEnLaLista">
     <div *ngIf="!this.scanActivo && !verEncuestas">
       <div class="h-screen w-screen bg-slate-100 flex flex-col justify-start items-center">
-        <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center">
+        <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center" style="z-index: 10000000;">
           <p class="text-white font-bold text-center text-2xl">
             ¿Que quieres hacer?
           </p>
@@ -45,12 +45,32 @@
             <img src="/assets/fila.png" alt="" class="h-24 w-24">
             <p class="text-white text-3xl font-bold">Ir a fila de espera</p>
           </div>
+          <div (click)="verReserva = true" class="w-full h-full flex flex-col items-center justify-center rounded-xl bg-customOrange shadow-2xl px-6 gap-10 active:scale-95 active:shadow-none transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="white" class="bi bi-calendar-week" viewBox="0 0 16 16">
+              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+            </svg>
+            <p class="text-white text-3xl font-bold">Hacer una reserva</p>
+          </div>
           <div routerLink="/graficos" class="w-full h-full flex flex-col items-center justify-center rounded-xl bg-customOrange shadow-2xl px-6 gap-10 active:scale-95 active:shadow-none transition-all duration-300">
             <img src="/assets/resenas.png" alt="" class="h-24 w-24">
             <p class="text-white text-3xl font-bold">Ver encuestas</p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div *ngIf="verReserva">
+    <div>
+      <ion-fab horizontal="end" vertical="top" slot="fixed" style="z-index: 10000001;">
+        <ion-fab-button color="transparent">
+          <ion-icon (click)="verReserva = false" style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    <div class="reserva">
+      <app-reserva></app-reserva>
     </div>
   </div>
   <!-- HASTA ACA -->
@@ -122,7 +142,7 @@
     </button>
   </div>
 
-  <ion-fab horizontal="start" vertical="top" slot="fixed">
+  <ion-fab horizontal="start" vertical="top" slot="fixed" style="z-index: 10000001;">
     <ion-fab-button color="white">
       <ion-icon name="log-out-outline" (click)="cerrarSesion()"></ion-icon>
     </ion-fab-button>

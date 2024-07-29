@@ -30,6 +30,8 @@ export class HomeMestrePage implements OnInit {
     this.mesasSrv.traerListaEspera().subscribe((clientes)=>
     {
       this.listadoClientes = clientes;
+      console.log(this.listadoClientes);
+      
     })
 
     this.mesasSrv.traerMesasDisponibles().subscribe((mesas)=>

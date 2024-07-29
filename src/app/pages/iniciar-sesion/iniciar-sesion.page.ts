@@ -104,8 +104,8 @@ export class IniciarSesionPage implements OnInit {
     switch (opcion) {
       case "cliente":
         this.forma.setValue({
-          correo: 'cliente@cliente.com',
-          contrasena: '123456',
+          correo: 'matirivoira@gmail.com',
+          contrasena: '123123',
         });
         break;
       case "metre":

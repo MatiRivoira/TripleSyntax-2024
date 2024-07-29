@@ -23,6 +23,19 @@ ion-content{
     }
 }
 
+.botonAlta{
+    width: 60%;
+    margin-top: 5%;
+    background-color: #F2F2F2; /* customWhite */
+    --background: #F27405; /* customOrange4 */
+    font-weight: bold;
+    border-radius: 9999px;
+    --border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+}
+
 .div_cambio_vista
 {
     width: 100%;

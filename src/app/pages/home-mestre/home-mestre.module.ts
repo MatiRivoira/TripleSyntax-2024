@@ -8,6 +8,7 @@ import { HomeMestrePageRoutingModule } from './home-mestre-routing.module';
 
 import { HomeMestrePage } from './home-mestre.page';
 import { LoadingComponent } from 'src/app/componentes/loading/loading.component';
+import { TimestampDatePipe } from 'src/app/pipes/timestamp-date.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { LoadingComponent } from 'src/app/componentes/loading/loading.component'
     IonicModule,
     HomeMestrePageRoutingModule
   ],
-  declarations: [HomeMestrePage, LoadingComponent]
+  declarations: [HomeMestrePage, LoadingComponent, TimestampDatePipe]
 })
 export class HomeMestrePageModule {}

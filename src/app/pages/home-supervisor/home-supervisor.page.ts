@@ -18,6 +18,8 @@ export class HomeSupervisorPage implements OnInit {
   verificarCuentaCliente: boolean = false;
   clienteARechazar: any;
   popup: boolean = false;
+  opcion = 0;
+  title = "CLIENTES EN ESPERA";
 
 
   constructor(private firebaseServ: FirestoreService,
@@ -40,10 +42,6 @@ export class HomeSupervisorPage implements OnInit {
 
   cargarClientes() {
     this.listaClientes = [];
-    this.firebaseServ.traerClientes().subscribe((res) => {
-      this.listaClientes = res;
-       
-    });
   }
 
   aceptarCliente(clienteAceptado: any) {

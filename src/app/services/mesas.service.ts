@@ -194,6 +194,27 @@ export class MesasService {
     })
   }
 
+  traerMesas() {
+    const coleccion = this.afs.collection('mesas');
+    return coleccion.valueChanges();
+  }
+
+  async AsignarMesaReserva(lista: any, mesa: any) {
+    if (lista) {
+      const clienteActivoValue = lista.email || lista.nombre;
+      try {
+        await this.afs.collection('mesas').doc(mesa.id).update({ ...mesa, clienteActivo: clienteActivoValue });
+        await this.afs.collection('lista-de-espera').doc(lista.uid).set({ estado: lista.estado, mesaAsignada: mesa.numero, estaEnLaLista: true, escanioQrLocal: true }, { merge: true });
+        this.presentToast('Mesa asignada Reserva', 'success', 'qr-code-outline');
+      } catch (err) {
+        this.presentToast(err, 'danger', 'qr-code-outline');
+        this.vibration.vibrate(1000);
+      }
+    } else {
+      this.presentToast('Error al asignar mesa para la reserva', 'danger', '');
+    }
+  }
+
   async desasignarCliente(numeroMesa: number) {
     const coleccion = await this.afs.collection('mesas', (ref) => ref.where('numero', '==', numeroMesa));
     await (await coleccion.get().toPromise()).docs.forEach(async (mesa) => {

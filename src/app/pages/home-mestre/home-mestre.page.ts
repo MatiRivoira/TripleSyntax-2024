@@ -15,8 +15,15 @@ export class HomeMestrePage implements OnInit {
 
   listadoClientes: any[] = [];
   mesasDisponibles: any[] = [];
+  
+  mesasDisponiblesReservas: any[] = [];
+  mesasOcupadasPorReservasTiempo: any[] = [];
+
+  listadoClientesReservas: any[] = [];
 
   ngOnInit() {
+    console.log(this.auth.UsuarioActivo);
+    
     this.fire.BorrarCollection("lista-de-espera");
 
     this.pushService.getUser(); 
@@ -29,6 +36,11 @@ export class HomeMestrePage implements OnInit {
     {
       this.mesasDisponibles = mesas;
     })
+    this.mesasSrv.traerMesas().subscribe((mesas) => {
+      this.mesasDisponiblesReservas = mesas.sort((mesaA: any, mesaB: any) => {
+        return mesaA.numero - mesaB.numero;
+      })
+    })
   }
 
   async asignarMesa(cliente:any, numeroMesa:number)
@@ -40,5 +52,16 @@ export class HomeMestrePage implements OnInit {
   cerrarSesion(){
     this.isLoading = true;
     this.auth.LogOut();
+  }
+
+  async AsignarMesaReserva(unaLista: any, mesa: any) {
+    console.log("Mesa de la reserva :" + JSON.stringify(mesa));
+    let listadoConReserva = unaLista;
+    listadoConReserva.estado = "aprobadaReserva";
+    await this.mesasSrv.AsignarMesaReserva(listadoConReserva, mesa);
+  }
+
+  rechazarReserva(listado: any) {
+    this.mesasSrv.borrarDeListaEspera(listado);
   }
 }

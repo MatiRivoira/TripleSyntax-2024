@@ -11,7 +11,12 @@
       </ion-fab-button>
     </ion-fab>
   </div>
+
       <div>
+        <div class="d-flex justify-content-center">
+          <ion-button class="botonAlta" (click)="altaProducto()" expand="block"><ion-icon style="padding-right: 8px;" name="wine"></ion-icon>Alta bebida</ion-button>
+        </div>
+
         <div class="sinClientes-container" *ngIf="listadoPedidosAprobados.length == 0">
           <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
           <h1 class="texto"  style="color: #333;">No hay pedidos por preparar.</h1>

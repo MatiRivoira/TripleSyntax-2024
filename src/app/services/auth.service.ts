@@ -53,6 +53,8 @@ export class AuthService {
   uidUser = '';
   sonidoCerrar: any = new Audio('../../assets/logout.mp3');
 
+  
+
   async onRegister(user: any, subioFoto: boolean) {
     try {
       if (subioFoto) {

@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterMesaPage implements OnInit {
 
   public forma!: FormGroup;
-  src_imagen="../../../assets/img/mesa.png"
+  src_imagen="../../../assets/mesaAlta.png";
   foto:any;
   spinner: boolean = false;
 

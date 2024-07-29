@@ -1,9 +1,10 @@
 ion-content{
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  --background: #F2F2F2;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  --color: #000;
 }
-
 .titulo
 {
     color: #fff;
@@ -12,10 +13,20 @@ ion-content{
     font-size: 200%;
 }
 
-ion-fab {
+.header {
+  width: 100%;
+  color: white !important;
 
-    margin-top: 45px;
+  ion-toolbar {
+      --background: #F27405;
+      height: fit-content;
+      color: white;
+      padding: 5px;
+      border-radius: 0px 0px 30px 30px;
   }
+}
+
+
 
   ion-label{
     font-size: 20px;
@@ -29,13 +40,11 @@ ion-fab {
 
   .itemsFormLogin{
     // border-radius: 50px;
-    height: 55px;
+    height: 60px;
     width: 20rem;
-    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
-    --highlight-height: 0px;
     border-radius: 50px;
-    background: #f2a49a;
-    color: black;
+    background: #fff;
+    color: rgb(75, 69, 69);
     margin-bottom: 20px;
 
     ion-input{
@@ -43,7 +52,7 @@ ion-fab {
         --padding-top: 20px;
         --padding-bottom: 19px;
         --padding-start: 5px;
-        color: black;
+        color: rgb(78, 74, 74);
         
         
     }
@@ -65,10 +74,12 @@ ion-fab {
   ion-button{
     margin-top: 18px;
     box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
-    --background: #d8a198;    
+    --background: #F27405; 
+    background-color: #F27405;   
     margin-bottom: 20px;
     color: black;
     width: 20rem;
+    border-radius: 5px;
     
 }
   
@@ -79,19 +90,22 @@ ion-fab {
 }
 
 .input{
-
-    display: block;  
-    margin-left: auto;  
-    margin-right: auto;   
-    border-radius: 10px; 
-    color: #000000;
-    background-color: white!important;
-    width: 80%;
-    height: 15%;
-    margin-top: 5%;
-    border-color: grey;
-    border-width: 1px;
-    border-style: solid;
+  appearance: none;
+  background: #fff;
+  line-height: 0;
+  font-size: 17px;
+  // width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border-radius: 60px;
+  letter-spacing: 0.01em;
+  position: relative;
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 10px;
+  height: 12%;
+  // z-index: 1;
 }
 
 form
@@ -130,7 +144,6 @@ form
 {
     border-radius: 50%;
     border-style: solid;
-    border-width: 2px;
     border-color: #000000;
     
 }
@@ -146,9 +159,7 @@ form
     margin-right: auto;
     display: block;
     margin-bottom: 5%;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #000000;
+
     box-shadow: 2px -1px 31px 1px rgba(255,255,255,0.75);
     -webkit-box-shadow: 2px -1px 31px 1px rgba(255,255,255,0.75);
     -moz-box-shadow: 2px -1px 31px 1px rgba(255,255,255,0.75);

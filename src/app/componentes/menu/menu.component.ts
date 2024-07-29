@@ -16,10 +16,10 @@ export class MenuComponent implements OnInit {
 
   listadoProductos: any[] = [];
   pedido: any[] = [];
-  total=0
-  MostrarMenu = true
-  MostrarPedido = false
-  spinner = false
+  total=0;
+  MostrarMenu = true;
+  MostrarPedido = false;
+  spinner = false;
   tiempoMaximo=0;
   tokenMozos: string[] = [];
 
@@ -34,9 +34,9 @@ export class MenuComponent implements OnInit {
       this.listadoProductos = productos;
     });
 
-    this.spinner = true
+    this.spinner = true;
     setTimeout(() => {
-      this.spinner = false
+      this.spinner = false;
     }, 2000);
 
     this.mesasSrv.traerMozos().subscribe((mozos:any)=>

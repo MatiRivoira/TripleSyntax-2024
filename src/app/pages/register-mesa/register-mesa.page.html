@@ -1,22 +1,18 @@
 <ion-content >
-  <ion-header class="bg-dark" style="height: 45px;" >
-    <ion-toolbar style="height: 45px;">
-      <ion-buttons slot="start">
-        <a routerLink="/menu-altas"><ion-icon style="color: white; font-size: 25px; margin-left: 7px;" name="arrow-back-outline"></ion-icon></a> 
-      </ion-buttons>
-      
-      <ion-title class="ion-text-center">
-        ALTA MESA
-      </ion-title>
+  <div class="header">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">ALTA MESA</ion-title>
     </ion-toolbar>
-  </ion-header>
 
 
-  
-  <div class="spinner">
-    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
-      *ngIf="this.spinner" />
+    <ion-fab horizontal="start" vertical="top" slot="fixed" >
+      <ion-fab-button color="white" routerLink="/home-supervisor">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
+
+
   <img class="imagen_usuario" src="{{src_imagen}}">
 
   <form [formGroup]="forma" (ngSubmit)="registrar()">

@@ -1,7 +1,9 @@
 ion-content{
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  --background: #F2F2F2;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  --color: #000;
 }
 
 .titulo {
@@ -12,13 +14,29 @@ ion-content{
   color: #fff
 }
 
+.header {
+  width: 100%;
+  color: white !important;
+
+  ion-toolbar {
+      --background: #F27405;
+      height: fit-content;
+      color: white;
+      padding: 5px;
+      border-radius: 0px 0px 30px 30px;
+  }
+}
+
 ion-button{
   margin-top: 18px;
   box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
-  --background: #f8a1a1;    
+  --background: #F27405;    
   margin-bottom: 20px;
   color: black;
   width: 100%;
+  --border-radius: 5px;
+  border-radius: 5px;
+
 }
 
 ::placeholder {
@@ -32,11 +50,10 @@ ion-toolbar{
 
 .input{
   appearance: none;
-  background: #f2a49a;
-  border: 1px solid rgb(0, 0, 0);
+  background: #fff;
   line-height: 0;
   font-size: 17px;
-  width: 100%;
+  // width: 100%;
   display: block;
   box-sizing: border-box;
   padding: 10px 15px;
@@ -46,6 +63,7 @@ ion-toolbar{
   color: #000000;
   font-weight: bold;
   margin-bottom: 10px;
+  height: 12%;
   // z-index: 1;
 }
 
@@ -108,9 +126,8 @@ form {
   display: block;
   margin-bottom: 7%;
   border-style: solid;
-  border-width: 2px;
-  border-color: #000000;
-  box-shadow: 2px -1px 31px 1px rgba(255, 255, 255, 0.75);
+
+  box-shadow: 2px -1px 31px 1px rgba(90, 88, 88, 0.75);
   -webkit-box-shadow: 2px -1px 31px 1px rgba(255, 255, 255, 0.75);
   -moz-box-shadow: 2px -1px 31px 1px rgba(255, 255, 255, 0.75);
 }

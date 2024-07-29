@@ -3,7 +3,7 @@
 }
 
 ion-content{
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -34,7 +34,7 @@ ion-content{
 
 h1
 {
-    color: #fff;
+    color: #F27405;
     
 }
 
@@ -56,7 +56,7 @@ ion-fab {
 .titulo
 {
   margin-top: 1%;
-    color: #fff;
+    color: #F27405;
     margin-bottom: 10%;
     font-weight: 600;
     font-size: 200%;
@@ -80,7 +80,7 @@ ion-fab {
     margin-left: auto;  
     margin-right: auto;   
     border-radius: 10px; 
-    color: #000000;
+    color: #fff;
     background-color: white!important;
     width: 70%;
     height: 3.5rem;
@@ -117,7 +117,7 @@ ion-fab {
       transform: scale(0.98);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
-      color: #fff;
+      color: #F27405;
     }
     33% {
       -webkit-transform: scale(0.87);
@@ -131,7 +131,7 @@ ion-fab {
       transform: scale(1);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
-      color: #fff;
+      color: #F27405;
     }
   }
   @keyframes heartbeat {
@@ -155,7 +155,7 @@ ion-fab {
       transform: scale(0.98);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
-      color: #fff;
+      color: #F27405;
     }
     33% {
       -webkit-transform: scale(0.87);
@@ -169,7 +169,7 @@ ion-fab {
       transform: scale(1);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
-      color: #fff;
+      color: #F27405;
     }
   }
 
@@ -195,7 +195,7 @@ ion-fab {
 .boton_menu
 {
     
-    color: #fff;
+    color: #F27405;
     // border-radius: 10px;
     border-style: solid;
     border-width: 2px;

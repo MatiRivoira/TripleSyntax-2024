@@ -1,5 +1,5 @@
 ion-content{
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -44,7 +44,7 @@ ion-toolbar{
   border-radius: 60px;
   letter-spacing: 0.01em;
   position: relative;
-  color: #000000;
+  color: #fff;
   font-weight: bold;
   margin-bottom: 10px;
   // z-index: 1;
@@ -58,7 +58,7 @@ form {
 
 .boton {
   background-color: #dd6262;
-  color: #000000;
+  color: #fff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 200%;
@@ -323,7 +323,7 @@ ion-slides {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 
   33% {
@@ -339,7 +339,7 @@ ion-slides {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 
@@ -366,7 +366,7 @@ ion-slides {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 
   33% {
@@ -382,7 +382,7 @@ ion-slides {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 

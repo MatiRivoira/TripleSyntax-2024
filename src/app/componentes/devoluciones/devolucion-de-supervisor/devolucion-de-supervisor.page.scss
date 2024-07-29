@@ -14,7 +14,7 @@ hr {
 }
 .boton {
   background-color: #ffc5bb;;
-  color: #000000;
+  color: #fff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 200%;
@@ -68,7 +68,7 @@ hr {
   color: #fff;
   transition: background 0.5s, color 0.5s;
   ion-icon {
-    color: #fff;
+    color: #F27405;
   }
 }
 .btn-estadisticas:active {
@@ -127,7 +127,7 @@ hr {
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
-  color: #000000;
+  color: #fff;
   background-color: white !important;
   width: 80%;
   height: 60px;
@@ -260,7 +260,7 @@ hr {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
   33% {
     -webkit-transform: scale(0.87);
@@ -274,7 +274,7 @@ hr {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 @keyframes heartbeat {
@@ -298,7 +298,7 @@ hr {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
   33% {
     -webkit-transform: scale(0.87);
@@ -312,7 +312,7 @@ hr {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 

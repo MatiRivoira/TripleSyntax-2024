@@ -1,5 +1,5 @@
 ion-content{
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
     align-items: center;
     align-content: center;
     text-align: center;
@@ -7,7 +7,7 @@ ion-content{
 
 .titulo
 {
-    color: #fff;
+    color: #F27405;
     margin-bottom: 10%;
     font-weight: 600;
     font-size: 200%;
@@ -83,7 +83,7 @@ ion-fab {
     margin-left: auto;  
     margin-right: auto;   
     border-radius: 10px; 
-    color: #000000;
+    color: #fff;
     background-color: white!important;
     width: 80%;
     height: 15%;

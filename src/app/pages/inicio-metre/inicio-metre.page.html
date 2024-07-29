@@ -1,28 +1,15 @@
 <ion-content>
 
-  <br>
-  <!-- <div class="d-flex justify-content-center align-items-center" *ngIf="this.auth.UsuarioReserva.value.perfil !='supervisor' ">
-    <div>
-      <p>Liberar mesa:</p>
-    </div>
-    <div class="gap-2">
-      <button (click)="liberarMesa(1)" class="btn btn-primary" >Mesa 1</button>
-      <button  (click)="liberarMesa(2)"  class="btn btn-primary" >Mesa 2</button>
-      <button  (click)="liberarMesa(3)"  class="btn btn-primary" >Mesa 3</button>
-    </div>
-  </div> -->
-
-
    <!-------------------- VISTA METRE--------------------- -->
   <div *ngIf="this.auth.UsuarioReserva.value.perfil !='supervisor' ">
 
     <div class="header">
-      <ion-toolbar>
+      <ion-toolbar style="margin-top: -15%;">
         <ion-title class="ion-text-center">METRE</ion-title>
       </ion-toolbar>
   
-      <ion-fab horizontal="start" vertical="top" slot="fixed" routerLink="/login" (click)="auth.LogOut()">
-        <ion-fab-button color="white">
+      <ion-fab style="background-color:#F27405" horizontal="start" vertical="top" slot="fixed" routerLink="/login" (click)="auth.LogOut()">
+        <ion-fab-button style="background-color:#F27405">
           <ion-icon name="log-out-outline" ></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -60,19 +47,21 @@
 
  <!-------------------- VISTA SUPERVISOR--------------------- -->
   <div class="mt-5" *ngIf="this.auth.UsuarioReserva.value.perfil=='supervisor'">
-        <div class="header">
-      <ion-toolbar>
-        <ion-title class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
-      </ion-toolbar>
-  
-      <ion-fab horizontal="start" vertical="top" slot="fixed" routerLink="/login" (click)="auth.LogOut()">
-        <ion-fab-button color="white">
-          <ion-icon name="log-out-outline" ></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </div>
-    <br>
+
+
     <div style="text-align:center">
+
+      <div class="header">
+        <ion-toolbar style="margin-top: -15%;">
+          <ion-title class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
+        </ion-toolbar>
+    
+        <ion-fab style="background-color:#F27405" horizontal="start" vertical="top" slot="fixed" routerLink="/login" (click)="auth.LogOut()">
+          <ion-fab-button style="background-color:#F27405">
+            <ion-icon name="log-out-outline" ></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
 
       <h1 class="texto" *ngIf="listadoClientesReservas.length == 0">No hay reservas por acomodar</h1>
       <div class="card_producto" *ngFor="let cliente of listadoClientesReservas">
@@ -103,16 +92,16 @@
       </div>
     </div>
   </div>
-
+<!-- 
   <ion-fab horizontal="start" vertical="top" slot="fixed">
     <ion-fab-button (click)="auth.LogOut()" color="dark">
       <ion-icon name="log-out-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 
-  <ion-fab *ngIf="this.auth.UsuarioReserva.value.perfil=='supervisor'" horizontal="end" vertical="top" slot="fixed">
+  <!-- <ion-fab *ngIf="this.auth.UsuarioReserva.value.perfil=='supervisor'" horizontal="end" vertical="top" slot="fixed">
     <ion-fab-button (click)="irASupervisor()" color="dark">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>

@@ -1,20 +1,23 @@
 <ion-content >
-  <ion-header class="bg-dark" style="height: 45px;" >
-    <ion-toolbar style="height: 45px;">
-      <ion-buttons slot="start">
-        <a routerLink="/menu-altas"><ion-icon style="color: white; font-size: 25px; margin-left: 7px;" name="arrow-back-outline"></ion-icon></a> 
-      </ion-buttons>
-      
-      <ion-title class="ion-text-center">
-        ALTA MESA
-      </ion-title>
+  <div class="header">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">ALTA MESA</ion-title>
     </ion-toolbar>
-  </ion-header>
-  
+
+
+    <ion-fab horizontal="start" vertical="top" slot="fixed" >
+      <ion-fab-button color="white" routerLink="/home-supervisor">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+
   <img class="imagen_usuario" src="{{src_imagen}}">
 
   <form [formGroup]="forma" (ngSubmit)="registrar()">
      
+    <!-- <input type="number" formControlName="comensales" class="input" Placeholder="Nº Comensales"> -->
     <div class="d-flex justify-content-center">
       <ion-item class="item-background-color ion-margin-bottom itemsFormLogin">
         <ion-label class="text-dark">Comensales:</ion-label>
@@ -38,6 +41,7 @@
       Debe ser entre 1 y 12
     </small>
 
+    <!-- <input type="number" formControlName="numero" class="input" Placeholder="Numero"> -->
     <div class="d-flex justify-content-center">
       <ion-item class="item-background-color ion-margin-bottom itemsFormLogin">
         <ion-label class="text-dark">Numero:</ion-label>
@@ -76,6 +80,7 @@
         El tipo es requerido
     </small>
 
+    <!-- <button type="submit" [disabled]="forma.invalid" class="boton">Registrar</button> -->
     <div class="d-flex justify-content-center">
       <ion-button expand="block" (click)="sacarFoto()"><ion-icon name="camera-outline"></ion-icon>Tomar foto</ion-button>
     </div>
@@ -83,5 +88,11 @@
       <ion-button  [disabled]="forma.invalid" expand="block" type="submit">Registrar</ion-button>
     </div>
   </form>
+
+  <!-- <ion-fab horizontal="end" vertical="top" slot="fixed" >
+    <ion-fab-button (click)="sacarFoto()" color="dark">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
 
 </ion-content>

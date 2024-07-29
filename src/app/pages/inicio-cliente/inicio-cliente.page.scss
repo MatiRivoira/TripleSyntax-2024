@@ -1,10 +1,10 @@
-ion-content
+.ion
 {
-  background-color: #fff;
-
-    align-items: center;
-    align-content: center;
-    text-align: center;
+  background-color: #ffffff;
+  height: 100vh;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 h1
@@ -162,6 +162,22 @@ ion-fab {
 button
 {
   background-color: #F27405;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  color: #fff;
+}
+
+.qr {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F27405;
+  padding: 15px;
+  height: auto;
+  max-width: 80vw;
+  overflow-y: visible;
 }
 
 
@@ -322,14 +338,14 @@ button
 
 
 /*scan qr lista espera*/
-.qr_cliente{
-  margin-top: 30%;
-  margin-bottom: 25%;
-  position: relative;
-  width: 20rem;
-  height: 20rem;
-  background-size: 20rem;
-}
+// .qr_cliente{
+//   margin-top: 30%;
+//   margin-bottom: 25%;
+//   position: relative;
+//   width: 20rem;
+//   height: 20rem;
+//   background-size: 20rem;
+// }
 
 .wobble-hor-bottom{-webkit-animation:wobble-hor-bottom .8s infinite both;animation:wobble-hor-bottom .8s infinite both}
 

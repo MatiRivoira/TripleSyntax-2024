@@ -1,5 +1,7 @@
 <ion-content>
-
+  <ion-toolbar style="--background:#F27405 ;">
+    <ion-title  class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
+  </ion-toolbar>
   <div >
 
     <div class="sticky-btn-container">
@@ -39,7 +41,7 @@
           </button>
       
           <button type="button" class="btn btn-light mt-2 rounded-circle d-flex flex-column align-items-center justify-content-end" style="height: 30vh; width: 30vh; background-image: url('../../../assets/undraw_hire_re_gn5j.svg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;"
-           (click)="irA('menu-altas')">
+          routerLink="/register-mesa">
             <h3 class="d-flex bg-dark text-light p-1 w-100 text-center  rounded-2 bg-opacity-75">
               ALTAS
             </h3>
@@ -57,7 +59,7 @@
     </div>
 
     <div *ngIf="verListaDeClientes">
-      <ion-button (click)="verTodosLosClientes()" style="--background: #d8a198; margin: 12px; margin-bottom: 0px;" class="botonFiltro" expand="block">
+      <ion-button (click)="verTodosLosClientes()" style="--background: #F27405; margin: 12px; margin-bottom: 0px;" class="botonFiltro" expand="block">
         <ion-icon style="margin-right: 6px;" name="person-outline"></ion-icon>Ver todos
       </ion-button>
       <div class="botones-contenedor">

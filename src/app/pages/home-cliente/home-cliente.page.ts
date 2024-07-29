@@ -40,6 +40,7 @@ export class HomeClientePage implements OnInit {
   }
 
   async ngOnInit() {
+    this.isLoading = false;
     this.mesasService.traerListaEspera()
       .subscribe(async (listadoEncuestasClientes) => {
         await listadoEncuestasClientes.forEach(async (cliente: any) => {

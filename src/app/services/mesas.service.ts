@@ -255,4 +255,24 @@ export class MesasService {
 
     await toast.present();
   }
+
+  TraerMesaPorNumero(numeroMesa: number) {
+    try {
+      console.log("entre consulta");
+      console.log(numeroMesa);
+      const coleccion = this.afs.collection('mesas', (ref) => ref.where('numero', '==', numeroMesa).limit(1));
+      return coleccion.valueChanges();
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async LiberarMesa(mesa: any, lista:any) {
+    console.log("estado de la lista: "+lista.estado);
+   if(mesa.ocupada==true && mesa.clienteActivo!=null && lista.estado=="aprobadaConMesaAsignada")
+   {
+     this.afs.collection('mesas').doc(mesa.id).set({ ...mesa, clienteActivo: null, ocupada: false });
+   }
+  }
 }

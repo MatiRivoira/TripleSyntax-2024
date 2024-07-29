@@ -45,23 +45,23 @@ export class HomeBartenderPage implements OnInit {
     if (pedido.estado == "cocinado-c") {
       this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado").then(()=>
       {
-        this.enviarPushMozos(pedido)
+        this.enviarPushMozos(pedido);
       })
     } else {
       this.mesasSrv.CambiarEstadoPedido(pedido, "cocinado-b").then(()=>
         {
-          this.enviarPushMozos(pedido)
+          this.enviarPushMozos(pedido);
         })
     }
   }
 
   altaProducto() {
-    console.log("entro")
-    this.router.navigate(['alta-productos'])
+    console.log("entro");
+    this.router.navigate(['alta-productos']);
   }
 
   enviarPushMozos(pedido: any) {
-    console.log(this.tokenMozos)
+    console.log(this.tokenMozos);
     this.pushService
       .sendPushNotification({
         registration_ids: this.tokenMozos,

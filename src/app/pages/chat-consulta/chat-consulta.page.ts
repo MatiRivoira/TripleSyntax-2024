@@ -33,11 +33,11 @@ export class ChatConsultaPage implements OnInit {
   atras() {
     if(this.authService.UsuarioActivo.perfil == "cliente")
     {
-      this.router.navigate(['menu-mesa'])
+      this.router.navigate(['menu-mesa']);
     }
     else
     {
-      this.router.navigate(['home-mozo'])
+      this.router.navigate(['home-mozo']);
     }
   }
 

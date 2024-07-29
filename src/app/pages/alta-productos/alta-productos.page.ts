@@ -16,7 +16,6 @@ import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { log } from 'console';
 
 @Component({
   selector: 'app-alta-productos',
@@ -24,6 +23,7 @@ import { log } from 'console';
   styleUrls: ['./alta-productos.page.scss'],
 })
 export class AltaProductosPage implements OnInit {
+  @ViewChild(IonSlides) slides: IonSlides;
   formularioAlta: FormGroup;
   producto: any = {};
   src_imagen = "../../../assets/altaProductos.png";
@@ -31,23 +31,18 @@ export class AltaProductosPage implements OnInit {
   fotos_urls: any[] = [];
   fotos: any[] = [];
   spinner: boolean = false;
-  usuarioActivo = "";
 
-  constructor(public formBuilder: FormBuilder, private toastController: ToastController, private firestore: AngularFirestore, private authService: AuthService, private router: Router) {
+  constructor(public formBuilder: FormBuilder, private toastController: ToastController, private firestore: AngularFirestore, private authService: AuthService,private router:Router,private vibration: Vibration) {
     this.producto = new Producto();
     this.formularioAlta = this.formBuilder.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       tiempoElaboracion: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      precio: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      precio:  ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
     });
   }
 
   ngOnInit() {
-    
-    this.usuarioActivo = this.authService.UsuarioActivo.tipo;
-    console.log("TIPO:", this.usuarioActivo);
-    // this.getCollectionData();
   }
 
   get nombre() {
@@ -64,48 +59,45 @@ export class AltaProductosPage implements OnInit {
   }
 
   async registrar() {
-    if (this.fotos.length !== 3) {
-      this.presentToast('Error! Debe agregar las tres fotos', 'danger', 'alert-circle-outline');
-    } else {
-      this.presentToast('Registrando!', 'success', 'thumbs-up-outline');
+    if (!(this.fotos.length === 3)) {
+      this.presentToast(
+        'Error! Debe agregar las tres fotos',
+        'danger',
+        'alert-circle-outline'
+      );
+      this.vibration.vibrate(1000);
+    }
+    else {
+      this.presentToast('Registrando!', 'success', 'thumbs-up-outline')
       this.spinner = true;
-      try {
-        for (let index = 0; index < this.fotos.length; index++) {
-          console.log(`Subiendo foto ${index + 1}`);
-          var foto_url = await this.authService.subirArchivosString(this.fotos[index]);
-          console.log(`Foto ${index + 1} subida: ${foto_url}`);
-          this.fotos_urls.push(foto_url);
-        }
-  
-        if (this.fotos_urls.length === 3) {
-          console.log("Subiendo datos del producto a Firestore");
-        
-          
-          await this.firestore.collection('productos').doc().set({
-            nombre: this.formularioAlta.get('nombre')!.value,
-            descripcion: this.formularioAlta.get('descripcion')!.value,
-            tiempoElaboracion: this.formularioAlta.get('tiempoElaboracion')!.value,
-            precio: this.formularioAlta.get('precio')!.value,
-            fotos: this.fotos_urls,
-            tipo:  this.usuarioActivo
-          });
-  
-          console.log("Producto registrado con éxito");
+      for (let index = 0; index < this.fotos.length; index++) {
+        var foto_url = await this.authService.subirArchivosString(this.fotos[index]);
+        this.fotos_urls.push(foto_url);
+      }
+      this.spinner = false;
+      if (this.fotos_urls.length === 3) {
+        this.spinner = true;
+        await this.firestore.collection('productos').doc().set({
+          nombre: this.formularioAlta.get('nombre')!.value,
+          descripcion: this.formularioAlta.get('descripcion')!.value,
+          tiempoElaboracion: this.formularioAlta.get('tiempoElaboracion')!.value,
+          precio: this.formularioAlta.get('precio')!.value,
+          fotos: this.fotos_urls
+        }).then(() => {
           this.numeroImagen = 0;
           this.presentToast('Producto Registrado!', 'success', 'thumbs-up-outline');
-          this.volverAtras();
-        } else {
-          this.presentToast('Error! La cantidad de fotos es incorrecta', 'danger', 'alert-circle-outline');
-        }
-      } catch (error) {
-        console.error("Error al registrar el producto:", error);
-        this.presentToast('Error! Ocurrió un error al registrar', 'danger', 'alert-circle-outline');
-      } finally {
-        this.spinner = false;
+          this.router.navigate(['home-cocinero']);
+          this.spinner = false;
+        }).catch((err) => {
+          this.presentToast('Error! Ocurrio un error al registrar', 'danger', 'alert-circle-outline');
+          this.vibration.vibrate(1000);
+
+        })
       }
+
     }
+
   }
-  
 
   async sacarFoto() {
     const image = await Camera.getPhoto({
@@ -122,19 +114,10 @@ export class AltaProductosPage implements OnInit {
         console.log(this.numeroImagen);
       }
     }, (err) => {
-      this.presentToast('Error! Ocurrio un error al sacar la foto', 'danger', 'alert-circle-outline')
+      this.presentToast('Error! Ocurrio un error al sacar la foto', 'danger', 'alert-circle-outline');
+      this.vibration.vibrate(1000);
     })
   };
-
-
-  volverAtras(){
-    if(this.usuarioActivo=="cocinero"){
-      this.router.navigate(['home-cocinero']);
-    }else if(this.usuarioActivo=="bartender"){
-      this.router.navigate(['home-bartender']);
-    }
-  }
-
   async presentToast(mensaje: string, color: string, icono: string) {
     const toast = await this.toastController.create({
       message: mensaje,
@@ -145,11 +128,33 @@ export class AltaProductosPage implements OnInit {
 
     await toast.present();
   }
+  goToSlide() {
+    let indice;
+    this.slides.getActiveIndex().then((i) => {
+      indice = i;
+      if (indice == 0) {
+        this.slides.slideTo(1, 500);
+      } else {
+        this.slides.slideTo(0, 500);
+      }
+      this.presentToast(
+        'Completa todos los campos',
+        'primary',
+        'information-circle-outline'
+      );
+    });
+  }
 
-  // getCollectionData() {
-  //   this.firestore.collection('productos').valueChanges().subscribe(data => {
-  //     console.log(data);
-  //   });
-  // }
+  goToSlide2() {
+    let indice;
+    this.slides.getActiveIndex().then((i) => {
+      indice = i;
+      if (indice == 0) {
+        this.slides.slideTo(1, 500);
+      } else {
+        this.slides.slideTo(0, 500);
+      }
+    });
+  }
 
 }

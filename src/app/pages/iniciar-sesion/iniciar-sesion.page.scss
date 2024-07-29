@@ -1,204 +1,221 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
-
-ion-content {
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
-  background-size: cover;
-}
-
-.container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  background-color: #F2F2F2;
-  padding: 0;
-}
-
-.logo-container {
-  height: 35%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #F2F2F2;
-}
-
-.logo {
-  height: 200px;
-  width: 200px;
-}
-
-.form-container {
-  height: 65%;
-  width: 100%;
-  background-color: #F27405;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top-left-radius: 60px;
-  gap: 30px;
-  padding: 24px 0;
-}
-
-.header {
-  padding: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header h1 {
-  color: #F2F2F2;
-  font-weight: bold;
-  text-align: center;
-  font-size: 2rem;
-}
-
-.input-group {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-.google-btn {
-  padding: 15px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 1px solid white;
-}
-
-.input-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.input {
-  width: 100%;
-  height: 48px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #F2F2F2;
-  color: #F2F2F2;
-  padding: 8px 0;
-  font-size: 1rem;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.input::placeholder {
-  color: #F2F2F2;
-  font-weight: lighter;
-  transition: all 0.3s ease;
-}
-
-.input:focus::placeholder {
-  color: transparent;
-}
-
-.label {
-  position: absolute;
-  left: 0;
-  top: 12px;
-  color: #F2F2F2;
-  font-size: 1rem;
-  font-weight: bold;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.input:focus + .label,
-.input:not(:placeholder-shown) + .label {
-  opacity: 1;
-  transform: translateY(-2rem);
+::placeholder {
+  color: gray;
 }
 
 .invalid {
-  background-color: #F27405;
-  color: white;
-  padding: 0 5px;
-  font-size: 0.875rem;
+  font-size: medium;
 }
 
 
 
-
-
-.login-button {
-  width: 100%;
-  height: 52px;
-  background-color: #F2F2F2;
-  --background:#F2F2F2;
-  color: #F27405;
-  font-weight: bold;
-  --border-radius: 25px;
-  border-radius: 25px !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1.2rem;
+.rotate-center {
+  -webkit-animation: rotate-center 0.9s ease-in-out infinite both;
+  animation: rotate-center 0.9s ease-in-out infinite both;
+  box-shadow: 2px -1px 15px 1px rgb(0, 0, 0);
+  -webkit-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  -moz-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  border-radius: 50%;
 }
 
-.login-button:hover {
-  background-color: #F29F05;
-  color: #F2F2F2;
+.btn-dark::placeholder{
+  color: #fff !important;
 }
 
-.register-container {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-.register-text {
-  color: #F2F2F2;
-  font-weight: bold;
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-.register-link {
-  color: #F2B705;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
-  transition: all 0.3s ease;
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+.card-center{
+    width:90%; 
+    display:block;
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.register-link:active {
-  color: #F2F2F2;
-}
-
-ion-fab ion-fab-button {
-  width: 115px;
-  --border-radius: 5%;
-  --background: #F27405;
-}
-
-ion-fab ion-fab-list ion-button {
-  --background: #F27405;
+img{
   width: 150px;
+  margin: 0 auto;
 }
 
-.eyeicon {
-  position: absolute;
-  display: block;
-  bottom: 1.1rem;
-  right: 1rem;
-  cursor: pointer;
-  z-index: 2;
+ion-card-header{
+
+  padding: 0px 0px 16px 0px;
 }
 
-ion-icon {
-  font-size: 22px;
-  transform: translateY(23%);
+ion-icon{
+    padding-right: 7px;
+    font-size: 22px;
+    transform:translateY(23%);
 }
 
-#logoLogIn {
-  font-size: 24px;
-  color: black;
-  transform: translateY(1%);
+ion-label{
+    font-size: 20px;
+    padding-bottom: 5px;
 }
+
+#logoLogIn{
+
+    font-size: 24px;
+    color: black;
+    transform:translateY(1%);
+}
+
+ion-button{
+    margin-top: 18px;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
+    --background: #d8a198;    
+    margin-bottom: 20px;
+    color: black;
+    
+}
+
+.mensajeError{
+    padding: 10px;
+    border-radius: 7px;
+}
+
+ion-content {
+    --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+    background-size: cover;
+}
+ion-toolbar {
+    --background: #94ced8;
+}
+
+ion-title{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    color: black;
+}
+
+ion-card-subtitle{
+    padding-top: 15px;
+    font-size: 20px;
+    color: black;
+    margin-left: 4px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+ion-card{
+  background : #ffc5bb;
+    border-radius: 17px;
+}
+
+.item-background-color{
+    --ion-item-background:transparent;
+}
+
+  ion-card-title{
+    text-align: center;
+    color: black;
+  }
+
+  .eyeicon{
+    position: absolute;
+    display: block;
+    bottom: 1.1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .itemsFormLogin{
+    height: 55px;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.3);
+    --highlight-height: 0px;
+    border-radius: 50px;
+    background: #f2a49a;
+    color: black;
+    margin-bottom: 20px;
+
+    ion-input{
+        font-size: 14px;
+        --padding-top: 20px;
+        --padding-bottom: 19px;
+        --padding-start: 5px;
+        color: black;
+        
+        
+    }
+
+    a{
+        font-size: 17px;
+        letter-spacing: 0px;
+        text-decoration: none;
+    }
+  }
+
+
+
+.inputCorreo{
+    margin-bottom: 20px;
+}
+
+
+  .card-center-botones{
+    width:90%; 
+    margin: 0px auto;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+  h4{
+    color: black;
+    margin:20px 0px 7px 10px;
+    font-size: 22px;
+  }
+
+  .action-button, .action-button:not(.disabled):active {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    color: black;
+    box-shadow: none;
+    text-shadow: none;
+    padding: .2rem .7rem;
+    background: transparent;
+    transition: background-color 0.25s;
+    outline: none;
+    margin-top: 15px;
+    width: 170px;
+    font-size: 17px;
+    height: 40px;
+    margin: 5px;
+  }
+  
+.action-button:hover {
+    color: #2fff00;
+    border: 2px solid #3e2866;
+  }
+
+  .botonesUsuario{
+    display: flex;
+    justify-content: center;
+  }

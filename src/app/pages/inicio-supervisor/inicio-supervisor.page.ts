@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { EmailService } from 'src/app/servicios/email.service';
@@ -13,96 +12,157 @@ import { PushService } from 'src/app/servicios/push.service';
   styleUrls: ['./inicio-supervisor.page.scss'],
 })
 export class InicioSupervisorPage implements OnInit {
-  spinnerActivo = false;
-  listaClientes: any[] = [];
-  popUp: any;
-  formPopUp: FormGroup;
-  razonesTouched: boolean = false;
-  verificarCuentaCliente: boolean = false;
-  clienteARechazar: any;
-  popup: boolean = false;
+  listadoClientes: any[] = [];
+  clientesAprobados: any[] = [];
+  clientesNoAprobados: any[] = [];
+  verTodos:boolean=true;
+  verHabilitados:boolean=false;
+  verDeshabilitado:boolean=false;
 
+  verListaDeClientes: boolean = false;
 
-  constructor(private firebaseServ: FirestoreService,
-    private formBuilder: FormBuilder,
-    private authServ: AuthService,
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private firestoreService: FirestoreService,
+    private notificacionesS: NotificacionesService,
     private emailService: EmailService,
-    private router: Router
+    private pushService: PushService
   ) {
-    this.formPopUp = this.formBuilder.group({
-      razones: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(40)]]
-    })
+    this.pushService.getUser();
   }
 
-  async ngOnInit() {
-    this.cargarClientes();
+  ngOnInit() {
+    // this.firestoreService.traerClientes().subscribe((clientes: any) => {
+    //   this.listadoClientes = [];
+    //   clientes.forEach((c) => {
+    //     if (c.tipo == 'registrado') {
+    //       this.listadoClientes.push(c);
+    //     }
+    //   });
+    // });
+    console.log(this.authService.UsuarioReserva.value);
+    this.firestoreService.traerClientes().subscribe((clientes: any) => {
+    this.listadoClientes = [];
+    this.clientesAprobados = [];
+    this.clientesNoAprobados = [];
+     
+      
+      clientes.forEach((c) => {
+        if (c.tipo === 'registrado') {
+          this.listadoClientes.push(c);
     
-  }
-
-  ngAfterViewInit() {
-    this.popUp = document.getElementById('contenedor-pop-up');
-
-  }
-
-  cargarClientes() {
-    this.listaClientes = [];
-    this.firebaseServ.traerClientes().subscribe((res) => {
-      this.listaClientes = res;
-       
+          if (c.aprobado) {
+            this.clientesAprobados.push(c);
+          } else {
+            this.clientesNoAprobados.push(c);
+          }
+        }
+      });
+    
+      // Utiliza los arrays clientesAprobados y clientesNoAprobados según sea necesario.
     });
   }
 
-  aceptarCliente(clienteAceptado: any) {
-    const listaAux = this.listaClientes;
-    this.listaClientes = listaAux.filter(cliente => cliente != clienteAceptado);
-    this.emailService.enviarAvisoCuentaAprobada(clienteAceptado);
-    this.activarSpinner();
-  }
+  irA(ruta: string) {
+    this.notificacionesS.showSpinner();
+    try {
+      this.router.navigate([ruta]);
 
-  formatDate(date:any) {
-    const options:any = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(date).toLocaleDateString('es-ES', options);
-}
+    } catch (error) {
 
-  activarSpinner() {
-    this.spinnerActivo = true;
-    setTimeout(() => {
-      this.spinnerActivo = false;
-    }, 2000);
-  }
+    } finally {
 
-  accionRechazar(cliente: any) {
-    this.popUp = document.getElementById('contenedor-pop-up');
-    this.popUp.classList.remove("esconder");
-    this.clienteARechazar = cliente;
-  }
-
-  cancelarRechazo() {
-    this.popUp.classList.add("esconder");
-  }
-
-  async rechazarCliente() {
-    this.razonesTouched = true;
-    if (this.formPopUp.valid) {
-      const listaAux = this.listaClientes;
-      this.listaClientes = listaAux.filter(cliente => cliente != cliente);
-
-      this.emailService.enviarAvisoCuentaDeshabilitada(this.clienteARechazar)
-
-      this.cargarClientes();
-      this.popUp.classList.add("esconder");
-      this.razonesTouched = false;
-      this.activarSpinner();
+      this.notificacionesS.hideSpinner();
     }
   }
 
-  isLoading: boolean = false;
-  cerrarSesion(){
-    this.isLoading = true;
-    this.authServ.LogOut();
+
+  irAClientes() {
+    this.notificacionesS.showSpinner();
+    try {
+      this.verListaDeClientes = true;
+
+    } catch (error) {
+
+    } finally {
+
+      this.notificacionesS.hideSpinner();
+    }
   }
 
-  darDeAlta() {
-      this.router.navigate(['register-mesa']);
+  irAHomeSupervisor() {
+    this.notificacionesS.showSpinner();
+    try {
+      this.verListaDeClientes = false;
+
+    } catch (error) {
+
+    } finally {
+
+      this.notificacionesS.hideSpinner();
+    }
+  }
+
+  verSoloClientesHabilitados(){
+    this.verTodos=false;
+    this.verHabilitados=true;
+    this.verDeshabilitado=false;
+  }
+
+  verSoloClientesDeshabilitado(){
+    this.verTodos=false;
+    this.verHabilitados=false;
+    this.verDeshabilitado=true;
+  }
+
+  verTodosLosClientes(){
+    this.verTodos=true;
+    this.verHabilitados=false;
+    this.verDeshabilitado=false;
+  }
+
+
+  habilitarDeshabilitarCliente(cliente: any) {
+    this.notificacionesS.showSpinner();
+    try {
+      cliente.aprobado = !cliente.aprobado;
+      this.firestoreService
+        .actualizarUsuario(cliente)
+        .then(() => {
+          this.notificacionesS.hideSpinner();
+          this.notificacionesS.presentToast('Cliente actualizado', 'success', 'person-outline');
+          if (cliente.aprobado) {
+            this.emailService.enviarAvisoCuentaAprobada(cliente);
+          } else {
+            this.emailService.enviarAvisoCuentaDeshabilitada(cliente);
+          }
+        })
+    } catch (error) {
+      this.notificacionesS.hideSpinner();
+      this.notificacionesS.presentToast(
+        'No se actualizo el cliente',
+        'danger',
+        'close-circle-outline'
+      );
+
+    } finally {
+
+      this.notificacionesS.hideSpinner();
+    }
+
+
+  }
+
+
+  cerrarSesion() {
+    this.notificacionesS.showSpinner();
+    try {
+      this.authService.LogOut();
+    } catch (error) {
+
+    } finally {
+      this.notificacionesS.hideSpinner();
+    }
   }
 }

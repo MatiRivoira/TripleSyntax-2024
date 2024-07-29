@@ -98,4 +98,10 @@ export class FirestoreService {
     const coleccion = this.angularFirestore.collection('lista-de-espera');
     return coleccion.valueChanges();
   }
+
+
+  addDocument(collection: string, data: any, id?: string): Promise<void> {
+    const docId = id || this.angularFirestore.createId();
+    return this.angularFirestore.collection(collection).doc(docId).set({ id: docId, ...data });
+  }
 }

@@ -152,13 +152,12 @@ export class AuthService  implements OnInit{
                 .doc(this.uidUser)
                 .valueChanges()
                 .pipe(first())
-                .toPromise().then((ret: any) => {
-                  this.UsuarioActivo.next(retorno);
-                  if(ret.perfil=="supervisor" || ret.tipo=="metre"){
-                    this.UsuarioReserva.next(ret);
-                  }
-                  console.log("obtuve al usuario auth :" + JSON.stringify(ret))
-                });
+                .toPromise();
+              this.UsuarioActivo.next(retorno);
+              if(retorno.perfil=="supervisor" || retorno.tipo=="metre"){
+                this.UsuarioReserva.next(retorno);
+              }
+              console.log("obtuve al usuario auth :" + JSON.stringify(retorno))
             });
         } else {
           retorno = null;

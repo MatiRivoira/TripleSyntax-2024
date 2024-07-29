@@ -2,7 +2,7 @@
   font-weight: bold;
 }
 ion-content{
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
 }
 .charts {
   color: #fff;
@@ -72,7 +72,7 @@ ion-fab {
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
-  color: #000000;
+  color: #fff;
   background-color: white !important;
   width: 70%;
   height: 60px;
@@ -116,7 +116,7 @@ form {
 
 .boton {
   background-color: #dd6262;
-  color: #000000;
+  color: #fff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 200%;
@@ -175,7 +175,7 @@ p {
   margin-top: 5%;
   font-weight: 600;
   text-transform: uppercase;
-  color: #000000;
+  color: #fff;
 }
 
 
@@ -352,7 +352,7 @@ ion-slides {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
   33% {
     -webkit-transform: scale(0.87);
@@ -366,7 +366,7 @@ ion-slides {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 @keyframes heartbeat {
@@ -390,7 +390,7 @@ ion-slides {
     transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
   33% {
     -webkit-transform: scale(0.87);
@@ -404,7 +404,7 @@ ion-slides {
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    color: #fff;
+    color: #F27405;
   }
 }
 .invisible {

@@ -1,5 +1,5 @@
 ion-content {
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
   align-items: center;
   align-content: center;
   text-align: center;
@@ -7,7 +7,7 @@ ion-content {
 
 .boton {
   background-color: #d6614f88;
-  color: #000000;
+  color: #fff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 1.5rem;

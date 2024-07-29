@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
 
 ion-content {
-  --background: url('../../../assets/splashBackground.png') no-repeat center center fixed;
+  background-color: #fff;
   background-size: cover;
 }
 
@@ -10,7 +10,7 @@ ion-content {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: #F2F2F2;
+  background-color: #fff;
   padding: 0;
 }
 
@@ -20,7 +20,7 @@ ion-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F2F2F2;
+  background-color: #fff;
 }
 
 .logo {
@@ -48,7 +48,7 @@ ion-content {
 }
 
 .header h1 {
-  color: #F2F2F2;
+  color: #fff;
   font-weight: bold;
   text-align: center;
   font-size: 2rem;
@@ -81,8 +81,8 @@ ion-content {
   height: 48px;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #F2F2F2;
-  color: #F2F2F2;
+  border-bottom: 2px solid #fff;
+  color: #fff;
   padding: 8px 0;
   font-size: 1rem;
   outline: none;
@@ -90,7 +90,7 @@ ion-content {
 }
 
 .input::placeholder {
-  color: #F2F2F2;
+  color: #fff;
   font-weight: lighter;
   transition: all 0.3s ease;
 }
@@ -103,7 +103,7 @@ ion-content {
   position: absolute;
   left: 0;
   top: 12px;
-  color: #F2F2F2;
+  color: #fff;
   font-size: 1rem;
   font-weight: bold;
   opacity: 0;
@@ -130,8 +130,8 @@ ion-content {
 .login-button {
   width: 100%;
   height: 52px;
-  background-color: #F2F2F2;
-  --background:#F2F2F2;
+  background-color: #fff;
+  --background:#fff;
   color: #F27405;
   font-weight: bold;
   --border-radius: 25px;
@@ -143,7 +143,7 @@ ion-content {
 
 .login-button:hover {
   background-color: #F29F05;
-  color: #F2F2F2;
+  color: #fff;
 }
 
 .register-container {
@@ -156,7 +156,7 @@ ion-content {
 }
 
 .register-text {
-  color: #F2F2F2;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -169,7 +169,7 @@ ion-content {
 }
 
 .register-link:active {
-  color: #F2F2F2;
+  color: #fff;
 }
 
 ion-fab ion-fab-button {

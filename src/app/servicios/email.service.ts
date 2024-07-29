@@ -56,7 +56,7 @@ Gracias por su comprensión.
 
 `,
       nombre_restaurante: '❌ Notificación de Registro Rechazado ❌',
-      reply_to: usuario.email,
+      user_email: usuario.email,
     };
 
     emailjs

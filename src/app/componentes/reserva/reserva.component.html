@@ -1,14 +1,18 @@
-<div>
+<div class="content">
   <div class="col-12 d-flex" >
       <div class="col-12 d-flex flex-column">
-        <div class="bg-info bg-opacity-50 w-100">
-          <h3>RESERVA</h3>
+        <div class="titulo">
           <h3>Dias Disponibles</h3>
         </div>
           <div class="container">
-              <div class="bg-info  mt-5  row">
+              <div class="mt-5  row" >
                 <ng-container *ngFor="let dias of diasTurnos">
-                  <div  class="col-4 py-2 ">
+                  <div  class="col-4 py-2 " style="display: flex;
+                  align-content: center;
+                  align-items: center;
+                  justify-content: center;
+                  flex-wrap: nowrap;
+                  flex-direction: row;">
                     <button class="btn btn-primary fab-btn btn-sm rounded-0 p-2 square-btn" type="button"
                         (click)="selecionadoDia(dias)"    >
                       <div class="overflow-hidden">
@@ -21,27 +25,27 @@
             </div>
       </div>
   </div>
-</div>
-<div>
-  <div class="col-12 d-flex" *ngIf="diaSeleccionado">
-      <div class="col-12 d-flex flex-column">
-          <h3>Selecione hora</h3>
-          <div class="container">
-              <div class="bg-info d-flex justify-content-center p-2 gap-2 row">
-                  <div  class="col-12 row">
-                    <div class="my-2">
-                      <input type="time" id="hora" [(ngModel)]="horaSeleccionada">
+  <div>
+    <div class="col-12 d-flex" *ngIf="diaSeleccionado">
+        <div class="col-12 d-flex flex-column" >
+            <h3 class="titulo"> Selecione hora</h3>
+            <div class="container">
+                <div class="d-flex justify-content-center p-2 gap-2 row center">
+                    <div  class="col-12 row center">
+                      <div class="my-2 center">
+                        <input type="time" id="hora" [(ngModel)]="horaSeleccionada">
+                      </div>
+                      <div class=" center">
+                        <button  (click)="pedirCitaA()" class="btn btn-primary fab-btn btn-sm especialista-button p-2" type="button">
+                          <div class="overflow-hidden">
+                            <p>PEDIR CITA</p>
+                          </div>
+                        </button>
+                      </div>
                     </div>
-                    <div>
-                      <button  (click)="pedirCitaA()" class="btn btn-primary fab-btn btn-sm especialista-button p-2" type="button">
-                        <div class="overflow-hidden">
-                          <p>PEDIR CITA</p>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                </div>
               </div>
-            </div>
-      </div>
+        </div>
+    </div>
   </div>
 </div>

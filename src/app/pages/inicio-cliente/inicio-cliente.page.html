@@ -1,11 +1,11 @@
-<ion-content [ngClass]="scanActivo?'scanner-activo':''">
+<div [ngClass]="scanActivo?'scanner-activo':''" class="ion">
 
   <div *ngIf="!this.scanActivo && !this.escanioQrLocal &&!verReserva ">
-    <div (click)="escanearDocumento()" class="container bg-dark col-10 mt-5 py-2 rounded-3 bg-opacity-50">
+    <div (click)="escanearDocumento()" class="qr container mb-5  rounded-3 ">
 
       <button class="qr_cliente m-0 " ></button>
       <ion-col *ngIf="!this.scanActivo">
-        <label style="font-size: 24px;font-weight: bold; color:rgb(255, 255, 255)">
+        <label style="font-size: 20px;font-weight: bold; color:rgb(0, 0, 0)">
           ESCANEAR QR DEL LOCAL
         </label>
       </ion-col>
@@ -125,4 +125,4 @@
       <ion-icon name="log-out-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-</ion-content>
+</div>

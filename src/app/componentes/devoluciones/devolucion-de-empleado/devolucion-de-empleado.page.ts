@@ -98,7 +98,7 @@ export class DevolucionDeEmpleadoPage implements OnInit {
         case 'bartender':
           this.router.navigate(['home-bartender']);
           break;
-        case 'cocinero':
+        case 'cociero':
           this.router.navigate(['home-cocinero']);
       }
     }

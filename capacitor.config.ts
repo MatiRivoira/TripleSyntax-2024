@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'La Comanda PPS SP',
+  appName: 'food',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {

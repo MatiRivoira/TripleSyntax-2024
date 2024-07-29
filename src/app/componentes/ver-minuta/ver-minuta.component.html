@@ -1,0 +1,113 @@
+<div *ngIf="MostrarMenu">
+  <div class="container  mt-3">
+    <!-- <button *ngIf="total ==0" [disabled]="true" class="btn btn-success">Ver Pedido</button>
+    <button *ngIf="total !=0" (click)="verPedido()" class="btn btn-success">Ver Pedido ({{total}})</button> -->
+
+    <ion-fab horizontal="start" slot="fixed" style="transform: translateY(-60%);" *ngIf="!MostrarPedido">
+      <ion-fab-button color="warning" size="small" (click)="volverAlMenu()">
+        <ion-icon name="arrow-back-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </div>
+
+  
+
+  
+
+  <div style="overflow-y: scroll;">
+    
+    <div class="card_producto" *ngFor="let producto of listadoProductos">
+
+      <div class="card-group  bg-dark bg-opacity-50 m-2 mt-4 py-2 rounded-3">
+        <div class="container justify-content-center d-flex flex-row gap-2">
+
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[0]}}" alt="Slide 1">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[1]}}" alt="Slide 2">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[2]}}" alt="Slide 3">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <h3>{{producto.nombre}}</h3>
+
+            <p><b>Precio: {{producto.precio}}</b></p>
+            <p><b>{{producto.descripcion}}</b></p>
+          </div>
+          <!-- <p><b>Cantidad de {{ producto.nombre }} pedidas:</b> {{ producto.cantidad || 0 }}</p>
+          <div class="d-flex justify-content-evenly">
+            <button style="font-size: xx-large; width: 30vw; height: 15vw;" class="btn btn-danger"
+              (click)="quitarDelPedido(producto)"><ion-icon name="remove-outline"></ion-icon></button>
+            <button style="font-size: xx-large; width: 30vw; height: 15vw;" class="btn btn-success"
+              (click)="agregarAlPedido(producto)"><ion-icon name="add-outline"></ion-icon></button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<!-- <div *ngIf="MostrarPedido">
+
+  <ion-fab horizontal="start"  slot="fixed" *ngIf="MostrarPedido" style="transform: translateY(-20%);">
+    <ion-fab-button color="warning" size="small" (click)="volverSeleccionPedido()">
+      <ion-icon name="arrow-back-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <h1>Mi Pedido</h1>
+  <div style="overflow-y: scroll;">
+
+    <div class="card_producto">
+      <table style="color: black;" class="table table-striped ">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="color: black;" *ngFor="let producto of pedido">
+            <td style="color: black;">{{producto.nombre}} (x{{producto.cantidad}})</td>
+            <td style="color: black;">{{producto.precio}}</td>
+
+            <td style="color: black;">{{producto.precio * producto.cantidad}}</td>
+
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td style="color: black;">{{total}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+
+  <div class="div_ver_pedido">
+    <button class="btn btn-success" style="width: 90%; color: white;" (click)="hacerPedido()"><ion-icon
+        style="color: white; margin-top: 10px; margin-right: 7px; font-size: 20px;"
+        name="fast-food-outline"></ion-icon>Hacer Pedido</button>
+  </div>
+</div> -->

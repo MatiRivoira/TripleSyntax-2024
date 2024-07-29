@@ -1,0 +1,146 @@
+*{
+  color: #000000;
+  font-weight: bold;
+}
+
+.equal-height-img {
+  height: 30vw; 
+  object-fit: cover;
+}
+.img-producto {
+  width: 20rem;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #000;
+}
+
+.div_botones {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+
+.boton-agregar {
+  padding: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  margin-top: 5%;
+  background-color: red;
+  border-radius: 10px;
+}
+
+.boton
+{
+    color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    font-weight: 700;
+    font-size: 200%;
+    text-shadow: 2px 2px #000000;
+}
+
+
+.div_ver_pedido {
+  height: 15%;
+  position: sticky;
+  z-index: 200;
+  top: 0%;
+  width: 100%;
+  text-align: center;
+  left: 0%;
+  right: 0%;
+}
+
+.boton_pedido {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: auto;
+  display: block;
+  width: 80%;
+  height: 4rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  background-color: red;
+  border-radius: 25px;
+  color: aliceblue;
+  font-weight: 600;
+  font-size: larger;
+  border-color: #fff;
+}
+
+.spinner {
+  position: absolute;
+  margin-top: 35%;
+  text-align: center;
+  padding: 20%;
+  z-index: 101;
+}
+
+.rotate-center {
+  -webkit-animation: rotate-center 0.9s ease-in-out infinite both;
+  animation: rotate-center 0.9s ease-in-out infinite both;
+  box-shadow: 2px -1px 15px 1px rgb(0, 0, 0);
+  -webkit-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  -moz-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+  border-radius: 50%;
+}
+
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilo básico para el contenedor del botón */
+.sticky-btn-container {
+  position: fixed;
+  top: 40px; /* Ajusta esta propiedad para cambiar la distancia desde el borde inferior */
+  right: 75px; /* Ajusta esta propiedad para cambiar la distancia desde el borde derecho */
+  z-index: 999; /* Asegura que el botón se muestre encima de otros elementos */
+}
+
+/* Estilo adicional opcional para que el botón sea más visible y atractivo */
+.sticky-btn-container button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-btn-container2 {
+  position: fixed;
+  top: 40px; /* Ajusta esta propiedad para cambiar la distancia desde el borde inferior */
+  right: 68px; /* Ajusta esta propiedad para cambiar la distancia desde el borde derecho */
+  z-index: 999; /* Asegura que el botón se muestre encima de otros elementos */
+}
+
+/* Estilo adicional opcional para que el botón sea más visible y atractivo */
+.sticky-btn-container2 button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

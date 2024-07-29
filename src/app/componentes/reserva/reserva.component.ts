@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { FirestoreService } from 'src/app/services/firestore.service';
-import { NotificacionesService } from 'src/app/services/notificaciones.service';
-import { PushService } from 'src/app/services/push.service';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { FirestoreService } from 'src/app/servicios/firestore.service';
+import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
+import { PushService } from 'src/app/servicios/push.service';
 @Component({
   selector: 'app-reserva',
   templateUrl: './reserva.component.html',
@@ -22,7 +22,7 @@ export class ReservaComponent implements OnInit {
 
   async pedirCitaA() {
 
-    let clienteAux = this.auth.UsuarioActivo;
+    let clienteAux = this.auth.UsuarioActivo.value;
 
     if (clienteAux != null && this.horaSeleccionada) {
 
@@ -95,6 +95,7 @@ export class ReservaComponent implements OnInit {
   }
 
   async selecionadoDia(dia: any) {
+    this.notificationS.showSpinner();
     try {
       this.diaSeleccionado = dia;
       const duracion = 40;
@@ -103,6 +104,9 @@ export class ReservaComponent implements OnInit {
       console.log(this.diaHorarios);
     }
     catch {
+    }
+    finally {
+      this.notificationS.hideSpinner();
     }
   }
 

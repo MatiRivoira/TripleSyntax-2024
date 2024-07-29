@@ -1,0 +1,163 @@
+
+
+
+ion-content
+{
+  --ion-background-color: linear-gradient(120deg,#000000, #d50000, #d10000)!important;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+body
+{
+    --ion-background-color: linear-gradient(120deg,#000000, #d50000, #d10000)!important;
+    height: 80vh;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+canvas {
+    backdrop-filter: blur(20px);;
+    border-radius: 10px;
+  }
+
+ion-fab {
+
+  margin-top: 45px;
+}
+
+.contenedor-charts
+{
+  padding: 5%;
+}
+
+
+.titulo
+{
+    color: #fff;
+    font-weight: 600;
+    font-size: 150%;
+}
+.form-label
+{
+    margin-bottom: 0%;
+    margin-top: 3%;
+    font-weight: 600;
+    font-size: larger;
+}
+::placeholder
+{
+    color: gray;
+}
+
+
+.flecha-izq
+{
+    left: 1%;
+    position: absolute;
+    font-size: 2.5rem;
+    top: 45%;
+}
+
+.div_card
+{
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    color: #000000;
+    width: 80%;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #DD6262;
+}
+
+.div_comentarios
+{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.boton
+{
+    background-color: #DD6262;
+    color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    font-weight: 700;
+    font-size: 200%;
+
+    text-shadow: 2px 2px #000000;
+
+    width: 80%;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-top: 14%;
+    margin-bottom: 5%;
+}
+
+
+ion-slide
+{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/*SPINNER*/
+.spinner {
+    position: absolute;
+    margin-top: 35%;
+    text-align: center;
+    padding: 20%;
+    z-index: 101;
+  }
+  
+  
+  .rotate-center {
+    -webkit-animation: rotate-center 0.9s ease-in-out infinite both;
+    animation: rotate-center 0.9s ease-in-out infinite both;
+    box-shadow: 2px -1px 15px 1px rgb(0, 0, 0);
+    -webkit-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+    -moz-box-shadow: 2px -1px 31px 1px rgb(0, 0, 0);
+    border-radius: 50%;
+  }
+  
+
+  @-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+  
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+  
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+
+
+

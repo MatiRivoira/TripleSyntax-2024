@@ -1,0 +1,180 @@
+
+
+<ion-content [ngClass]="scanActivo?'scanner-activo':''" >
+  <ion-header style="font-size: 1.4rem; height: 5%; background-color:#ffc5bb;">
+    MENU MESA
+  </ion-header>
+  <!-- <ion-fab horizontal="start"  slot="fixed" style="transform: translateY(-20%);>
+    <ion-fab-button color="warning" size="small" (click)="volverMenuMesa()">
+      <ion-icon name="arrow-back-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+
+
+  <div class="fondo_blur" *ngIf="MostrarDetallePedido">
+    <div class="div_Detalle" >
+       <p *ngIf="pedido.estado == 'no aceptado'"><b>Su pedido todavia no fue aprobado</b></p>
+      <p *ngIf="pedido.estado == 'aceptado'"><b>Su pedido esta en preparacion</b></p>
+      <p *ngIf="pedido.estado == 'aceptado'"><b>Faltan {{ comienzoDate | diferenciaMinutos:pedido.tiempoPreparacion}}</b></p>
+      <button class="boton" (click)="cerrarDetallePedido()">Cerrar</button>
+    </div>
+  </div>
+  
+
+  <div style="height: 95%; width: 100%; margin-bottom: 0px;" *ngIf="!verMiPedido">
+
+    <div style="height: 95%; width: 100%;" *ngIf="scannerCorrecto" >
+      <br>
+      <button style="background:url('../../../assets/mozoAtendiendo.jpg  ')no-repeat center center fixed;" class="boton_menu" 
+      *ngIf="pedido.estado != 'pagado'" (click)="consultarMozo()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Consultar Mozo
+        </div>
+      </button>
+
+      <button style="background:url('../../../assets/pedirAlMozo.jpg')no-repeat center center fixed;" class="boton_menu" 
+       *ngIf="pedido.estado == 'no iniciado'"  (click)="verMenu()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Hacer pedido
+        </div>
+      </button>
+
+      <button style="background:url('../../../assets/menu.jpg')no-repeat center center fixed;" class="boton_menu" 
+       *ngIf="pedido.estado == 'no iniciado'"  (click)="verCarta()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Ver Menú
+        </div>
+      </button>
+
+      <button class="boton_menu" style="background:url('../../../assets/miPedido_1.jpg')no-repeat center center fixed;"
+      *ngIf="(pedido.estado == 'aceptado' || pedido.estado == 'entregado' || pedido.estado == 'confirmado' || pedido.estado == 'no aceptado')"
+      (click)="verMiPedidoYaRealizado()">
+      <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+        Ver mi pedido
+      </div>
+    </button>
+
+      <button style="background:url('../../../assets/comidaPreparacion.jpg')no-repeat center center fixed;" class="boton_menu" 
+      *ngIf="pedido.estado == 'aceptado' || pedido.estado == 'no aceptado'" (click)="consultarPedido()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Ver estado Comida
+        </div>
+      </button>
+
+      <button style="background:url('../../../assets/mozoEntrega.jpg')no-repeat center center fixed;" class="boton_menu" 
+      *ngIf="pedido.estado == 'entregado'"  (click)="LlegoComida()" >
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Llego la Comida
+        </div>
+      </button>
+
+      <button class="boton_menu" style="background:url('../../../assets/encuesta.png')no-repeat center center fixed;" 
+      *ngIf="(pedido.estado == 'aceptado' || pedido.estado == 'entregado' || pedido.estado == 'confirmado') && !this.auth.UsuarioActivo.value.hizoEncuesta" (click)="verEncuesta()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Encuesta de Satisfaccion
+        </div>
+      </button>
+
+      <!-- --------------JUEGOS-------------- -->
+      <button style="background:url('../../../assets/preguntados.jpg')no-repeat center center fixed;" class="boton_menu" 
+      *ngIf="pedido.estado != 'confirmado' &&  pedido.estado != 'pagado' && !esconderse" (click)="Jugar()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Juego 10%
+        </div>
+      </button>
+
+      <button style="background:url('../../../assets/simon-dice_1.jpg')no-repeat center center fixed;" class="boton_menu" 
+      *ngIf="pedido.estado != 'confirmado' &&  pedido.estado != 'pagado' && !esconderse" (click)="Jugar15()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Juego 15%
+        </div>
+      </button>
+
+       <!-- --------------FIN JUEGOS-------------- -->
+      <button style="background:url('../../../assets/pagar.jpg')no-repeat center center fixed;" class="boton_menu" 
+       *ngIf="pedido.estado == 'confirmado'" (click)="Pagar()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Pagar
+        </div>
+      </button>
+      <button style="background:url('../../../assets/esperandoPago_1.jpg')no-repeat center center fixed; height: 11rem" class="boton_menu" 
+       *ngIf="pedido.estado == 'pagado'" >
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Esperando verificacion de pago por el mozo
+        </div>
+      </button>
+      <!-- <button style="background:url('../../../assets/pagar.jpg')no-repeat center center fixed;" class="boton_menu" 
+       *ngIf="pedido.estado == 'terminado'" (click)="cerrarMesa()">
+        <div class="bg-dark bg-opacity-75 rounded-3 text-white p-1">
+          Cerrar mesa
+        </div>
+      </button> -->
+    </div>
+
+    <div style="height: 95%; width: 100%;" *ngIf="MostrarMenu" >
+      <app-menu [numeroMesa]="numeroMesa" (pedidoFinal)="recibirPedido($event)" (volverAtras)="volverMenuMesa($event)"></app-menu>   
+    </div>
+
+    <div style="height: 95%; width: 100%;" *ngIf="MostrarCarta" >
+      <app-ver-minuta (volverAtras)="volverMenuMesa($event)"></app-ver-minuta>   
+    </div>
+
+    <div style="height: 100%; width: 100%;" *ngIf="MostrarPagar" >
+      <app-pagar [pedido]="pedido" (pago)="pago()"></app-pagar>   
+    </div>
+
+     <!-- --------------JUEGOS-------------- -->
+    <div style="height: 95%; width: 100%;" *ngIf="MostrarJuego">
+      <app-juego10 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego($event)" (volverAtras)="volverMenuMesa($event)" ></app-juego10>  
+    </div>
+
+    <div style="height: 95%; width: 100%;" *ngIf="MostrarJuego15" >
+      <app-juego15 [pedidoRecibido]="pedido" (PasamosPedidoConJuego)="terminarJuego15($event)" (volverAtras)="volverMenuMesa($event)"></app-juego15>  
+    </div>
+
+     <!-- --------------FIN JUEGOS-------------- -->
+
+  </div>
+
+  <div *ngIf="verMiPedido">
+    <ion-fab horizontal="start" slot="fixed" style="transform: translateY(-90%); margin-top: 0px;">
+      <ion-fab-button color="warning" size="small" (click)="volverDelPedido()">
+        <ion-icon name="arrow-back-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <h1 style="color: #000000; margin-top: 3rem;">Mi pedido</h1>
+    <table style="color: black;" class="table table-striped ">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio unitario</th>
+          <!-- <th>Cantidad</th> -->
+          <!-- <th>Total por producto</th> -->
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="color: black;" *ngFor="let producto of pedido.productos">
+          <td style="color: black;">{{producto.nombre}} (x{{producto.cantidad}})</td>
+          <td style="color: black;">{{producto.precio}}</td>
+          <!-- <td style="color: black;">{{producto.cantidad}}</td> -->
+          <td style="color: black;">{{producto.precio * producto.cantidad}}</td>
+          <!-- <td style="color: black;">----------</td> -->
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="color: black;">{{pedido.total}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="auth.LogOut()" color="warning">
+      <ion-icon name="log-out-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

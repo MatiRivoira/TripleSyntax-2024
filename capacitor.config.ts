@@ -2,14 +2,12 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'food',
+  appName: 'La Comanda PPS SP',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {
     "SplashScreen": {
-     // "launchShowDuration": 1000,
       "launchAutoHide": false,
-      //"launchFadeOutDuration": 1000,
       "backgroundColor": "#ffffffff",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",

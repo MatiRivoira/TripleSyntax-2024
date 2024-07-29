@@ -1,0 +1,106 @@
+
+
+<div class="header">
+  <!-- <ion-toolbar>
+    <ion-title class="ion-text-center">PEDIDOS BARTENDER</ion-title>
+  </ion-toolbar>
+
+  <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
+    <ion-fab-button color="white">
+      <ion-icon name="log-out-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-button (click)="atras()"><ion-icon style="color: black;" name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="authService.UsuarioActivo.value.tipo == 'mozo' && mesaParaVer == 'mesa 1'" style="color: black; font-weight: 600;">Consultas mozo - Mesa 1</ion-title>
+    <ion-title *ngIf="authService.UsuarioActivo.value.tipo == 'mozo' && mesaParaVer == 'mesa 2'" style="color: black; font-weight: 600;">Consultas mozo - Mesa 2</ion-title>
+    <ion-title *ngIf="authService.UsuarioActivo.value.tipo == 'mozo' && mesaParaVer == 'mesa 3'" style="color: black; font-weight: 600;">Consultas mozo - Mesa 3</ion-title>
+    <ion-title *ngIf="authService.UsuarioActivo.value.tipo == 'mozo' && mesaParaVer != 'mesa 3' && mesaParaVer != 'mesa 2' && mesaParaVer != 'mesa 1'" style="color: black; font-weight: 600;">Consultas sector mozo</ion-title>
+    <ion-title *ngIf="authService.UsuarioActivo.value.perfil == 'cliente'" style="color: black; font-weight: 600;">Consultas sector cliente</ion-title>
+  
+  </ion-toolbar>
+</div>
+
+<!-- NUEVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+<div class="div_cambio_vista" *ngIf="authService.UsuarioActivo.value.tipo == 'mozo'">
+  <button *ngFor="let mesa of mesas" class="boton boton_mesa" (click)="mesaSeleccionada(mesa.numero)">Mesa {{mesa.numero}}</button>
+</div>
+
+<!-- ////////////////////////////////////////////// -->
+
+
+<!-- NUEVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+
+<ion-content>
+  <div class="fondo" id="fondo">
+    <br>
+    <div *ngFor="let mensaje of chatService.mensajes$ | async">
+      <div *ngIf="mensaje.uid==authService.UsuarioActivo.value.uid; else noUsuario">
+        <div class="card_mensaje derecha" *ngIf="authService.UsuarioActivo.value.perfil == 'cliente'">
+          <p><b style="color: black; ">{{mensaje.texto}}</b></p>
+          <div>
+            <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+          </div>
+        </div>
+
+        <div *ngIf="authService.UsuarioActivo.value.tipo == 'mozo'">
+          <div div *ngIf="mensaje.mesaQueSeLeEnviaMensaje == mesaParaVer">
+            <div class="card_mensaje derechaMozo">
+              <p><b style="color: black; ">{{mensaje.texto}}</b></p>
+              <div>
+                <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <ng-template #noUsuario>
+        <div *ngIf="authService.UsuarioActivo.value.tipo == 'mozo'">
+          <div *ngIf="mensaje.nombre == mesaParaVer">
+            <div class="card_mensaje izquierda">
+              <h3 class="autor_nombre">{{mensaje.nombre}}</h3>
+              <p><b style="color: black;">{{mensaje.texto}}</b></p>
+              <div>
+                <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="authService.UsuarioActivo.value.perfil == 'cliente'">
+          <div *ngIf="mensaje.mesaQueSeLeEnviaMensaje == authService.UsuarioActivo.value.mesaQueEstaUtilizando">
+            <div class="card_mensaje izquierda">
+              <h3 class="autor_nombre">{{mensaje.nombre}}</h3>
+              <p><b style="color: black;">{{mensaje.texto}}</b></p>
+              <div>
+                <span class="timestamp">&bull;<span class="posttime">{{mensaje.fecha}}</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <br>
+      <br>
+    </div>
+
+
+  </div>
+</ion-content>
+<!-- ////////////////////////////////////////////// -->
+
+
+<ion-footer>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-input slot="start" placeholder="Escribe algo..." [(ngModel)]="mensaje" style="color: black;"></ion-input>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button size="large" class="boton_enviar" (click)="enviarMensaje()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,44 @@
+<ion-content>
+  <section class="preguntados-container">
+
+    <ion-fab horizontal="start" slot="fixed" style="transform: translateY(12%);">
+      <ion-fab-button color="warning" size="small" (click)="volverAlMenu()">
+        <ion-icon name="arrow-back-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <div class="container d-flex flex-column justify-content-center">
+      <h1 class="titulo-preguntados">PREGUNTADOS</h1>
+      <p class="puntuacion">
+        Puntuación: {{ score }}
+        <span class="intentos">(Intentos: {{ attempts }}/10)</span>
+      </p>
+      <div class="row" *ngIf="loadedQuestions">
+        <div class="contendor-bandera col">
+          <img src="{{ currentQuestion.flag }}" alt="bandera" />
+        </div>
+        <div class="contenedor-pregunta col">
+          <h3 style="margin-bottom: 25px;">¿ De qué país es la bandera ?</h3>
+          <p
+            class="juego-terminado"
+            [ngClass]="victory ? 'victoria' : 'derrota'"
+            *ngIf="gameOver"
+          >
+            {{ gameOverText }}
+          </p>
+          <div *ngIf="activeGame">
+            <button
+              class="btn-opcion"
+              *ngFor="let option of currentQuestion.options"
+              (click)="play(option, $event)"
+              [ngClass]="correctAnswer ? 'correcta' : ''"
+              [ngClass]="wrongAnswer ? 'incorrecta' : ''"
+            >
+              {{ option }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

@@ -1,10 +1,17 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { EncuestaEmpleadoGuard } from './guards/encuesta-empleado.guard';
-import { MenuComponent } from './componentes/menu/menu.component';
+import { SeleccionPropinaComponent } from './componentes/seleccion-propina/seleccion-propina.component';
+import { MinutasComponent } from './componentes/minuta/minuta.component';
+import { PreguntadosDiezComponent } from './juegos/preguntadosDiez/preguntadosDiez.component';
+import { SimonQuinceComponent } from './juegos/simonQuince/simonQuince.component';
 
 const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
+  },
   {
     path: 'splash',
     loadChildren: () =>
@@ -13,7 +20,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+      import('./pages/iniciar-sesion/iniciar-sesion.module').then((m) => m.IniciarSesionPageModule),
   },
   {
     path: '',
@@ -22,89 +29,100 @@ const routes: Routes = [
   },
   {
     path: 'register-empleado',
-    loadChildren: () => import('./pages/register-empleado/register-empleado.module').then( m => m.RegisterEmpleadoPageModule)
+    loadChildren: () => import('./pages/crear-empleado/crear-empleado.module').then(m => m.CrearEmpleadoPageModule)
   },
   {
     path: 'register-mesa',
-    loadChildren: () => import('./pages/register-mesa/register-mesa.module').then( m => m.RegisterMesaPageModule)
+    loadChildren: () => import('./pages/crear-mesa/crear-mesa.module').then(m => m.CrearMesaPageModule)
   },
   {
     path: 'alta-cliente',
-    loadChildren: () => import('./pages/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
+    loadChildren: () => import('./pages/crear-cliente/crear-cliente-routing.module').then(m => m.CrearClientePageRoutingModule)
   },
   {
     path: 'alta-productos',
-    loadChildren: () => import('./pages/alta-productos/alta-productos.module').then( m => m.AltaProductosPageModule)
+    loadChildren: () => import('./pages/crear-producto/crear-producto.module').then(m => m.CrearProductoPageModule)
   },
   {
     path: 'alta-supervisor',
-    loadChildren: () => import('./pages/alta-supervisor/alta-supervisor.module').then( m => m.AltaSupervisorPageModule)
+    loadChildren: () => import('./pages/crear-supervisor/crear-supervisor.module').then(m => m.CrearSupervisorPageModule)
   },
   {
     path: 'menu-altas',
-    loadChildren: () => import('./pages/menu-altas/menu-altas.module').then( m => m.MenuAltasPageModule)
+    loadChildren: () => import('./pages/opciones-altas/opciones-altas.module').then(m => m.OpcionesAltasPageModule)
   },
   {
     path: 'empleado-encuesta',
-    loadChildren: () => import('./encuestas/empleado-encuesta/empleado-encuesta.module').then( m => m.EmpleadoEncuestaPageModule),
-    canActivate: [EncuestaEmpleadoGuard],
-    canDeactivate: [EncuestaEmpleadoGuard]
+    loadChildren: () => import('./componentes/devoluciones/devolucion-de-empleado/devolucion-de-empleado.module').then(m => m.DevolucionDeEmpleadoPageModule)
   },
-     {
+  {
     path: 'encuesta-supervisor',
-    loadChildren: () => import('./encuestas/encuesta-supervisor/encuesta-supervisor.module').then( m => m.EncuestaSupervisorPageModule)
+    loadChildren: () => import('./componentes/devoluciones/devolucion-de-supervisor/devolucion-de-supervisor.module').then(m => m.DevolucionDeSupervisorPageModule)
 
   },
   {
     path: 'encuesta-cliente',
-    loadChildren: () => import('./encuestas/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
+    loadChildren: () => import('./componentes/devoluciones/devolucion-de-cliente/devolucion-de-cliente.module').then(m => m.DevolucionDeClientePageModule)
   },
   {
     path: 'empleado-graficos',
-    loadChildren: () => import('./encuestas/empleado-graficos/empleado-graficos.module').then( m => m.EmpleadoGraficosPageModule)
+    loadChildren: () => import('./componentes/devoluciones/chartz-de-empleado/chartz-de-empleado.module').then(m => m.ChartzDeEmpleadoPageModule)
   },
   {
     path: 'home-supervisor',
-    loadChildren: () => import('./pages/home-supervisor/home-supervisor.module').then( m => m.HomeSupervisorPageModule)
+    loadChildren: () => import('./pages/inicio-supervisor/inicio-supervisor.module').then(m => m.InicioSupervisorPageModule)
+  },
+  {
+    path: "qr-propina", component: SeleccionPropinaComponent
   },
   {
     path: 'menu-mesa',
-    loadChildren: () => import('./pages/menu-mesa/menu-mesa.module').then( m => m.MenuMesaPageModule)
+    loadChildren: () => import('./pages/opciones-mesa/opciones-mesa.module').then(m => m.OpcionesMesaPageModule)
   },
   {
     path: 'home-cliente',
-    loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+    loadChildren: () => import('./pages/inicio-cliente/inicio-cliente.module').then(m => m.InicioClientePageModule)
   },
   {
     path: 'charts-encuesta-clientes',
-    loadChildren: () => import('./pages/charts-encuesta-clientes/charts-encuesta-clientes.module').then( m => m.ChartsEncuestaClientesPageModule)
+    loadChildren: () => import('./pages/chartz-de-cliente/chartz-de-cliente.module').then(m => m.ChartzDeClientePageModule)
   },
   {
-    path:"menu", component:MenuComponent
+    path: "menu", component: MinutasComponent
   },
   {
     path: 'home-mestre',
-    loadChildren: () => import('./pages/home-mestre/home-mestre.module').then( m => m.HomeMestrePageModule)
+    loadChildren: () => import('./pages/inicio-metre/inicio-metre.module').then(m => m.InicioMetrePageModule)
   },
   {
     path: 'home-mozo',
-    loadChildren: () => import('./pages/home-mozo/home-mozo.module').then( m => m.HomeMozoPageModule)
+    loadChildren: () => import('./pages/inicio-mozo/inicio-mozo.module').then(m => m.InicioMozoPageModule)
+  },
+  {
+    path: 'juego10', component: PreguntadosDiezComponent
+  },
+  {
+    path: 'juego15', component: SimonQuinceComponent
   },
   {
     path: 'home-cocinero',
-    loadChildren: () => import('./pages/home-cocinero/home-cocinero.module').then( m => m.HomeCocineroPageModule)
-  },
-  {
-    path: 'chat-consulta',
-    loadChildren: () => import('./pages/chat-consulta/chat-consulta.module').then( m => m.ChatConsultaPageModule)
+    loadChildren: () => import('./pages/inicio-cocinero/inicio-cocinero.module').then(m => m.InicioCocineroPageModule)
   },
   {
     path: 'home-bartender',
-    loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
+    loadChildren: () => import('./pages/inicio-bartender/inicio-bartender.module').then(m => m.InicioBartenderPageModule)
   },
   {
-    path: 'graficos',
-    loadChildren: () => import('./pages/graficos/graficos.module').then( m => m.GraficosPageModule)
+    path: 'chat-consulta',
+    loadChildren: () => import('./pages/consultas/consultas.module').then(m => m.ConsultasPageModule)
+  },
+  {
+    path: 'crear-cliente',
+    loadChildren: () => import('./pages/crear-cliente/crear-cliente.module').then( m => m.CrearClientePageModule)
+  },
+  {
+    path: 'inicio-bartender',
+    loadChildren: () => import('./pages/inicio-bartender/inicio-bartender.module').then( m => m.InicioBartenderPageModule)
   },
 ];
 
@@ -114,6 +132,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
-    
+export class AppRoutingModule { }
+
 

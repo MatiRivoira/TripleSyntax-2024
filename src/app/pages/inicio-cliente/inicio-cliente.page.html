@@ -1,0 +1,128 @@
+<div [ngClass]="scanActivo?'scanner-activo':''" class="ion">
+
+  <div *ngIf="!this.scanActivo && !this.escanioQrLocal &&!verReserva ">
+    <div (click)="escanearDocumento()" class="qr container mb-5  rounded-3 ">
+
+      <button class="qr_cliente m-0 " ></button>
+      <ion-col *ngIf="!this.scanActivo">
+        <label style="font-size: 20px;font-weight: bold; color:rgb(0, 0, 0)">
+          ESCANEAR QR DEL LOCAL
+        </label>
+      </ion-col>
+    </div>
+  </div>
+
+
+  <div *ngIf="!this.scanActivo && !verEncuestas && !verReserva">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class=" container h-75 col-8 mt-2 gap-2 justify-content-center align-items-center d-flex flex-column">
+        <div *ngIf="!estaEnLaLista && mostrarMenu"
+          style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <button class="btn " (click)="entrarListaEspera()">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <img src="../../../assets/undraw_conversation_re_c26v.svg" alt="">
+              <p *ngIf="!estaEnLaLista && !esperando">
+                Inscribirse a lista de espera
+              </p>
+              <p *ngIf="!estaEnLaLista && esperando">
+                Esperando Mesa Asignada del Metre 
+              </p>
+            </div>
+          </button>
+        </div>
+        <div *ngIf="!this.scanActivo && !this.escanioQrLocal && this.auth.UsuarioActivo.value.tipo!='anonimo'"
+          style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <button class="btn mb-5" (click)="entrarListaReserva()">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <img src="../../../assets/undraw_conversation_re_c26v.svg" alt="">
+              <p >
+                Hacer una Reserva
+              </p>
+          
+            </div>
+          </button>
+        </div>
+        <div *ngIf="!this.scanActivo && !verEncuestas && escanioQrLocal && !verReserva" style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <button class="btn  bg-opacity-50" (click)="mostrarEncuestas()">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <img src="../../../assets/lista-de-verificacion.gif" alt="" style="max-height: 30vh; max-width: 100%;">
+              Encuestas
+            </div>
+          </button>
+        </div>
+        <div *ngIf="this.estaEnLaLista" class="bg-dark bg-opacity-50 "
+          style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <button class="btn  bg-opacity-50" (click)="escanearQRmesa()">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <img src="../../../assets/qr-scanner.png" alt="" style="max-height: 100%; max-width: 100%;">
+              Escanear QR de la mesa
+            </div>
+          </button>
+        </div>
+
+        <div *ngIf="!estaEnLaLista && mostrarMenu && this.auth.UsuarioActivo.value.tipo=='registrado'"
+        style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <button class="btn " (click)="volverAlLocal()">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../../../assets/undraw_conversation_re_c26v.svg" alt="">
+            <p>
+              Volver
+            </p>
+          </div>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="verEncuestas" style="height: 100%; width: 100%;">
+    <div>
+      <ion-fab horizontal="start" vertical="top" slot="fixed">
+        <ion-fab-button color="warning">
+          <ion-icon (click)="esconderEncuestas()" style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+
+    <div style="height: 100%; width: 100%;" *ngIf="this.escanerMesaOk && !this.mostrarMenu">
+      <br>
+      <h1 style="font-size: xx-large;">Su numero de mesa es </h1>
+
+      <h1 class="numero_mesa">{{numeroMesa}}</h1>
+    </div>
+    <app-charts-encuesta-clientes></app-charts-encuesta-clientes>
+  </div>
+  
+  <div *ngIf="verReserva" class="mt-5" style="height: 100%; width: 100%;">
+    <div>
+      <ion-fab horizontal="start" vertical="top" slot="fixed">
+        <ion-fab-button color="warning">
+          <ion-icon (click)="esconderReserva()" style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    <div class="mt-5">
+      <app-reserva></app-reserva>
+
+    </div>
+  </div>
+
+
+  <div *ngIf="scanActivo">
+    <div class="scan ">
+      <div class="qrcode"></div>
+      <div class="border"></div>
+    </div>
+    <div style="margin-top: 30vh;">
+      <h3 class="wobble-hor-bottom ">Escaneando QR...</h3>
+      <button class="boton" (click)="pararScan()">Detener</button>
+    </div>
+  </div>
+
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="auth.LogOut()" color="warning">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>

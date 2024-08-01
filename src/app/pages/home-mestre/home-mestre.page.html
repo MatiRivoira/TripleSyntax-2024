@@ -19,7 +19,7 @@
     </div>
     <br>
     <div style="text-align:center">
-      
+      <img class="logo" *ngIf="listadoClientesReservas.length == 0" src="/assets/icon/icon.png" alt="Icono empresa">
       <h1 class="texto" style="margin-top: 40%;" *ngIf="listadoClientes.length == 0">No hay clientes para acomodar</h1>
           <div class="card_producto"  *ngFor="let cliente of listadoClientes">
             
@@ -51,6 +51,7 @@
   <div *ngIf="this.auth.UsuarioActivo.perfil=='supervisor'">
     <div style="text-align:center">
 
+      <img class="logo" *ngIf="listadoClientesReservas.length == 0" src="/assets/icon/icon.png" alt="Icono empresa">
       <h1 class="texto" *ngIf="listadoClientesReservas.length == 0">No hay reservas por acomodar</h1>
       <div class="card_producto" *ngFor="let cliente of listadoClientesReservas">
 

@@ -109,12 +109,14 @@ export class MesasService {
   }
 
   async borrarDeListaEspera(cliente: any) {
-    // Asumiendo que tienes una colección llamada 'listaEspera'
+    // Asumiendo que tienes una colección llamada 'lista-de-espera'
     const listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
       ref.where('id', '==', cliente.id)
+         .where('horario', '==', cliente.horario)
+         .where('dia', '==', cliente.dia)
     );
   
-    // Obtener los documentos que coincidan con el nombre
+    // Obtener los documentos que coincidan con las condiciones
     const snapshot = await listaEsperaRef.get().toPromise();
   
     snapshot.forEach(doc => {
@@ -122,7 +124,7 @@ export class MesasService {
       this.afs.collection('lista-de-espera').doc(doc.id).delete();
     });
   
-    console.log(`Cliente con nombre ${cliente.nombre} ha sido borrado de la lista de espera.`);
+    console.log(`Cliente con ID ${cliente.id}, horario ${cliente.horario} y día ${cliente.dia} ha sido borrado de la lista de espera.`);
   }
 
   async AsignarMesa(cliente: any, mesa: number) {

@@ -17,70 +17,78 @@ export class ReservaComponent implements OnInit {
   public numeroMesa: any;
   public horaSeleccionada: string;
   tokenSupervisor: string[] = [];
+
+  reservasHechas:any;
+
   constructor(private auth: AuthService, private firebase: FirestoreService, private notificationS: NotificacionesService, private push: PushService) { }
 
 
   async pedirCitaA() {
 
-    let clienteAux = this.auth.UsuarioActivo;
-    console.log("usuario act:", this.auth.UsuarioActivo);
-    
-
-    if (clienteAux != null && this.horaSeleccionada) {
-
-
-      let hora = this.horaSeleccionada;
-     
-      console.log(hora);
-
-      const diaActual = new Date();
-      // Comparar solo el año, mes y día de la fecha actual y la fecha seleccionada
-      const esMismoDia = diaActual.getFullYear() === this.diaSeleccionado.getFullYear() &&
-        diaActual.getMonth() === this.diaSeleccionado.getMonth() &&
-        diaActual.getDate() === this.diaSeleccionado.getDate();
-        const [hours, minutes] = this.horaSeleccionada.split(":").map(Number);
-        this.diaSeleccionado.setHours(hours);
-        this.diaSeleccionado.setMinutes(minutes);
-        this.diaSeleccionado.setSeconds(0);
-        let diaReserva= this.diaSeleccionado;
-      const cita = {
-        ...clienteAux,
-        dia: diaReserva,
-        horario: this.horaSeleccionada,
-        estado: "sinAprobar",
-        tipoLista: "reserva"
-      }
-      if (esMismoDia) {
-        let horaActual = diaActual.getHours() + ":" + diaActual.getMinutes();
-
-        console.log("horas completas " + horaActual)
-        if (this.compararHoras(horaActual, this.horaSeleccionada)) {
-          this.notificationS.presentToast('Selecione un horario de reserva posible', "danger");
+    if (!this.reservasHechas) {
+      let clienteAux = this.auth.UsuarioActivo;
+      console.log("usuario act:", this.auth.UsuarioActivo);
+      
+  
+      if (clienteAux != null && this.horaSeleccionada) {
+  
+  
+        let hora = this.horaSeleccionada;
+       
+        console.log(hora);
+  
+        const diaActual = new Date();
+        // Comparar solo el año, mes y día de la fecha actual y la fecha seleccionada
+        const esMismoDia = diaActual.getFullYear() === this.diaSeleccionado.getFullYear() &&
+          diaActual.getMonth() === this.diaSeleccionado.getMonth() &&
+          diaActual.getDate() === this.diaSeleccionado.getDate();
+          const [hours, minutes] = this.horaSeleccionada.split(":").map(Number);
+          this.diaSeleccionado.setHours(hours);
+          this.diaSeleccionado.setMinutes(minutes);
+          this.diaSeleccionado.setSeconds(0);
+          let diaReserva= this.diaSeleccionado;
+        const cita = {
+          ...clienteAux,
+          dia: diaReserva,
+          horario: this.horaSeleccionada,
+          estado: "sinAprobar",
+          tipoLista: "reserva"
+        }
+        if (esMismoDia) {
+          let horaActual = diaActual.getHours() + ":" + diaActual.getMinutes();
+  
+          console.log("horas completas " + horaActual)
+          if (this.compararHoras(horaActual, this.horaSeleccionada)) {
+            this.notificationS.presentToast('Selecione un horario de reserva posible', "danger");
+          } else {
+            this.notificationS.presentToast('Se ha reserva su turno ', "success");
+            this.firebase.agregarAListaDeEspera(cita);
+            this.enviarPushASupervisor();
+          }
         } else {
           this.notificationS.presentToast('Se ha reserva su turno ', "success");
           this.firebase.agregarAListaDeEspera(cita);
           this.enviarPushASupervisor();
         }
-      } else {
-        this.notificationS.presentToast('Se ha reserva su turno ', "success");
-        this.firebase.agregarAListaDeEspera(cita);
-        this.enviarPushASupervisor();
-      }
-
-      const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const dia = cita.dia.toLocaleDateString('es-ES', opcionesFecha);
-      //this.selecionadoDia(this.diaSeleccionado);
-      console.log("hora selecionada " +this.horaSeleccionada);
-     
-    }
-    else{
-      if (this.horaSeleccionada == undefined) {
-        this.notificationS.presentToast('Selecione un horario es obligatorio', "danger");
+  
+        const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dia = cita.dia.toLocaleDateString('es-ES', opcionesFecha);
+        //this.selecionadoDia(this.diaSeleccionado);
+        console.log("hora selecionada " +this.horaSeleccionada);
+       
       }
       else{
-        this.notificationS.presentToast("Error cliente vacio al registrar reserva.ts","danger");
+        if (this.horaSeleccionada == undefined) {
+          this.notificationS.presentToast('Selecione un horario es obligatorio', "danger");
+        }
+        else{
+          this.notificationS.presentToast("Error cliente vacio al registrar reserva.ts","danger");
+        }
       }
+    } else {
+      this.notificationS.presentToast('Ya hiciste una reserva en ese horario', "danger");
     }
+ 
   }
 
   compararHoras(horaActual: string, horaReserva: string): boolean {

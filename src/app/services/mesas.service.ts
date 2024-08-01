@@ -8,7 +8,7 @@ import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import * as firebase from 'firebase/compat';
 import { ToastController } from '@ionic/angular';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
@@ -107,12 +107,22 @@ export class MesasService {
     const coleccion = this.afs.collection('lista-de-espera');
     return coleccion.valueChanges();
   }
-  async borrarDeListaEspera(cliente: any) {
-    await this.afs.collection('lista-de-espera').doc(cliente.uid).delete().catch((err) => {
-      this.presentToast('Ocurrio un error al borrar de la lista de espera', 'danger', 'alert-circle-outline');
-      this.vibration.vibrate(1000);
 
+  async borrarDeListaEspera(cliente: any) {
+    // Asumiendo que tienes una colección llamada 'listaEspera'
+    const listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
+      ref.where('id', '==', cliente.id)
+    );
+  
+    // Obtener los documentos que coincidan con el nombre
+    const snapshot = await listaEsperaRef.get().toPromise();
+  
+    snapshot.forEach(doc => {
+      // Borrar cada documento que coincida
+      this.afs.collection('lista-de-espera').doc(doc.id).delete();
     });
+  
+    console.log(`Cliente con nombre ${cliente.nombre} ha sido borrado de la lista de espera.`);
   }
 
   async AsignarMesa(cliente: any, mesa: number) {
@@ -275,4 +285,50 @@ export class MesasService {
      this.afs.collection('mesas').doc(mesa.id).set({ ...mesa, clienteActivo: null, ocupada: false });
    }
   }
+
+   // Método para borrar todos los documentos de una colección
+   BorrarCollection(collection: string): any {
+    const subscription = this.getDocuments(collection).subscribe(documents => {
+      console.log(documents);
+      documents.forEach(doc => {
+        console.log(doc.id);
+        this.deleteDocument(collection, doc.id);
+      });
+      subscription.unsubscribe(); // Desuscribirse después de completar la eliminación
+    });
+
+    return subscription;
+  }
+
+  addDocument(collection: string, data: any, id?: string): Promise<void> {
+    const docId = id || this.afs.createId();
+    return this.afs.collection(collection).doc(docId).set({ id: docId, ...data });
+  }
+
+  addDocumentReturnID(collection: string, data: any, id?: string): Promise<string> {
+    const docId = id || this.afs.createId();
+    return this.afs.collection(collection).doc(docId).set({ id: docId, ...data })
+        .then(() => docId);  // Retorna el docId después de agregar el documento
+}
+
+  // Read a document by ID
+  getDocument(collection: string, id: string): Observable<any> {
+    return this.afs.collection(collection).doc(id).valueChanges();
+  }
+
+  // Read all documents in a collection
+  getDocuments(collection: string): Observable<any[]> {
+    return this.afs.collection(collection).valueChanges();
+  }
+
+  // Update a document by ID
+  updateDocument(collection: string, id: string, data: any): Promise<void> {
+    return this.afs.collection(collection).doc(id).update(data);
+  }
+
+  // Delete a document by ID
+  deleteDocument(collection: string, id: string): Promise<void> {
+    return this.afs.collection(collection).doc(id).delete();
+  }
+
 }

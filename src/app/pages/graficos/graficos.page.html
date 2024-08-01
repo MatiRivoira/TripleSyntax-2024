@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title clasS="ion-text-center">ESTADÍSTICAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-fab class="volver" vertical="start" horizontal="start">
+  <ion-fab-button color="none" (click)="goBack()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <div class="pantalla">
+    <div class="contenedor-grafico-barra">
+      <canvas id="barChart" height="250px"></canvas>
+    </div>
+    <div class="contenedor-grafico-circular">
+      <ion-label class="ion-text-center">Variedad del menu</ion-label>
+      <canvas id="pieChart3"></canvas>
+    </div>
+    <div class="contenedor-grafico-circular">
+      <ion-label class="ion-text-center">¿El precio es adecuado?</ion-label>
+      <canvas id="pieChart"></canvas>
+    </div>
+    <div class="contenedor-grafico-circular">
+      <ion-label class="ion-text-center">¿Recomendarias?</ion-label>
+      <canvas id="pieChart2"></canvas>
+    </div>
+  </div>
+  <h1>Fotos de encuestas</h1>
+  <div class="fotos">
+    <div class="foto" *ngFor="let encuesta of galeriaFotos">
+      <div class="foto-container" *ngFor="let fotos of encuesta.foto">
+        <img [src]="fotos" alt="Foto de encuesta" *ngIf="fotos">
+        <div class="fecha-overlay" *ngIf="fotos">{{ encuesta.cliente.nombre }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="contenedor-spinner" *ngIf="spinner">
+    <app-loading></app-loading>
+  </div> 
+</ion-content>

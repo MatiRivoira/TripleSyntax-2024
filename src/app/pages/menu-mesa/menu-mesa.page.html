@@ -1,0 +1,66 @@
+<div [ngClass]="scanActivo?'scanner-activo':''" class="bg-slate-100 h-auto overflow-y-scroll">
+  <div class="absolute top-0 w-full h-16 rounded-b-xl bg-customOrange flex justify-center items-center z-[999]">
+    <p (click)="ver()" class="text-white font-bold text-center text-2xl">
+      Bienvenido a tu mesa
+    </p>
+  </div>
+
+    <!-- Spinner -->
+  <div class="spinner">
+    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+      *ngIf="this.spinner" />
+  </div>
+
+  <div class="absolute h-screen w-screen z-[998] top-0 left-0 flex justify-center items-center bg-white/30" *ngIf="MostrarDetallePedido">
+    <div class="bg-white h-auto p-4 flex flex-col items-center gap-5">
+      <!-- <p><b>{{auth.UsuarioActivo.nombre}}</b></p> -->
+      <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'no aceptado'"><b>Su pedido todavia no fue aprobado</b></p>
+      <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'aceptado'"><b>Su pedido esta en preparacion</b></p>
+      <p class="text-xl font-bold text-black text-center" *ngIf="pedido.estado === 'aceptado'"><b>Faltan {{ pedido.comienzo | diferenciaMinutos:pedido.tiempoPreparacion}} minutos</b></p>
+      <button class="w-40 h-12 rounded-lg bg-customOrange text-white flex justify-center items-center" (click)="cerrarDetallePedido()">Cerrar</button>
+    </div>
+  </div>
+  
+
+  <div class="mt-16 min-h-screen w-screen flex flex-col justify-start items-center p-10 gap-10 bg-slate-100 overflow-x-scroll">
+    <img src="/assets/icon/icon.png" alt="" class="h-40 w-40">
+    <!-- Vista cuando es scaneado -->
+     <!-- Consultar al mozo -->
+    <div class="min-h-full w-[100%] flex flex-col gap-10 justify-start items-center overflow-y-scroll" *ngIf="scannerCorrecto" >
+      <div (click)="consultarMozo()" *ngIf="pedido.estado !== 'pagado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjE2czEzM3dqejluajFiam8wZnkyYnEybXpraDM1YjdqdnN5N2c0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VeZvq8yltmsUfq2sgX/giphy-downsized-large.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Consultar al Mozo</p>
+      </div>
+      <!-- Ver el menu -->
+      <div (click)="verMenu()" *ngIf="pedido.estado === 'no iniciado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExanQwcDJndnFiajN0N2JoaTI2ZTRnZG9ybWd3aWp6emdzbGdhbjhyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3diAVwsxPSylVJBe/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Ver el Menú</p>
+      </div>
+      <!-- Ver el estado del pedido -->
+      <div (click)="consultarPedido()" *ngIf="pedido.estado === 'aceptado' || pedido.estado === 'no aceptado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3NqZHBvaWpsM2FyZmNwMDF5cmc3MnpiNWd4ZnlqMmVkcjFjaXVjeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SVHVfHH7CvuneydXdB/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Ver estado del pedido</p>
+      </div>
+      <!-- Marcar pedido como entregado -->
+      <div (click)="LlegoComida()" *ngIf="pedido.estado === 'entregado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG1sdWN6Nm90ZjBjYjJ1aHgxOXJtbXAycWtocHMxa2tma2ZoM3dkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SasDDqOSRclNu/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Llegó la comida</p>
+      </div>
+      <!-- Encuesta de satisfacción -->
+      <div (click)="verEncuesta()" *ngIf="pedido.estado === 'pagado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZngwNmg1dndjbXZjanZvOXJ2MXFyZXgxZXduZWt4bDgwcXlrd3h1MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SWuFBpWXcSalCGFjSy/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Calificá el servicio</p>
+      </div>
+      <!-- Pagar -->
+      <div (click)="Pagar()" *ngIf="pedido.estado === 'confirmado'" class="text-center h-52 w-full flex justify-center items-center rounded-2xl shadow-2xl active:scale-95 active:shadow-sm transition-all duration-300 bg-center bg-[url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjFla3FkNG03dzJtMTBjOHBrdDZvMmN5czRpZWpwZTY5YWZrbXllMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3mmdNnW5hkoUxTG/giphy.gif)]">
+        <p class="text-white text-3xl font-bold drop-shadow-[0_1px_2px_rgba(242,116,5,0.9)]">Pagar</p>
+      </div>
+    </div>
+
+    <div *ngIf="!scannerCorrecto" class="h-full w-full flex justify-center"> 
+      <!-- MENU -->
+      <div class="min-h-screen h-auto w-full" *ngIf="MostrarMenu" >
+        <app-menu [numeroMesa]="numeroMesa" (pedidoFinal)="recibirPedido($event)"></app-menu>   
+      </div>
+  
+      <div class="min-h-screen h-auto w-full" *ngIf="MostrarPagar" >
+        <app-pagar [pedido]="pedido" (pago)="pago()"></app-pagar>   
+      </div>
+    </div>
+  </div>  
+</div>

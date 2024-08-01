@@ -1,0 +1,92 @@
+<!-- Spinner -->
+<div *ngIf="this.spinner" class="absolute left-0 top-0 right-0 bottom-0 z-[1000] w-screen h-screen flex justify-center items-center bg-white/20 backdrop-blur-lg">
+  <img src="/assets/icon/icon.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}" />
+</div>
+
+<div *ngIf="MostrarMenu" class="w-full flex justify-center">
+  <div class="mb-5 fixed flex justify-center items-center  bottom-0 z-[997]">
+    <button *ngIf="total ==0" [disabled]="true" class=" bg-customOrange w-[90vw] py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300">Ver Pedido</button>
+    <button *ngIf="total !=0" (click)="verPedido()" class=" bg-customOrange w-[90vw] py-2.5 shadow-2xl text-lg rounded-lg text-white flex justify-center items-center font-black active:scale-95 transition-all duration-300 gap-2">Ver Pedido <b class="text-2xl font-black text-blue-600">(${{total}})</b></button>
+  </div>
+
+  <div class="h-auto min-h-screen w-full flex flex-col gap-8 items-center bg-slate-100">
+
+    <div class="h-auto w-full bg-white shadow-2xl rounded-2xl flex flex-col items-center justify-center gap-5 p-2.5" *ngFor="let producto of listadoProductos">
+      <div class="rounded-xl flex flex-col items-center justify-center gap-6 p-3">
+        <div class="h-auto w-full flex justify-center items-center flex-row gap-2">
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[0]}}" alt="Slide 1">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[1]}}" alt="Slide 2">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <img class="card-img-top equal-height-img" src="{{producto.fotos[2]}}" alt="Slide 3">
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="flex flex-col items-center justify-center">
+            <h3 (click)="ver(producto)" class="text-black font-bold text-lg text-center">{{ producto.nombre.toUpperCase() }}</h3>
+            <p class="text-customOrange text-lg font-bold text-center"><b>${{producto.precio}}</b></p>
+            <p class="text-black text-base font-medium text-center"><b>{{producto.descripcion}}</b></p>
+            <p class="text-black text-sm text-center">Tiempo de preparación: <b class="font-medium text-customOrange">{{producto.tiempoElaboracion}} minutos.</b></p>
+          </div>
+
+          <div class="flex flex-row justify-center items-center gap-3 mt-3">
+            <button class="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center text-white font-black text-xl shadow-2xl active:scale-95 active:shadow-none active:bg-red-700 transition-all duration-300" (click)="quitarDelPedido(producto)"><img src="/assets/menos.png" alt="" class="h-3 w-3"></button>
+            <button class="w-16 h-16 bg-green-600 rounded-full flex justify-center items-center text-white font-black text-xl shadow-2xl active:scale-95 active:shadow-none active:bg-green-700 transition-all duration-300" (click)="agregarAlPedido(producto)"><img src="/assets/mas_blanco.png" alt="" class="h-3 w-3"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<div *ngIf="MostrarPedido">
+  <h1>Mi Pedido</h1>
+  <div style="overflow-y: scroll;">
+
+    <div class="card_producto">
+      <table style="color: black;" class="table table-striped ">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="color: black;" *ngFor="let producto of pedido">
+            <td style="color: black;">{{producto.nombre}}</td>
+            <td style="color: black;">{{producto.precio}}</td>
+            <td style="color: black;">----------</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td style="color: black;">{{total}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+
+  <div class="div_ver_pedido">
+    <button class="btn btn-success" style="width: 90%; color: white;" (click)="hacerPedido()"><ion-icon style="color: white; margin-top: 10px; margin-right: 7px; font-size: 20px;" name="fast-food-outline"></ion-icon>Hacer Pedido</button>
+  </div>
+</div>

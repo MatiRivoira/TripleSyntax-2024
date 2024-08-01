@@ -1,0 +1,219 @@
+
+<ion-content>
+  <div class="header">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">ENCUESTA</ion-title>
+    </ion-toolbar>
+
+    <ion-fab horizontal="start" vertical="top" style="margin-top: -3%;" slot="fixed" (click)=" navegarMenuMesa()">
+      <ion-fab-button color="white">
+        <ion-icon name="log-out-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+  <div class="spinner" *ngIf="this.spinner">
+    <img
+      src="../../assets/spinner.png "
+      width="60%"
+      [ngClass]="{'rotate-center' : this.spinner}"
+    />
+  </div>
+
+  <div *ngIf="!this.realizoEncuesta">
+    <form
+      [formGroup]="forma"
+      (ngSubmit)="agregarRespuesta()"
+      style="margin-top: 0px"
+    >
+
+
+
+          <div>
+            <!---->
+            <div class="image-item">
+              <p style="margin-bottom:-3%;">¿Desea cargar alguna foto? {{numeroImagen }} de 3</p>
+            </div>
+            <ion-row class="uploaded-images">
+              <ion-avatar *ngFor="let item of this.fotos; let index=index">
+                <img width="90px" height="90px" class="img-prod" [src]="item" />
+              </ion-avatar>
+            </ion-row>
+
+            <!--FOTOS-->
+            <!-- <ion-button style="margin: 0px" (click)="sacarFoto()"
+            ><ion-icon  name="cloud-upload-outline"></ion-icon>Subir imagen</ion-button> -->
+
+            <ion-fab-button class="fab-imagenes"  (click)="sacarFoto()">
+              <img class="imagenes-subir-fotos" src="../../../assets/img/subir-imagenes.png">
+            </ion-fab-button>
+
+          </div>
+
+          <ion-item-divider></ion-item-divider>
+
+
+      <div>
+        <h4 class="mb-1" style="margin-top: 10px">
+          ¿Crees que el precio del producto es adecuado a lo que recibiste?
+        </h4>
+
+        <select
+          class="form-select-input select"
+          placeholder="Precio adecuado"
+          formControlName="precioAdecuado"
+        >
+          <option value="">Elija...</option>
+          <option>Si</option>
+          <option>No</option>
+        </select>
+        <small
+          class="invalid"
+          *ngIf="forma.controls.precioAdecuado.errors?.required &&
+        forma.controls.precioAdecuado.touched"
+        >
+          Este campo es requerido
+        </small>
+      </div>
+
+
+      <ion-item-divider></ion-item-divider>
+      <div class="radio">
+        <h4 class="mb-1" style="margin-top: 10px">
+          ¿Cómo es la variedad del menú?
+        </h4>
+      
+        <div class="form-check custom-radio">
+          <input
+            value="0"
+            formControlName="variedadMenu"
+            type="radio"
+            class="form-check-input"
+          />
+          <label class="form-check-label">Adecuada</label>
+        </div>
+      
+        <div class="form-check custom-radio">
+          <input
+            value="1"
+            formControlName="variedadMenu"
+            type="radio"
+            class="form-check-input"
+            required
+          />
+          <label class="form-check-label">Muy pocas opciones</label>
+        </div>
+      
+        <div class="form-check custom-radio">
+          <input
+            value="2"
+            type="radio"
+            formControlName="variedadMenu"
+            class="form-check-input"
+            required
+          />
+          <label class="form-check-label">Excelente</label>
+        </div>
+        <small
+          class="invalid"
+          *ngIf="forma.controls.variedadMenu.errors?.required &&
+          forma.controls.variedadMenu.touched"
+        >
+          Este campo es requerido
+        </small>
+      </div>
+      
+      
+
+      <ion-item-divider></ion-item-divider>
+
+      <h4 class="mb-1" style="margin-top: 10px">¿El servicio fue?</h4>
+      <ion-icon
+        name="heart-dislike-outline"
+        style="margin-right: 5%; font-size: 25px"
+      ></ion-icon>
+      <input
+        style="width: 70%"
+        type="range"
+        formControlName="satisfaccion"
+        min="0"
+        max="10"
+      />
+      <small
+        class="invalid"
+        *ngIf="forma.controls.satisfaccion.errors?.required &&
+          forma.controls.satisfaccion.touched"
+      >
+        Este campo es requerido
+      </small>
+      <ion-icon
+        name="heart-outline"
+        style="margin-left: 5%; font-size: 25px"
+      ></ion-icon>
+      <small
+        style="
+          display: flex;
+          justify-content: space-between;
+          text-transform: uppercase;
+        "
+        ><span style="margin-left: 5%">Malo</span
+        ><span style="margin-left: 5%">Bueno</span
+        ><span style="margin-right: 2%">Excelente</span></small
+      >
+
+      <ion-item-divider></ion-item-divider>
+
+      <h4 class="mb-1" style="margin-top: 8px">¿Recomendarías el Bodegón?</h4>
+      <div class="checkbox" style="display: flex">
+        <h4
+          class="checkbox"
+          style="margin-left: 10px; float: left; margin-top: 2px"
+        >
+          <input
+            type="checkbox"
+            formControlName="recomendarias"
+            (click)="onValorCapturado(1)"
+            [checked]="si"
+          />
+          Sí
+        </h4>
+        <h4
+          class="checkbox"
+          style="margin-left: 10px; float: right; margin-top: 2px"
+        >
+          <input
+            type="checkbox"
+            formControlName="recomendarias"
+            (click)="onValorCapturado(2)"
+            [checked]="no"
+          />
+          No
+        </h4>
+        <small
+          class="invalid"
+          *ngIf="forma.controls.recomendarias.errors?.required &&
+        forma.controls.recomendarias.touched"
+        >
+          Este campo es requerido
+        </small>
+      </div>
+
+      <ion-item-divider></ion-item-divider>
+
+      <input
+        style="margin-top: 5px; margin-bottom: 5px"
+        type="text"
+        class="input"
+        placeholder="Agrega un comentario"
+        formControlName="comentario"
+      />
+      
+      <br>
+      
+
+      <ion-button class="enviar" type="submit"> Enviar </ion-button>
+    </form>
+
+
+  </div>
+</ion-content>

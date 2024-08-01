@@ -1,0 +1,52 @@
+
+<ion-content>
+  <div class="header">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">PEDIDOS COCINERO</ion-title>
+    </ion-toolbar>
+
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
+      <ion-fab-button color="white">
+        <ion-icon name="log-out-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+      <div>
+        <div class="d-flex justify-content-center">
+          <ion-button class="botonAlta" (click)="altaProducto()" expand="block"><ion-icon style="padding-right: 8px;" name="restaurant"></ion-icon>Alta plato</ion-button>
+        </div>
+
+        <div class="sinClientes-container" *ngIf="listadoPedidosAprobados.length == 0">
+          <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+          <h1 class="texto"  style="color: #333;">No hay pedidos por preparar.</h1>
+        </div>
+        <div class="card_producto"  *ngFor="let pedido of listadoPedidosAprobados">
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table style="color: rgb(0, 0, 0);" class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr style="color: rgb(0, 0, 0);" *ngFor="let producto of pedido.productos | filterProductByType: 'cocinero'">
+                      <td style="color: rgb(0, 0, 0);">{{producto.nombre}}</td>
+                      <td style="color: rgb(0, 0, 0);">{{producto.tiempoElaboracion}} min</td>
+                  </tr>
+              </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="div_botones_mesas">
+              <button (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button>
+            </div>
+          </div>
+         </div>
+      </div> 
+  </div>
+</ion-content>
+<app-loading *ngIf="isLoading"></app-loading>

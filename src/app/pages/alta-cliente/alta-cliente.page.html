@@ -1,0 +1,126 @@
+<ion-content [ngClass]="scanActivo?'scanner-activo':''">
+  <div class="spinner">
+    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}"
+      *ngIf="this.spinner" />
+  </div>
+ 
+
+  <div class="header">
+    <ion-fab horizontal="start" vertical="top" slot="fixed" routerLink="/login">
+      <ion-fab-button color="white" style="--box-shadow: none;">
+        <ion-icon style="color: white; font-size: 25px; margin-left: 7px;"
+            name="arrow-back-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-toolbar>
+      <ion-title class="ion-text-center">Alta cliente</ion-title>
+    </ion-toolbar>
+  </div>
+  
+    <img style="
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    border-radius: 50%;
+  " (click)="sacarFoto()" src="{{src_imagen}}" alt="foto usuario" />
+    <p *ngIf="src_imagen == '../../../assets/anonimo.png'" class="text-center" style="color: black;">*Agregue foto (click
+      en
+      el logo)*</p>
+    <form [formGroup]="formularioAlta" (ngSubmit)="registrar()" *ngIf="!scanActivo"
+      style="width: 90%; display: block; margin-left: auto; margin-right: auto">
+  
+      <select [(ngModel)]="cliente.tipo" class="form-select" style="margin-bottom: 10px;" formControlName="tipo"
+        placeholder="Ingrese Tipo">
+        <option value="registrado">Registrado</option>
+        <option value="anonimo">Anónimo</option>
+      </select>
+      <small class="invalid" *ngIf="formularioAlta.controls.tipo.errors?.required &&
+  formularioAlta.controls.tipo.touched">
+        El tipo es requerido
+      </small>
+  
+      <div *ngIf="this.cliente.tipo == 'anonimo'">
+        <input type="text" formControlName="nombre" class="input" placeholder="Ingrese Nombre" />
+        <small class="invalid" *ngIf="formularioAlta.controls.nombre.errors?.required &&
+    formularioAlta.controls.nombre.touched">
+          El nombre es requerido
+        </small>
+        <ion-button  expand="block" type="submit" style="margin-top: 20px;"><ion-icon
+            id="logoLogIn" name="person-add-outline"></ion-icon>Registrar</ion-button>
+      </div>
+  
+  
+  
+      <div *ngIf="this.cliente.tipo == 'registrado'">
+  
+  
+        <div style="margin-top: 20px;">
+          <input type="text" formControlName="nombre" class="input" placeholder="Ingrese Nombre" />
+          <small class="invalid" *ngIf="formularioAlta.controls.nombre.errors?.required &&
+              formularioAlta.controls.nombre.touched">
+            El nombre es requerido
+          </small>
+          <input type="text" formControlName="apellido" class="input" placeholder="Ingrese Apellido" />
+          <small class="invalid" *ngIf="formularioAlta.controls.apellido.errors?.required &&
+  formularioAlta.controls.apellido.touched">
+            El apellido es requerido
+          </small>
+          <input type="number" formControlName="dni" class="input" placeholder="Ingrese DNI" />
+          <small class="invalid" *ngIf="formularioAlta.controls.dni.errors?.required &&
+      formularioAlta.controls.dni.touched">
+            El DNI es requerido
+          </small>
+          <small class="invalid" *ngIf="formularioAlta.controls.dni.errors?.pattern &&
+      formularioAlta.controls.dni.touched">
+            El DNI solo puede contener numeros
+          </small>
+        </div>
+  
+  
+        <div style="height: 100%; margin-bottom: 20px;">
+          <input type="text" formControlName="email" class="input" placeholder="Ingrese Correo electrónico" />
+          <small class="invalid" *ngIf="formularioAlta.controls.email.errors?.required &&
+    formularioAlta.controls.email.touched">
+            El correo electrónico es requerido
+          </small>
+          <small class="invalid" *ngIf="formularioAlta.controls.email.errors?.email &&
+              formularioAlta.controls.email.touched">
+            El correo electrónico no tiene un formato valido
+          </small>
+          <input type="password" formControlName="contrasena" class="input" placeholder="Ingrese Contraseña" />
+          <small class="invalid" *ngIf="formularioAlta.controls.contrasena.errors?.required &&
+    formularioAlta.controls.contrasena.touched">
+            La contraseña es requerida
+          </small>
+          <input type="password" formControlName="repetirContrasena" class="input"
+            placeholder="Ingrese Confirmar contraseña" />
+          <small class="invalid" *ngIf="formularioAlta.controls.repetirContrasena.errors?.required &&
+    formularioAlta.controls.repetirContrasena.touched">
+            Confirme la contraseña
+          </small>
+        </div>
+  
+        <ion-button style="margin-right: 5px; margin-top: 20px;" *ngIf="this.cliente.tipo == 'registrado'"
+          (click)="escanearDocumento()" expand="block"><ion-icon id="logoLogIn" name="qr-code"></ion-icon>Escanear
+          DNI</ion-button>
+        <ion-button [disabled]="formularioAlta.invalid" expand="block" type="submit" style="margin-top: 20px;"><ion-icon
+            id="logoLogIn" name="person-add-outline"></ion-icon>Registrar</ion-button>
+      </div>
+    </form>
+  
+    <div *ngIf="scanActivo">
+      <div class="scan">
+        <div class="qrcode"></div>
+        <div class="border"></div>
+      </div>
+      <h3 class="scanH3">Escaneando QR...</h3>
+      <button class="boton" (click)="pararScan()">Detener</button>
+    </div>
+  </ion-content>

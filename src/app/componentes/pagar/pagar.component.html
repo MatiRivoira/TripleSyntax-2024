@@ -1,0 +1,43 @@
+
+<div [ngClass]="scanActivo?'scanner-activo':''" class="h-full w-full bg-slate-100 flex flex-col items-center justify-start">
+  <div *ngIf="MostrarPagar" class="w-full">
+    <!-- 
+    <ion-fab *ngIf="!scanActivo" horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon (click)="escanear()" name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  
+    <h1 *ngIf="!scanActivo" class="text-center text-2xl font-black text-customOrange">Mi Pedido</h1>
+    <div *ngIf="!scanActivo" class="mt-3 overflow-y-scroll h-auto w-full flex flex-col bg-white shadow-2xl p-3 items-center justify-start gap-1.5">
+      <div class="w-full flex flex-row justify-between p-2 items-center gap-1.5" *ngFor="let prod of pedido.productos">
+        <div class="text-black font-semibold text-lg w-auto">
+          <h4>{{prod.nombre}}</h4>
+        </div>
+        <div class="text-lg font-bold text-customOrange w-auto">
+          <h4>{{prod.precio}}</h4>
+        </div>
+      </div>    
+    </div>
+    
+    <div *ngIf="!scanActivo" class="absolute w-screen bottom-0 left-0 h-96 p-4 bg-white shadow-2xl flex flex-col justify-center items-center gap-3">
+      <h4 class="text-xl font-semibold ">Subtotal:<b class="text-customOrange font-bold">{{pedido.total}}</b></h4>
+      <h4 class="text-lg font-semibold ">Propina: <b class="text-customOrange">{{pedido.propina}}</b></h4>
+      <h4 class="text-3xl font-semibold ">Total:   <b class="text-customOrange font-bold">{{pedido.propina + pedido.total - ((pedido.total * pedido.descuentoJuego)/100)}}</b></h4>
+      <button class="w-4/5 h-16 rounded-lg bg-customOrange text-white flex justify-center items-center font-bold gap-3 text-lg" (click)="escanear()"><p>Agregar propina</p><ion-icon name="thumbs-up-outline"></ion-icon></button>
+      <button class="w-4/5 h-16 rounded-lg bg-customOrange text-white flex justify-center items-center font-bold gap-3 text-xl" (click)="Pagar()"><p>Pagar</p><ion-icon name="cash-outline"></ion-icon></button>
+
+    </div>
+  </div>
+
+  <div *ngIf="scanActivo">
+    <div class="scan">
+      <div class="qrcode"></div>
+      <div class="border"></div>
+    </div>
+    <h3 class="scanH3">Escaneando QR...</h3>
+    <button class="botonqr" (click)="pararScan()">Detener</button>
+  </div>
+</div>
+
+

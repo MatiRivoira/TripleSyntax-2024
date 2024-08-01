@@ -1,0 +1,213 @@
+
+
+<ion-content>
+  <div class="header">
+    <ion-fab horizontal="end" vertical="top" slot="fixed" >
+      <ion-fab-button color="white">
+        <ion-icon name="chatbubble" routerLink="/chat-consulta"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-toolbar>
+      <ion-title class="ion-text-center">{{title}}</ion-title>
+    </ion-toolbar>
+
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
+      <ion-fab-button color="white">
+        <ion-icon name="log-out-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+    
+
+  <div class="body" *ngIf="option == 1">
+    <div class="sinClientes-container" *ngIf="listadoPedidosNoAprobados.length == 0">
+      <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+      <h1 class="texto"  style="color: #333;">No hay pedidos por aprobar.</h1>
+    </div>
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosNoAprobados" >
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table  class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let producto of pedido.productos">
+                        <td >{{producto.nombre}}</td>
+                        <td  >{{producto.precio}}</td>
+                        <td  >----------</td>
+                    </tr>
+                    <tr  >
+                      <td ></td>
+                      <td ></td>
+                      <td  >{{pedido.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="d-flex justify-content-space-between">
+              <button (click)="RechazarPedido(pedido)" class="boton boton_mesa" >Rechazar</button>
+              <button (click)="AprobarPedido(pedido)" class="boton boton_mesa" >Aceptar</button>
+            </div>
+          </div>
+         </div>
+       </div> 
+  </div>
+
+  <div *ngIf="option == 2">
+    <div class="sinClientes-container" *ngIf="listadoPedidosAceptados.length == 0">
+      <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+      <h1 class="texto" >No hay pedidos en preparacion.</h1>
+    </div>
+      <div class="card_producto" *ngFor="let pedido of listadoPedidosAceptados">
+       <div>
+         <div>
+            <h1>{{"Mesa: " + pedido.mesa}}</h1>
+            <table  class="table table-striped ">
+              <thead>
+                  <tr>
+                      <th>Producto</th>
+                      <th>Precio</th>
+                      <th>Total</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr   *ngFor="let producto of pedido.productos">
+                      <td  >{{producto.nombre}}</td>
+                      <td >{{producto.precio}}</td>
+                      <td >----------</td>
+                  </tr>
+                  <tr  >
+                    <td ></td>
+                    <td ></td>
+                    <td >{{pedido.total}}</td>
+                </tr>
+              </tbody>
+          </table>
+         </div>
+       </div>
+     </div> 
+  </div>
+
+  <div *ngIf="option == 3">
+    <div class="sinClientes-container" *ngIf="listadoPedidosPreparados.length == 0">
+      <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+      <h1 class="texto" >No hay pedidos para entregar.</h1>
+    </div>
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosPreparados">
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table  class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr    *ngFor="let producto of pedido.productos">
+                        <td  >{{producto.nombre}}</td>
+                        <td  >{{producto.precio}}</td>
+                        <td  >----------</td>
+                    </tr>
+                    <tr  >
+                      <td ></td>
+                      <td ></td>
+                      <td  >{{pedido.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="div_botones_mesas">
+              <button   (click)="EntregarPedido(pedido)" class="boton boton_mesa" >Entregar</button>
+            </div>
+          </div>
+         </div>
+       </div> 
+  </div>
+
+  <div *ngIf="option == 4">
+    <div class="sinClientes-container" *ngIf="listadoPedidosPagados.length == 0">
+      <img class="logo" src="/assets/icon/icon.png" alt="Icono empresa">
+      <h1 class="texto" >No hay pedidos pagados.</h1>
+    </div>
+        <div class="card_producto" *ngFor="let pedido of listadoPedidosPagados">
+         <div>
+           <div>
+              <h1>{{"Mesa: " + pedido.mesa}}</h1>
+              <table  class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of pedido.productos">
+                        <td  >{{producto.nombre}}</td>
+                        <td  >{{producto.precio}}</td>
+                        <td  >----------</td>
+                    </tr>
+                    <tr  >
+                      <td ></td>
+                      <td ></td>
+                      <td  >{{pedido.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
+           </div>
+
+           <div >
+            <div class="div_botones_mesas">
+              <button   (click)="pagarPedido(pedido)" class="boton boton_mesa">Confirmar pago</button>
+            </div>
+          </div>
+         </div>
+       </div> 
+  </div>
+
+  
+  <div class="div_cambio_vista">
+    <button (click)="option = 1; title = 'Pedidos solicitados'" class="boton boton_mesa" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-card-checklist" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+      </svg>
+      Solicitados
+    </button>
+    <button  (click)="option = 2; title = 'Pedidos en preparacion'"  class="boton boton_mesa">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+      </svg>
+      Preparacion
+    </button>
+    <button  (click)="option = 3; title = 'Pedidos terminados'"  class="boton boton_mesa" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-check-all" viewBox="0 0 16 16">
+        <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+      </svg>
+      Terminados
+    </button>
+    <button  (click)="option = 4; title = 'Pedidos pagados'"  class="boton boton_mesa" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z"/>
+      </svg>
+      Pagados
+    </button>
+  </div>
+</ion-content>
+
+<app-loading *ngIf="isLoading"></app-loading>

@@ -1,0 +1,77 @@
+<div class="bg-customOrange h-16 w-full flex justify-center items-center">
+  <div class="absolute left-0 ml-4 h-full flex items-center">
+    <img (click)="atras()" src="/assets/volver.png" alt="" class="h-5 w-5" />
+  </div>
+  <div class="text-white text-center font-bold text-2xl">
+    <p class="text-white">Consultas</p>
+  </div>
+  <div class="absolute right-0 mr-4 h-full flex items-center">
+    <img src="/assets/icon/icon.png" alt="" class="h-10 w-10" />
+  </div>
+</div>
+
+<ion-content>
+  <div class="bg-slate-100 h-screen w-full flex flex-col p-2" id="fondo">
+    <br />
+    <div *ngFor="let mensaje of chatService.mensajes">
+      <div
+        class="w-full min-h-20 h-auto flex justify-end items-center text-black"
+        *ngIf="mensaje.uid==authService.UsuarioActivo.uid; else noUsuario"
+      >
+        <div class="h-full w-4/5 rounded-lg bg-white shadow-xl flex flex-col justify-between p-2">
+          <p class="text-black font-normal text-sm">{{mensaje.texto}}</p>
+          <div class="flex justify-end">
+            <p class="font-light text-zinc-800 text-xs text-end"><i>{{mensaje.fecha}}</i></p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noUsuario>
+        <div class="w-full min-h-20 h-auto flex justify-start items-center text-white">
+            <div class="h-full w-4/5 rounded-lg bg-customOrange shadow-xl flex flex-col justify-between p-2">
+              <p class="text-white font-medium text-xs text-start">{{mensaje.nombre}}</p>
+              <p class="text-white font-normal text-sm">{{mensaje.texto}}</p>
+              <div class="flex justify-end">
+                <p class="font-light text-slate-200 text-xs text-end"><i>{{mensaje.fecha}}</i></p>
+              </div>
+            </div>
+        </div>
+      </ng-template>
+      <br />
+      <br />
+    </div>
+  </div>
+</ion-content>
+
+<div
+  class="w-full h-14 absolute bottom-0 bg-customOrange flex flex-row items-center gap-4 justify-center px-4"
+>
+  <input
+    [(ngModel)]="mensaje"
+    type="text"
+    name="mensaje"
+    id="mensaje"
+    placeholder="Escriba su mensaje"
+    class="w-[90%] h-10 rounded-full bg-white px-3 placeholder:text-lg focus:border focus:border-customOrange"
+  />
+  <button (click)="enviarMensaje()">
+    <img
+      src="/assets/enviar.png"
+      alt=""
+      class="h-6 w-6 active:scale-95 transition-all duration-200"
+    />
+  </button>
+</div>
+<!-- 
+<ion-footer>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-input slot="start" placeholder="Escribe algo..." [(ngModel)]="mensaje" style="color: black;"></ion-input>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button size="large" class="boton_enviar" (click)="enviarMensaje()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->

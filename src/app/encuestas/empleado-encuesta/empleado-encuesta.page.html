@@ -1,0 +1,96 @@
+<body>
+  <ion-content>
+    <ion-header><ion-title class="titulo" style="color: black;" size="large">ENCUESTA EMPLEADO</ion-title></ion-header>
+
+    <!-- <img class="imagen_usuario" src="{{src_imagen}}"> -->
+
+    <form [formGroup]="forma" (ngSubmit)="agregarRespuesta()">
+      <div class="radio">
+        <h4 class="mb-1">Comportamiento de compañeros?</h4>
+
+        <div class="form-check">
+          <input value="excelente" formControlName="companeros" type="radio" class="form-check-input">
+          <label class="form-check-label">Excelente</label>
+        </div>
+
+        <div class="form-check">
+          <input value="adecuada" formControlName="companeros" type="radio" class="form-check-input" required>
+          <label class="form-check-label">Correcta</label>
+        </div>
+
+        <div class="form-check">
+          <input value="mala" type="radio" formControlName="companeros" class="form-check-input " required>
+          <label class="form-check-label">Mala</label>
+        </div>
+        <small class="invalid" *ngIf="forma.controls.companeros.errors?.required &&
+            forma.controls.companeros.touched">
+          Este campo es requerido
+        </small>
+      </div>
+      <hr>
+      <h4 class="mb-1">El espacio de trabajo como le fue entregado?</h4>
+      <input style="width: 70%;" type="range" formControlName="satisfaccion" min="0" max="10">
+      <small class="invalid" *ngIf="forma.controls.satisfaccion.errors?.required &&
+            forma.controls.satisfaccion.touched">
+        Este campo es requerido
+      </small>
+
+      <br>
+
+      <hr>
+
+      <div>
+        <h4 class="mb-1">Le entregaron todo a tiempo?</h4>
+
+        <select class="form-select-input select" placeholder="Sexo" formControlName="aTiempo">
+          <option value="">Elija...</option>
+          <option>Si</option>
+          <option>No</option>
+        </select>
+        <small class="invalid" *ngIf="forma.controls.aTiempo.errors?.required &&
+          forma.controls.aTiempo.touched">
+          Este campo es requerido
+        </small>
+      </div>
+
+      <hr>
+
+      <h4 class="mb-1">El acomodo de los clientes fue correcto?</h4>
+      <div class="checkbox" style="display: flex;">
+        <h4 class="checkbox" style="margin-left: 10px; float: left; margin-top: 5px; margin-bottom: 2px;"><input type="checkbox" formControlName="clientes"
+            (click)="onValorCapturado(1)" [checked]="si"> Si</h4>
+        <h4 class="checkbox" style="margin-left: 10px; float: right; margin-top: 5px; margin-bottom: 2px;"><input type="checkbox" formControlName="clientes"
+            (click)="onValorCapturado(2)" [checked]="no"> No</h4>
+        <small class="invalid" *ngIf="forma.controls.clientes.errors?.required &&
+          forma.controls.clientes.touched">
+          Este campo es requerido
+        </small>
+      </div>
+
+      <hr>
+
+      <h4 class="mb-1">Desea dejar comentario?</h4>
+      <input style="margin-top: 10px;" type="text" class="input" placeholder="Comentarios" formControlName="comentario" value="total">
+
+      <hr>
+
+      <ion-button style="margin: 0px;" (click)="sacarFoto()"><ion-icon name="cloud-upload-outline"></ion-icon>Subir imagen</ion-button>
+      <hr>
+
+      <!-- <button type="submit" *ngIf="forma.valid" class="boton">Enviar</button> -->
+      <ion-button style="margin-left: 2.3rem;" [disabled]="forma.invalid" expand="block" type="submit">Ingresar</ion-button>
+      <ion-button style="margin: 0px; --background: #ef5e5e; color: white; " type="button" (click)="Saltear()">SALTEAR</ion-button>
+
+    </form>
+
+    <!-- <ion-fab horizontal="end" vertical="top" slot="fixed">
+      <ion-fab-button color="dark">
+        <ion-icon (click)="sacarFoto()" name="cloud-upload-outline"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab> -->
+  </ion-content>
+
+
+
+</body>

@@ -1,0 +1,146 @@
+<ion-content [ngClass]="scanActivo?'scanner-activo':''">
+  <ion-header class="bg-dark" style="height: 45px;" >
+    <ion-toolbar style="height: 45px;">
+      <ion-buttons slot="start">
+        <a routerLink="/menu-altas"><ion-icon style="color: white; font-size: 25px; margin-left: 7px;" name="arrow-back-outline"></ion-icon></a> 
+      </ion-buttons>
+      
+      <ion-title class="ion-text-center">
+        Alta Dueño / Supervisor
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="spinner" *ngIf="this.spinner">
+    <img src="../../assets/spinner.png " width="60%" [ngClass]="{'rotate-center' : this.spinner}" />
+  </div>
+
+  <!-- <img class="imagen_usuario" src="{{src_imagen}}" *ngIf="!scanActivo" /> -->
+  <img *ngIf="!scanActivo" style="
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: .8rem;
+  margin-bottom: .8rem;
+  border: 1px solid #000;
+  border-radius: 50%;
+  box-shadow: 2px 2px 8px #000;
+" (click)="sacarFoto()" src="{{src_imagen}}" alt="foto usuario" />
+  <p *ngIf="src_imagen == '../../../assets/anonimo.png' || !scanActivo" class="text-center" style="color: black;">
+    *Agregue foto (click
+    en
+    el logo)*</p>
+
+  <form [formGroup]="forma" (ngSubmit)="registrar()" *ngIf="!scanActivo"
+    style="width: 90%; display: block; margin-left: auto; margin-right: auto">
+
+    <div class="container">
+      <div class="row">
+        <div class="col" style="padding: 0px; padding-right: 2.5px;">
+          <!-- INPUT NOMBRE -->
+          <input type="text" formControlName="nombre" class="input" placeholder="Nombre" />
+          <small class="invalid" *ngIf="forma.controls.nombre.errors?.required &&
+    forma.controls.nombre.touched">
+            El nombre es requerido
+          </small>
+        </div>
+        <div class="col" style="padding: 0px; padding-left: 2.5px;">
+          <!-- INPUT APELLIDO -->
+          <input type="text" formControlName="apellido" class="input" placeholder="Apellido" />
+          <small class="invalid" *ngIf="forma.controls.apellido.errors?.required &&
+    forma.controls.apellido.touched">
+            El apellido es requerido
+          </small>
+        </div>
+      </div>
+    </div>
+    <!-- INPUT DNI -->
+    <input type="number" formControlName="dni" class="input" placeholder="DNI" />
+    <small class="invalid" *ngIf="forma.controls.dni.errors?.required &&
+    forma.controls.dni.touched">
+      El DNI es requerido
+    </small>
+    <small class="invalid" *ngIf="forma.controls.dni.errors?.pattern &&
+    forma.controls.dni.touched">
+      El DNI solo puede contener numeros
+    </small>
+    <!-- INPUT CUIL -->
+    <input type="number" formControlName="cuil" class="input" placeholder="CUIL" />
+    <small class="invalid" *ngIf="forma.controls.cuil.errors?.required &&
+    forma.controls.cuil.touched">
+      El CUIL es requerido
+    </small>
+    <small class="invalid" *ngIf="forma.controls.cuil.errors?.pattern &&
+    forma.controls.cuil.touched">
+      El CUIL solo puede contener numeros
+    </small>
+
+    <!-- INPUT EMAIL -->
+    <input type="text" formControlName="email" class="input" placeholder="Correo Electrónico" />
+    <small class="invalid" *ngIf="forma.controls.email.errors?.required &&
+  forma.controls.email.touched">
+      El Correo Electrónico es requerido
+    </small>
+
+    <!-- INPUT CONTRASEÑA 1-->
+    <input type="password" formControlName="contrasena1" class="input" placeholder="Contraseña" />
+    <small class="invalid" *ngIf="forma.controls.contrasena1.errors?.required &&
+  forma.controls.contrasena1.touched">
+      La contraseña es requerida
+    </small>
+    <!-- INPUT CONTRASEÑA 2-->
+    <input type="password" formControlName="contrasena2" class="input" placeholder="Confirmar contraseña" />
+    <small class="invalid" *ngIf="forma.controls.contrasena2.errors?.required &&
+  forma.controls.contrasena2.touched">
+      La contraseña es requerida
+    </small>
+    <small class="invalid" *ngIf="this.forma.get('contrasena1').value!=this.forma.get('contrasena2').value">
+      Las contraseñas deben coincidir
+    </small>
+    <!-- INPUT PERFIL -->
+    <select class="form-select" formControlName="perfil" placeholder="Perfil" style="margin-top: 10px; margin-bottom: 22px;">
+      <option value="">Seleccione el perfil...</option>
+      <option value="dueño">Dueño</option>
+      <option value="supervisor">Supervisor</option>
+    </select>
+    <small class="invalid" *ngIf="forma.controls.perfil.errors?.required &&
+      forma.controls.perfil.touched">
+      El Perfil es requerido
+    </small>
+
+
+    <!-- <button type="submit" class="boton boton-registrar shake-horizontal" [disabled]="forma.invalid" *ngIf="forma.valid">
+      Registrar
+    </button> -->
+
+    <ion-button style="margin-right: 5px; margin-top: 28px;" (click)="escanearDocumento()" expand="block"><ion-icon
+        id="logoLogIn" name="qr-code"></ion-icon>Escanear DNI</ion-button>
+    <ion-button [disabled]="forma.invalid" expand="block" type="submit" style="margin-top: 20px;"><ion-icon
+        id="logoLogIn" name="person-add-outline"></ion-icon>Registrar</ion-button>
+  </form>
+
+  <!-- <ion-fab [ngClass]="faltaFoto?'shake-horizontal':''" horizontal="end" vertical="top" slot="fixed" *ngIf="!scanActivo">
+    <ion-fab-button color="dark">
+      <ion-icon name="cloud-upload-outline"></ion-icon>
+    </ion-fab-button> -->
+
+  <!-- <ion-fab-list side="bottom">
+      <ion-fab-button color="dark" (click)="sacarFoto()"><ion-icon name="camera-outline"></ion-icon></ion-fab-button>
+      <ion-fab-button color="dark" (click)="escanearDocumento()"><ion-icon
+          name="qr-code-outline"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab> -->
+
+  <!-- VISTA DEL ESCANER DE QR -->
+  <div *ngIf="scanActivo">
+    <div class="scan">
+      <div class="qrcode"></div>
+      <div class="border"></div>
+    </div>
+    <h3 class="scanH3">Escaneando QR...</h3>
+    <button class="boton" (click)="pararScan()">Detener</button>
+  </div>
+</ion-content>

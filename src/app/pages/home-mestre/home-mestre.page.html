@@ -1,0 +1,86 @@
+<ion-content>
+  <div class="header">
+    <ion-toolbar>
+      <ion-title *ngIf="this.auth.UsuarioActivo.perfil !='supervisor'" class="ion-text-center">METRE</ion-title>
+      <ion-title *ngIf="this.auth.UsuarioActivo.perfil =='supervisor'" class="ion-text-center">DUEÑO</ion-title>
+    </ion-toolbar>
+
+    <ion-fab horizontal="start" vertical="top" slot="fixed" (click)="cerrarSesion()">
+      <ion-fab-button color="white">
+        <ion-icon name="log-out-outline" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  
+  <div *ngIf="this.auth.UsuarioActivo.perfil !='supervisor' ">
+    <div class="container-default">
+      <h1>LISTA DE ESPERA</h1>
+      <img class="neko" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjZocWJqc3BjNWNkdGd1NjFueGZ5YmpuNDI2Njc5Y2s0dGMwY3kybCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KfxPgR9Xb6lRvlFa8x/giphy.gif">
+    </div>
+    <br>
+    <div style="text-align:center">
+      
+      <h1 class="texto" style="margin-top: 40%;" *ngIf="listadoClientes.length == 0">No hay clientes para acomodar</h1>
+          <div class="card_producto"  *ngFor="let cliente of listadoClientes">
+            
+           <div>
+             <div>
+               <h3 style="color: aliceblue;">{{cliente.nombre}}</h3>
+             </div>
+  
+             <img class="img-producto" src="{{cliente.foto}}">
+  
+             <div *ngIf="cliente.mesaAsignada==null">
+              <h3 style="font-size: 18px;">ASIGNAR MESA</h3>
+     
+              <div class="div_botones_mesas">
+                <button (click)="asignarMesa(cliente,mesa.numero)" class="boton boton_mesa" *ngFor="let mesa of mesasDisponibles">{{mesa.numero}}</button>
+              </div>
+            </div>
+  
+  
+            <div *ngIf="cliente.mesaAsignada!=null">
+              <br>
+              <h3 >El cliente ya tiene una mesa asignada</h3>
+            </div>
+           </div>
+         </div> 
+    </div>
+  </div>
+
+  <div *ngIf="this.auth.UsuarioActivo.perfil=='supervisor'">
+    <div style="text-align:center">
+
+      <h1 class="texto" *ngIf="listadoClientesReservas.length == 0">No hay reservas por acomodar</h1>
+      <div class="card_producto" *ngFor="let cliente of listadoClientesReservas">
+
+        <img class="img-producto" src="{{cliente.foto}}">
+        <div>
+          <div>
+            <h3>Cliente: {{cliente.nombre}}</h3>
+            <h3>Dia: {{cliente.dia | timestampDate }}</h3>
+            <h3>Hora: {{cliente.horario}}</h3>
+          </div>
+
+          <div *ngIf="cliente.mesaAsignada==null">
+            <h3>Seleccione la mesa a asignar a la reserva o rechache la misma</h3>
+            <div class="div_botones_mesas">
+              <button (click)="AsignarMesaReserva(cliente,mesa)" class="boton boton_mesa"
+                *ngFor="let mesa of mesasDisponiblesReservas">{{mesa.numero}}</button>
+            </div>
+            <div>
+              <button (click)="rechazarReserva(cliente)" class="mt-2 border-1 text-white btn btn-danger">Rechazar Reserva</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="cliente.mesaAsignada!=null">
+          <h3>La reserva ya tiene una mesa asignada</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+
+<app-loading *ngIf="isLoading"></app-loading>

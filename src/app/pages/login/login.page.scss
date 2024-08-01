@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+
+
+small
+{
+    background-color: #F27405;
+    color: white;
+    padding: 0 5px;
+}
+
+.contenedor-spinner
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.popup
+{
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    backdrop-filter: blur(3px);
+    background-color: #F27405;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2vh;
+}
+
+.popup ion-button
+{
+    --background:#F27405;
+}
+
+
+ion-fab ion-fab-button
+{
+    width: 115px;
+    --border-radius: 5%;
+    --background: #F27405;
+}
+
+ion-fab ion-icon
+{
+    padding-right: 2vw;
+}
+
+ion-fab ion-fab-list ion-button
+{
+    --background: #F27405;
+    width: 150px;
+}
+
+.audioFab {
+    ion-fab-button {
+        --border-radius: 100%;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+  /* Container Styles */
+  .container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F2; /* customWhite */
+    padding: 0;
+  }
+  
+  .logo-container {
+    height: 35%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F2F2F2; /* customWhite */
+  }
+  
+  .logo {
+    height: 200px;
+    width: 200px;
+  }
+  
+  .form-container {
+    height: 70%;
+    width: 100%;
+    background-color: #F27405; /* customOrange4 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 60px;
+    gap: 30px;
+    padding-top: 24px;
+  }
+  
+  .header {
+    padding: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header h1 {
+    color: #F2F2F2; /* customWhite */
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  /* Input Group Styles */
+  .input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: -16px;
+  }
+  
+  .input-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .input {
+    width: 100%;
+    height: 48px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #F2F2F2; /* customWhite */
+    color: #F2F2F2; /* customWhite */
+    padding: 8px 0;
+    font-size: 110%;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .input::placeholder {
+    color: #F2F2F2; /* customWhite */
+    font-weight: lighter;
+    transition: all 0.3s ease;
+  }
+  
+  .input:focus::placeholder {
+    color: transparent;
+  }
+  
+  .label {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: #F2F2F2; /* customWhite */
+    font-size: 1.25rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .input:focus + .label,
+  .input:not(:placeholder-shown) + .label {
+    opacity: 1;
+    transform: translateY(-2rem); /* Ajustar según sea necesario */
+  }
+  
+  /* Button Styles */
+  .button-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-button {
+    width: 100%;
+    height: 52px;
+    background-color: #F2F2F2; /* customWhite */
+    color: #F27405; /* customOrange4 */
+    font-weight: bold;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 120%;
+  }
+  
+  .login-button:hover {
+    background-color: #F29F05; /* customOrange2 */
+    color: #F2F2F2; /* customWhite */
+  }
+  
+  /* Register Styles */
+  .register-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-bottom: 50px;
+  }
+  
+  .register-text {
+    color: #F2F2F2; /* customWhite */
+    font-weight: bold;
+  }
+  
+  .register-link {
+    color: #F2B705; /* customOrange1 */
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .register-link:active {
+    color: #F2F2F2; /* customWhite */
+  }
+  
+  /* Fast Login Styles */
+  .fast-login-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .fast-login-button {
+    padding: 12px;
+    background-color: #F29F05; /* customOrange2 */
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .fast-login-button:hover {
+    padding: 8px;
+    background-color: #F2F2F2; /* customWhite */
+  }
+  
+  .fast-login-icon {
+    height: 36px;
+    width: 36px;
+  }
+  
+  .google-btn {
+    padding: 15px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid white;
+  }
+  

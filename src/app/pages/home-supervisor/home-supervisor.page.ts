@@ -42,17 +42,6 @@ export class HomeSupervisorPage implements OnInit {
 
   cargarClientes() {
     this.listaClientes = [];
-    
-    this.firebaseServ.traerClientes().subscribe((clientes: any) => {
-      this.listaClientes = [];
-      
-      clientes.forEach((c) => {
-        if (c.tipo == 'registrado') {
-          this.listaClientes.push(c);
-          console.log(this.listaClientes);
-        }
-      });
-    });
   }
 
   aceptarCliente(clienteAceptado: any) {

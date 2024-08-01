@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  
+  <ion-toolbar>
+    <ion-title class="ion-text-center">DUEÑO/SUPERVISOR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab *ngIf="!spinnerActivo"  vertical="start" horizontal="end" >
+  <ion-fab-button color="none" (click)="popup = true" class="sin-fondo">
+    <img class="imagen-cerrar-sesion" src="../../../../assets/inicio-cliente/cerrar-sesion.png" alt="Cerrar sesión">
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true" >
+  <section *ngIf="opcion == 0">
+    <div class="tabla">
+      <div class="encabezado-tabla">
+          <img class="logo" src="../../../../assets/icon/icon.png" alt="Icono empresa">
+          <h3>{{title}}</h3>
+      </div>
+      <div class="seccion-tabla">
+          <table>
+              <thead>
+                  <tr>
+                      <th>IMAGEN</th>
+                      <th>NOMBRE</th>
+                      <th>CORREO</th>
+                      <th>ACCIÓN</th>
+                  </tr>
+              </thead>
+              <tbody *ngIf="listaClientes.length > 0">
+                  <tr *ngFor="let cliente of listaClientes" >
+                    <td><img [src]="cliente.rutaFoto" alt="Imagen cliente"></td>
+                    <td>{{cliente.nombre}}<br>{{cliente.apellido}}</td>
+                    <td>{{cliente.email}}</td>
+                    <td>
+                      <div class="botonera">
+                        <ion-button class="boton-aceptar" (click)="aceptarCliente(cliente)"></ion-button>
+                        <ion-button class="boton-denegar" (click)="accionRechazar(cliente)"></ion-button>
+                      </div>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+          <div class="sinClientes-container" *ngIf="listaClientes.length == 0">
+            <img class="logo" src="../../../../assets/icon/icon.png" alt="Icono empresa">
+            <h6>No hay usuarios por ser aprobados</h6>
+          </div>
+      </div>
+      <div id="contenedor-pop-up" class="esconder pop-up">
+        <form [formGroup]="formPopUp" (ngSubmit)="rechazarCliente()">
+          <h4>Razones del rechazo</h4>
+          <input formControlName="razones" class="input-razones" type="text" placeholder=" Explicar razones">
+          <small
+                class="mensaje-error"
+                *ngIf="
+                formPopUp.controls['razones'].errors?.['required'] &&
+                (formPopUp.controls['razones'].touched || razonesTouched)">
+                Debe indicar las razones
+          </small>
+          <small
+              class="mensaje-error"
+              *ngIf="formPopUp.controls['razones'].errors?.['minlength'] ||
+                      (formPopUp.controls['razones'].errors?.['maxLength'] &&
+                      formPopUp.controls['razones'].touched)">
+                Debe tener un mínimo de 10 carácteres y máximo 40    
+          </small>
+          <div class="botonera">
+            <ion-button class="boton-razones" type="submit">Enviar</ion-button>
+            <ion-button class="boton-razones" type="button" (click)="cancelarRechazo()">Cancelar</ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="div_cambio_vista">
+    <button (click)="opcion = 0; title = 'CLIENTES EN ESPERA'" class="boton boton_mesa" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+      </svg>
+      Clientes en espera
+    </button>
+    <button  routerLink="/home-mestre"  class="boton boton_mesa">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+      </svg>
+      Reservas en espera
+    </button>
+    <button routerLink="/register-mesa" class="boton boton_mesa" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+      </svg>
+      Alta mesa
+    </button>
+  </div>
+  
+  <div class="contenedor-spinner" *ngIf="spinnerActivo">
+    <app-loading></app-loading>
+  </div>
+  <div class="popup" *ngIf="popup">
+    <h4>¿Desea cerrar sesión?</h4>
+    <div class="botonera-popup">
+      <ion-button (click)="popup = false">CANCELAR</ion-button>
+      <ion-button (click)="cerrarSesion()">ACEPTAR</ion-button>
+    </div>
+  </div>
+</ion-content>

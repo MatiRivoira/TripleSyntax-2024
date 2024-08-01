@@ -1,0 +1,27 @@
+
+.fab-vertical-top {
+    color: white;
+    top: 10px;
+}
+ion-fab-button {
+    --top: 0;
+    --background: transparent;
+    --color: white ;
+    --box-shadow: none;
+}
+
+ion-toolbar {
+    --background: #F27405;
+    height: fit-content;
+    color: white;
+    padding: 5px;
+    border-radius: 0px 0px 30px 30px;
+}
+
+.reserva {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}

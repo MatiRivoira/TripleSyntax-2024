@@ -1,0 +1,384 @@
+
+ion-content {
+    --background: rgb(240, 240, 240);
+}
+
+
+ion-header,ion-toolbar
+{
+    --background:  #F27405;
+}
+
+ion-header ion-toolbar ion-title,h3, th
+{
+    letter-spacing: 1px;
+}
+
+.imagen-cerrar-sesion
+{
+    width: 40px;
+}
+
+.sin-fondo {
+    --box-shadow: none;  
+}
+
+.tabla
+{
+    width: 100%;
+    background-color: #F27405;
+}
+
+.encabezado-tabla2
+{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.85rem;
+    background-color: rgb(240,240,240);
+}
+
+.botonAlta{
+    width: 60%;
+    margin-top: 5%;
+    background-color: #F2F2F2; /* customWhite */
+    --background: #F27405; /* customOrange4 */
+    font-weight: bold;
+    border-radius: 9999px;
+    --border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+}
+
+.encabezado-tabla
+{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.85rem;
+    background-color: rgb(240,240,240);
+}
+
+.encabezado-tabla h3
+{
+    color: #000000;
+}
+
+
+.seccion-tabla
+{
+    overflow: auto;
+}
+
+
+table
+{
+    width: 100%;
+    table-layout: fixed;
+    min-width: 22rem;
+}
+
+thead th
+{
+    position: sticky;
+    top: 0;
+    background-color: #F27405;
+    color: #020508;
+    font-size: 0.938rem;
+}
+
+
+
+th,td{
+    border-bottom: 0.063rem solid #070000;
+    padding: 0.625rem 0.65rem;
+    word-break: break-all;
+    text-align: center;
+}
+
+td img
+{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 0.938rem;
+    border: 0.313rem solid #ced0d2;
+}
+
+.logo
+{
+    width: 60px;
+}
+
+
+tr:hover{
+    color: #000c0c;
+    cursor: pointer;
+    background-color: #fac2c0;
+}
+
+
+::placeholder
+{
+    color: #eb8b8b;
+}
+
+::-webkit-scrollbar{
+    height: 0.313rem;
+    width: 0.313rem;
+}
+
+::-webkit-scrollbar-track{
+    box-shadow: inser 0 0 0.375rem rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb
+{
+    box-shadow: inser 0 0 0.375rem rgba(0,0,0,0.3);
+}
+
+tbody tr
+{
+    height: 25vh;
+}
+
+tbody tr td
+{  
+    height: 100%;
+}
+
+
+.botonera
+{
+    height: 18vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.boton-aceptar
+{
+    background-image: url('/assets/dueno-supervisor/aceptar.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    --background: transparent;
+    background-color: transparent;
+    --box-shadow: none;
+    transform: scale(1.8); 
+    -ms-transform: scale(1.8); 
+    -webkit-transform: scale(1.8);
+}
+
+.boton-denegar
+{
+    background-image: url('/assets/dueno-supervisor/rechazar.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    --background: transparent;
+    background-color: transparent;
+    --box-shadow: none;
+    transform: scale(1.8); 
+    -ms-transform: scale(1.8); 
+    -webkit-transform: scale(1.8);
+}
+
+form
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.pop-up
+{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(241, 206, 206, 0.5);
+  align-content: center;
+  text-align: center;
+  border: 0.188rem solid black;
+  border-radius: 0.625rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 40%;
+  min-height: 15rem;
+  width: 80%;
+  color: rgb(253, 253, 253);
+  backdrop-filter: blur(0.625rem);
+}
+
+.esconder
+{
+    display: none;
+}
+
+.input-razones
+{
+    width: 80%;
+    color: black;
+    border-radius: 20px;
+    border-color: black;
+    height: 15%;
+    background-color: white;
+}
+
+.pop-up h4
+{
+    color: #1b1919;
+    font-weight: bold;
+}
+
+.input-razones::placeholder
+{
+    color:black;
+}
+
+
+
+
+.boton-razones {
+    background-color: #F27405;
+    --background: transparent;
+    --box-shadow: none;
+    color: rgb(19, 18, 18);
+    border: none;
+    padding: 10px 40px;
+    border-radius: 10px;
+    width: 65%;
+    font-size: 16px;
+    min-height: 2.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  
+  small
+{
+    background-color: #F27405;
+    color: white;
+    padding: 0 5px;
+}
+
+
+
+/*   POP UP  */
+.popup
+{
+    position: absolute;
+    width: 80%;
+    height: 25%;
+    backdrop-filter: blur(3px);
+    background-color: #F27405;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2vh;
+}
+
+.popup ion-button
+{
+    --background: #F27405;
+}
+
+.botonera-popup
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+/* SPINNER  */
+.contenedor-spinner
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.sinClientes-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 200px;
+        opacity: 0.5;
+    }
+
+    h6 {
+        margin-top: -10px;
+        color: #333;
+        font-weight: 600;
+        opacity: 0.5;
+    }
+}
+
+.div_cambio_vista
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+    padding: 3%;
+}
+
+.boton
+{
+    display: flex;
+    background-color: #F27405;
+    color: white;
+    border-radius: 30px;
+    padding: 12px;
+    border-style: solid;
+    border-width: 2px;
+    font-weight: 700;
+    font-size: 13px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton_mesa
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 48%;
+}

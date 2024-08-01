@@ -78,8 +78,6 @@ export class LoginPage implements OnInit {
       if (this.authService.UsuarioActivo.perfil == 'empleado') {
         this.presentToast('Exito!', 'success', 'thumbs-up-outline');    
         this.sonidoInicio.play();  
-        console.log(this.authService.UsuarioActivo.tipo);
-        
         switch(this.authService.UsuarioActivo.tipo)
         {
           case "mozo":
@@ -104,17 +102,7 @@ export class LoginPage implements OnInit {
 
 
       } else if (this.authService.UsuarioActivo.perfil == 'cliente') {
-        if (this.authService.UsuarioActivo.aprobado) {
           this.router.navigate(['home-cliente']);
-        } else {
-          this.presentToast(
-            'Tu cuenta debe ser aprobada',
-            'warning',
-            'alert-circle-outline'
-          );
-          this.vibration.vibrate(1000);
-          this.authService.LogOut();
-        }
       } else if (
         this.authService.UsuarioActivo.perfil == 'supervisor' ||
         this.authService.UsuarioActivo.perfil == 'dueño'

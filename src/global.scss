@@ -30,11 +30,6 @@ body.scanner-active {
     --ion-background-color: transparent;
   }
 
-.ion-color-warning {
-  --ion-color-base: #F27405 !important;
-  color: white;
-}
-
-ion-content {
-  --background: #F2F2F2;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

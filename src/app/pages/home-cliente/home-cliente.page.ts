@@ -72,6 +72,9 @@ export class HomeClientePage implements OnInit {
     this.mostrarMenu = true;
     this.numeroMesa = 1;
     // -------------------------------------------------------------------
+
+    console.log(this.auth.UsuarioActivo);
+    
   }
   async escanearDocumento() {
     document.querySelector('body').classList.add('scanner-active');

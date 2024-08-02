@@ -19,7 +19,6 @@
     </div>
     <br>
     <div style="text-align:center">
-      <img class="logo" *ngIf="listadoClientesReservas.length == 0" src="/assets/icon/icon.png" alt="Icono empresa">
       <h1 class="texto" style="margin-top: 40%;" *ngIf="listadoClientes.length == 0">No hay clientes para acomodar</h1>
           <div class="card_producto"  *ngFor="let cliente of listadoClientes">
             
@@ -51,14 +50,16 @@
   <div *ngIf="this.auth.UsuarioActivo.perfil=='supervisor'">
     <div style="text-align:center">
 
-      <img class="logo" *ngIf="listadoClientesReservas.length == 0" src="/assets/icon/icon.png" alt="Icono empresa">
-      <h1 class="texto" *ngIf="listadoClientesReservas.length == 0">No hay reservas por acomodar</h1>
+      <div style="display: flex; align-items: center; width: 100%;">
+        <img class="logo" *ngIf="listadoClientesReservas.length == 0" src="/assets/icon/icon.png" alt="Icono empresa">
+        <h1 class="texto" *ngIf="listadoClientesReservas.length == 0">No hay reservas por acomodar</h1>
+      </div>
       <div class="card_producto" *ngFor="let cliente of listadoClientesReservas">
 
         <img class="img-producto" src="{{cliente.foto}}">
         <div>
           <div>
-            <h3>Cliente: {{cliente.nombre}}</h3>
+            <h3>Cliente: ClientePrueba</h3>
             <h3>Dia: {{cliente.dia | timestampDate }}</h3>
             <h3>Hora: {{cliente.horario}}</h3>
           </div>

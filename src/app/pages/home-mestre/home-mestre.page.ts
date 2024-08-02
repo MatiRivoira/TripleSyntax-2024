@@ -29,22 +29,22 @@ export class HomeMestrePage implements OnInit {
 
     this.mesasSrv.desasignarCliente(3);
     //this.fire.BorrarCollection("lista-de-espera");
-  //  ` this.mesasSrv.borrarDeListaEspera(
-  //     {
-  //         "estado": "aprobadaReserva",
-  //         "horario": "20:59",
-  //         "tipoLista": "reserva",
-  //         "escanioQrLocal": true,
-  //         "dia": {
-  //             "seconds": 1722988740,
-  //             "nanoseconds": 844000000
-  //         },
-  //         "estaEnLaLista": true,
-  //         "perfil": "cliente",
-  //         "id": "SFscOaJR2KPHDASqSnOOEfTu2BS2",
-  //         "mesaAsignada": 1
-  //     }
-  // );`
+    //   this.mesasSrv.borrarDeListaEspera(
+    //     {
+    //         "estado": "aprobadaReserva",
+    //         "horario": "20:59",
+    //         "tipoLista": "reserva",
+    //         "escanioQrLocal": true,
+    //         "dia": {
+    //             "seconds": 1722988740,
+    //             "nanoseconds": 844000000
+    //         },
+    //         "estaEnLaLista": true,
+    //         "perfil": "cliente",
+    //         "id": "SFscOaJR2KPHDASqSnOOEfTu2BS2",
+    //         "mesaAsignada": 1
+    //     }
+    // );
     this.pushService.getUser(); 
     this.mesasSrv.traerListaEspera().subscribe((clientes)=>
     {
@@ -92,7 +92,7 @@ export class HomeMestrePage implements OnInit {
             }
           });
         }
-       // console.log(((diaActual.getTime() - diaPedido.getTime()) / (1000 * 60)));
+        // console.log(((diaActual.getTime() - diaPedido.getTime()) / (1000 * 60)));
         //console.log(((diaActual.getTime() - diaPedido.getTime()) / (1000 * 60)) > 1);
         if (((diaActual.getTime() - diaPedido.getTime()) / (1000 * 60)) > 2 && unaLista.estado != "usada") {
           console.log("limpie Reservas ya vencidas");
@@ -140,6 +140,8 @@ export class HomeMestrePage implements OnInit {
     console.log("Mesa de la reserva :" + JSON.stringify(mesa));
     let listadoConReserva = unaLista;
     listadoConReserva.estado = "aprobadaReserva";
+    console.log(listadoConReserva, mesa);
+    
     await this.mesasSrv.AsignarMesaReserva(listadoConReserva, mesa);
   }
 

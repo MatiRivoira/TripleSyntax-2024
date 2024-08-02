@@ -19,6 +19,7 @@ export class ReservaComponent implements OnInit {
   tokenSupervisor: string[] = [];
 
   reservasHechas:any[] = [{hora: 0}];
+  reservasAprobadas:any;
 
   constructor(private auth: AuthService, private firebase: FirestoreService, private notificationS: NotificacionesService, private push: PushService) { }
 
@@ -129,6 +130,7 @@ export class ReservaComponent implements OnInit {
     const fechasRestantes = listaFechas.filter(fecha => !fechasARestar.some(fechaARestar => fecha.getTime() === fechaARestar.getTime()));
     return fechasRestantes;
   }
+
   async ngOnInit(): Promise<void> {
     console.log("usuario act:", this.auth.UsuarioActivo);
     this.diasTurnos = this.obtenerSiguientesSieteDias();
@@ -136,6 +138,11 @@ export class ReservaComponent implements OnInit {
       this.tokenSupervisor = supervisores.filter((supervisor) => supervisor.token !== '').map((supervisor) => supervisor.token);
       console.log('TOKENS', this.tokenSupervisor);
     });
+
+    this.firebase.getDocuments("lista-de-espera").subscribe(res => {
+      console.log(res);
+      
+    })
   }
 
   divideDayIntoSegments(segmentDuration: number): string[] {

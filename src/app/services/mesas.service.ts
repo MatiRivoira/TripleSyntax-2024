@@ -213,21 +213,21 @@ export class MesasService {
 
   async AsignarMesaReserva(lista: any, mesa: any) {
     if (lista) {
-      const clienteActivoValue = "cliente@cliente.com" || "ClientePrueba";
       try {
         // Actualizar la mesa
-        await this.afs.collection('mesas').doc(mesa.id).update({ ...mesa, clienteActivo: clienteActivoValue });
+        await this.afs.collection('mesas').doc(mesa.id).update({ ...mesa, clienteActivo: "cliente@cliente.com" });
   
         // Buscar y actualizar la entrada correspondiente en la lista de espera
         const listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
-          ref.where('id', '==', lista.id)
+          ref.where('id', '==', lista.uid)
              .where('horario', '==', lista.horario)
              .where('dia', '==', lista.dia)
         );
   
         // Obtener los documentos que coincidan con las condiciones
         const snapshot = await listaEsperaRef.get().toPromise();
-  
+        console.log(mesa.numero);
+        
         snapshot.forEach(async doc => {
           // Actualizar el documento encontrado
           await this.afs.collection('lista-de-espera').doc(doc.id).set({

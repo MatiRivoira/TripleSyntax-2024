@@ -218,17 +218,29 @@ export class MesasService {
         await this.afs.collection('mesas').doc(mesa.id).update({ ...mesa, clienteActivo: "cliente@cliente.com" });
   
         // Buscar y actualizar la entrada correspondiente en la lista de espera
-        const listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
-          ref.where('id', '==', lista.uid)
+        console.log(lista.uid);
+
+        var listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
+          ref.where('id', '==', lista.id)
              .where('horario', '==', lista.horario)
              .where('dia', '==', lista.dia)
         );
+        if (lista.uid) {
+          listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
+            ref.where('uid', '==', lista.uid)
+               .where('horario', '==', lista.horario)
+               .where('dia', '==', lista.dia)
+          );
+        }
+        
   
         // Obtener los documentos que coincidan con las condiciones
         const snapshot = await listaEsperaRef.get().toPromise();
         console.log(mesa.numero);
         
         snapshot.forEach(async doc => {
+          console.log(doc);
+          
           // Actualizar el documento encontrado
           await this.afs.collection('lista-de-espera').doc(doc.id).set({
             estado: lista.estado,

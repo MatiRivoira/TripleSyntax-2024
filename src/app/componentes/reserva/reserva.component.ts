@@ -139,9 +139,8 @@ export class ReservaComponent implements OnInit {
       console.log('TOKENS', this.tokenSupervisor);
     });
 
-    this.firebase.getDocuments("lista-de-espera").subscribe(res => {
+    this.firebase.getDocumentsWhere("lista-de-espera", "estado", "aprobadaReserva").subscribe(res => {
       console.log(res);
-      
     })
   }
 

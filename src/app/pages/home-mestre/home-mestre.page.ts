@@ -136,12 +136,11 @@ export class HomeMestrePage implements OnInit {
     this.auth.LogOut();
   }
 
-  async AsignarMesaReserva(unaLista: any, mesa: any) {
+  async AsignarMesaReserva(cliente: any, mesa: any) {
     console.log("Mesa de la reserva :" + JSON.stringify(mesa));
-    let listadoConReserva = unaLista;
+    let listadoConReserva = cliente;
     listadoConReserva.estado = "aprobadaReserva";
-    console.log(listadoConReserva, mesa);
-    
+    console.log(listadoConReserva);
     await this.mesasSrv.AsignarMesaReserva(listadoConReserva, mesa);
   }
 

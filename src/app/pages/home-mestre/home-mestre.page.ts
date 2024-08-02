@@ -29,7 +29,22 @@ export class HomeMestrePage implements OnInit {
 
     this.mesasSrv.desasignarCliente(3);
     //this.fire.BorrarCollection("lista-de-espera");
-    
+  //  ` this.mesasSrv.borrarDeListaEspera(
+  //     {
+  //         "estado": "aprobadaReserva",
+  //         "horario": "20:59",
+  //         "tipoLista": "reserva",
+  //         "escanioQrLocal": true,
+  //         "dia": {
+  //             "seconds": 1722988740,
+  //             "nanoseconds": 844000000
+  //         },
+  //         "estaEnLaLista": true,
+  //         "perfil": "cliente",
+  //         "id": "SFscOaJR2KPHDASqSnOOEfTu2BS2",
+  //         "mesaAsignada": 1
+  //     }
+  // );`
     this.pushService.getUser(); 
     this.mesasSrv.traerListaEspera().subscribe((clientes)=>
     {

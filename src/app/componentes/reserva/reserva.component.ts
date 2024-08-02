@@ -30,9 +30,7 @@ export class ReservaComponent implements OnInit {
       let clienteAux = this.auth.UsuarioActivo;
       console.log("usuario act:", this.auth.UsuarioActivo);
       
-  
       if (clienteAux != null && this.horaSeleccionada) {
-  
   
         let hora = this.horaSeleccionada;
        

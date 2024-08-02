@@ -25,8 +25,6 @@ export class ReservaComponent implements OnInit {
 
 
   async pedirCitaA() {
-    console.log(this.reservasHechas[this.reservasHechas.length - 1].hora, this.horaSeleccionada);
-    
     if (`${this.reservasHechas[this.reservasHechas.length - 1].hora}` != this.horaSeleccionada) {
       let clienteAux = this.auth.UsuarioActivo;
       console.log("usuario act:", this.auth.UsuarioActivo);
@@ -115,7 +113,6 @@ export class ReservaComponent implements OnInit {
       const duracion = 40;
       let horarioDelDia = await this.divideDayIntoSegments(duracion);
       this.diaHorarios = horarioDelDia;
-      console.log(this.diaHorarios);
     }
     catch {
     }
@@ -141,7 +138,7 @@ export class ReservaComponent implements OnInit {
     });
 
     this.firebase.getDocumentsWhere("lista-de-espera", "estado", "aprobadaReserva").subscribe(res => {
-      console.log(res);
+      this.reservasAprobadas = res;
     })
   }
 
@@ -167,7 +164,6 @@ export class ReservaComponent implements OnInit {
       // Add the time range to the segments array
       segments.push(`${startTime} - ${endTime}`);
     }
-    console.log(segments);
     return segments;
   }
 

@@ -220,14 +220,16 @@ export class MesasService {
         // Buscar y actualizar la entrada correspondiente en la lista de espera
         console.log(lista.uid);
 
-        var listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
-          ref.where('id', '==', lista.id)
-             .where('horario', '==', lista.horario)
-             .where('dia', '==', lista.dia)
-        );
+        var listaEsperaRef;
         if (lista.uid) {
           listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
             ref.where('uid', '==', lista.uid)
+               .where('horario', '==', lista.horario)
+               .where('dia', '==', lista.dia)
+          );
+        } else {
+          listaEsperaRef = this.afs.collection('lista-de-espera', ref => 
+            ref.where('id', '==', lista.id)
                .where('horario', '==', lista.horario)
                .where('dia', '==', lista.dia)
           );

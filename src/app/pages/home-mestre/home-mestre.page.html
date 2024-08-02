@@ -56,7 +56,9 @@
       </div>
       <div class="card_producto" *ngFor="let cliente of listadoClientesReservas">
 
-        <img class="img-producto" src="{{cliente.foto}}">
+        <img class="img-producto" *ngIf="cliente.foto"  src="{{cliente.foto}}">
+        <img class="img-producto" *ngIf="!cliente.foto" src="https://www.cognodata.com/wp-content/uploads/2019/01/perfil-de-cliente-e1549901099803-1.jpg">
+        
         <div>
           <div>
             <h3>Cliente: {{cliente.nombre}}</h3>
@@ -68,7 +70,7 @@
             <h3>Seleccione la mesa a asignar a la reserva o rechache la misma</h3>
             <div class="div_botones_mesas">
               <button (click)="AsignarMesaReserva(cliente, mesa)" class="boton boton_mesa"
-                *ngFor="let mesa of mesasDisponiblesReservas">{{mesa.numero}}</button>
+                *ngFor="let mesa of mostrarMesasDisponibles(cliente)">{{mesa.numero}}</button>
             </div>
             <div>
               <button (click)="rechazarReserva(cliente)" class="mt-2 border-1 text-white btn btn-danger">Rechazar Reserva</button>
@@ -76,8 +78,8 @@
           </div>
         </div>
 
-        <div *ngIf="cliente.mesaAsignada!=null">
-          <h3>La reserva ya tiene una mesa asignada</h3>
+        <div *ngIf="verificarTiempoEspera(cliente)">
+          <h3>{{MensajeMASIG}}</h3>
         </div>
       </div>
     </div>

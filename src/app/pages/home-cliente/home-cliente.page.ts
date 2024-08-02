@@ -50,6 +50,11 @@ export class HomeClientePage implements OnInit {
             if (cliente.mesaAsignada != null) {
               this.numeroMesa = cliente.mesaAsignada;
               console.log(cliente.email);
+              if (this.numeroMesa) {
+                
+              }
+              console.log(this.numeroMesa);
+              
               this.presentToast('Se le asigno la mesa ' + this.numeroMesa + '!', 'success', 'thumbs-up-outline');
               this.estaEnLaLista = true;
             }
@@ -161,6 +166,8 @@ export class HomeClientePage implements OnInit {
                 {
                   this.scanActivo = false;
                   this.spinner = true;
+                  console.log(this.auth.UsuarioActivo);
+                  
                   await this.mesasService.asignarCliente(this.numeroMesa, this.auth.UsuarioActivo).then(() => {
                     this.escanerMesaOk = true;
                     this.ingreso = true;

@@ -18,14 +18,15 @@ export class ReservaComponent implements OnInit {
   public horaSeleccionada: string;
   tokenSupervisor: string[] = [];
 
-  reservasHechas:any;
+  reservasHechas:any[] = [{hora: 0}];
 
   constructor(private auth: AuthService, private firebase: FirestoreService, private notificationS: NotificacionesService, private push: PushService) { }
 
 
   async pedirCitaA() {
-
-    if (!this.reservasHechas) {
+    console.log(this.reservasHechas[this.reservasHechas.length - 1].hora, this.horaSeleccionada);
+    
+    if (`${this.reservasHechas[this.reservasHechas.length - 1].hora}` != this.horaSeleccionada) {
       let clienteAux = this.auth.UsuarioActivo;
       console.log("usuario act:", this.auth.UsuarioActivo);
       
@@ -46,7 +47,7 @@ export class ReservaComponent implements OnInit {
           this.diaSeleccionado.setHours(hours);
           this.diaSeleccionado.setMinutes(minutes);
           this.diaSeleccionado.setSeconds(0);
-          let diaReserva= this.diaSeleccionado;
+          var diaReserva= this.diaSeleccionado;
         const cita = {
           ...clienteAux,
           dia: diaReserva,
@@ -55,17 +56,19 @@ export class ReservaComponent implements OnInit {
           tipoLista: "reserva"
         }
         if (esMismoDia) {
-          let horaActual = diaActual.getHours() + ":" + diaActual.getMinutes();
+          var horaActual = diaActual.getHours() + ":" + diaActual.getMinutes();
   
           console.log("horas completas " + horaActual)
           if (this.compararHoras(horaActual, this.horaSeleccionada)) {
             this.notificationS.presentToast('Selecione un horario de reserva posible', "danger");
           } else {
+            this.reservasHechas.push({hora: this.horaSeleccionada, fecha: this.diaSeleccionado}); 
             this.notificationS.presentToast('Se ha reserva su turno ', "success");
             this.firebase.agregarAListaDeEspera(cita);
             this.enviarPushASupervisor();
           }
         } else {
+          this.reservasHechas.push({hora: this.horaSeleccionada, fecha: this.diaSeleccionado}); 
           this.notificationS.presentToast('Se ha reserva su turno ', "success");
           this.firebase.agregarAListaDeEspera(cita);
           this.enviarPushASupervisor();
@@ -86,12 +89,15 @@ export class ReservaComponent implements OnInit {
         }
       }
     } else {
-      this.notificationS.presentToast('Ya hiciste una reserva en ese horario', "danger");
+      this.notificationS.presentToast('Ya pediste una reserva en ese horario', "danger");
     }
  
   }
 
   compararHoras(horaActual: string, horaReserva: string): boolean {
+    if (horaActual == "0") {
+      return true;
+    }
     const partesHora1 = horaActual.split(':');
     const partesHora2 = horaReserva.split(':');
 

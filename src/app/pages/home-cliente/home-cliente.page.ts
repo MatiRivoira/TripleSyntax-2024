@@ -27,7 +27,7 @@ export class HomeClientePage implements OnInit {
   ingreso = false;
   clienteEncontrado: any = null;
   tokenMetres: string[] = [];
-  numeroMesa = 0;
+  numeroMesa:any = 0;
   escanerMesaOk = false;
 
   verReserva = false;
@@ -51,9 +51,8 @@ export class HomeClientePage implements OnInit {
               this.numeroMesa = cliente.mesaAsignada;
               console.log(cliente.email);
               var numero:any = this.numeroMesa;
-              if (Array.isArray(this.numeroMesa)) {
-                numero = this.numeroMesa;
-                numero = numero.numero;
+              if (this.numeroMesa.numero) {
+                numero = this.numeroMesa.numero;
               }
               if (this.numeroMesa == -1) {
                 this.presentToast('Su reserva expiro', 'danger', 'thumbs-up-outline');

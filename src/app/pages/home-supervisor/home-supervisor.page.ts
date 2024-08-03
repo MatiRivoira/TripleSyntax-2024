@@ -31,10 +31,10 @@ export class HomeSupervisorPage implements OnInit {
     this.formPopUp = this.formBuilder.group({
       razones: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(40)]]
     })
+    this.pushService.getUser();
   }
 
   async ngOnInit() {
-    this.pushService.getUser();
     this.cargarClientes();
   }
 

@@ -37,6 +37,8 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
 
 #### Dueño/supervisor
 <img width="200px" src="src/assets/readme/home_ds.jpg">
+<img width="200px" src="src/assets/readme/lista-reservas.jpg">
+<img width="200px" src="src/assets/readme/alta-mesa.jpg">
 
 #### Metre
 <img width="200px" src="src/assets/readme/home_metre.jpg">
@@ -51,9 +53,15 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
   </tr>
 </table>
 
+#### Bartender
+<img width="200px" src="src/assets/readme/home-bartender.jpg">
+<img width="200px" src="src/assets/readme/home-bartender2.jpg">
+<img width="200px" src="src/assets/readme/alta-producto.jpg">
 
 #### Cocinero
 <img width="200px" src="src/assets/readme/home_cocinero.jpg">
+<img width="200px" src="src/assets/readme/home_cocinero2.jpg">
+<img width="200px" src="src/assets/readme/alta-producto.jpg">
 
 #### Cliente
 
@@ -80,6 +88,7 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
     <td><img width="200px" src="src/assets/readme/cliente_13.jpg"></td>
     <td><img width="200px" src="src/assets/readme/cliente_14.jpg"></td>
     <td><img width="200px" src="src/assets/readme/cliente_15.jpg"></td>
+    <td><img width="200px" src="src/assets/readme/reserva.jpg"></td>
   </tr>
 </table>
 
@@ -96,3 +105,7 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
 ### Semana 3
 
 <img src="src/assets/readme/tareas_semana3.PNG" width="100%">
+
+### Recuperatorio
+
+<img src="src/assets/readme/tareas_semana4.PNG" width="100%">

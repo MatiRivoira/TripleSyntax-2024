@@ -29,7 +29,7 @@ export class HomeMestrePage implements OnInit {
 
     // this.mesasSrv.desasignarCliente(3);
     
-    //this.fire.BorrarCollection("lista-de-espera");
+    this.fire.BorrarCollection("lista-de-espera");
     //   this.mesasSrv.borrarDeListaEspera(
     //     {
     //         "estado": "aprobadaReserva",

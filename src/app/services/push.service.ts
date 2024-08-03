@@ -33,9 +33,8 @@ export class PushService {
 
   async inicializar(): Promise<void> {
     this.addListeners();
-    
     // Verificamos que este en un dispositivo y no en una PC y tambien que el usuario no tegna seteado el token
-    if (this.platform.is('capacitor')) {
+    if (this.platform.is('capacitor') && this.user.token === '') {
       const result = await PushNotifications.requestPermissions();
       if (result.receive === 'granted') {
         await PushNotifications.register();
@@ -44,15 +43,13 @@ export class PushService {
   }
 
   getUser(): void {
-    console.log(this.authS.UsuarioActivo);
-    
     this.afs
       .collection('usuarios')
-      .doc(this.authS.UsuarioActivo.id)
+      .doc(this.authS.UsuarioActivo.uid)
       .valueChanges()
       .subscribe((usuario) => {
         this.user = usuario;
-        console.log(this.user);
+        // console.log(this.user);
         // this.inicializar();
       });
     setTimeout(() => {

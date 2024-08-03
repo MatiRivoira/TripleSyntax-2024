@@ -23,7 +23,6 @@ export class ReservaComponent implements OnInit {
 
   constructor(private auth: AuthService, private firebase: FirestoreService, private notificationS: NotificacionesService, private push: PushService) { }
 
-
   async pedirCitaA() {
     if (`${this.reservasHechas[this.reservasHechas.length - 1].hora}` != this.horaSeleccionada) {
       let clienteAux = this.auth.UsuarioActivo;
@@ -181,7 +180,8 @@ export class ReservaComponent implements OnInit {
   }
 
   enviarPushASupervisor() {
-
+    console.log(this.tokenSupervisor);
+    
     this.push
       .sendPushNotification({
         registration_ids: this.tokenSupervisor,

@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
     this.user.contrasena = this.password;
     const user = await this.authService.onLogin(this.user);
     if (user != null) {
-      console.info('usuario encontrado: ', user);
+      console.info('usuario encontrado: ', user.user);
       await new Promise((f) => setTimeout(f, 1500));
       if (this.authService.UsuarioActivo.perfil == 'empleado') {
         this.presentToast('Exito!', 'success', 'thumbs-up-outline');    
@@ -86,7 +86,6 @@ export class LoginPage implements OnInit {
     
           case "metre":
             this.router.navigate(["home-mestre"])
-    
             break;
     
           case "bartender":

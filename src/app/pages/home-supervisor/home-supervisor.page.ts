@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailService } from 'src/app/services/email.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { PushService } from 'src/app/services/push.service';
 
 @Component({
   selector: 'app-home-supervisor',
@@ -25,13 +26,15 @@ export class HomeSupervisorPage implements OnInit {
   constructor(private firebaseServ: FirestoreService,
     private formBuilder: FormBuilder,
     private authServ: AuthService,
-    private emailService: EmailService,) {
+    private emailService: EmailService,
+    private pushService: PushService) {
     this.formPopUp = this.formBuilder.group({
       razones: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(40)]]
     })
   }
 
   async ngOnInit() {
+    this.pushService.getUser();
     this.cargarClientes();
   }
 

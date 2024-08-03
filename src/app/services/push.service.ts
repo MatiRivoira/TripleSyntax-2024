@@ -44,9 +44,11 @@ export class PushService {
   }
 
   getUser(): void {
+    console.log(this.authS.UsuarioActivo);
+    
     this.afs
       .collection('usuarios')
-      .doc(this.authS.UsuarioActivo.uid)
+      .doc(this.authS.UsuarioActivo.id)
       .valueChanges()
       .subscribe((usuario) => {
         this.user = usuario;

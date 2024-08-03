@@ -54,7 +54,7 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
 </table>
 
 #### Bartender
-<img width="200px" src="src/assets/readme/home-bartender.jpg">
+<img width="200px" src="src/assets/readme/home_bartender.jpg.jpg">
 <img width="200px" src="src/assets/readme/home-bartender2.jpg">
 <img width="200px" src="src/assets/readme/alta-producto.jpg">
 

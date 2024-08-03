@@ -58,7 +58,7 @@ export class HomeClientePage implements OnInit {
                 this.presentToast('Su reserva expiro', 'danger', 'thumbs-up-outline');
                 this.estaEnLaLista = false;
               } else {
-                this.presentToast('Se le asigno la mesa ' + numero + '!', 'success', 'thumbs-up-outline');
+                this.presentToast('Se le asigno la mesa ' + 1 + '!', 'success', 'thumbs-up-outline');
                 this.estaEnLaLista = true;
               }
             }

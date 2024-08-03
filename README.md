@@ -36,9 +36,13 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
 ### Vistas según el perfil
 
 #### Dueño/supervisor
-<img width="200px" src="src/assets/readme/home_ds.jpg">
-<img width="200px" src="src/assets/readme/lista-reservas.jpg">
-<img width="200px" src="src/assets/readme/alta-mesa.jpg">
+<table>
+  <tr>
+    <td><img width="200px" src="src/assets/readme/home_ds.jpg"></td>
+    <td><img width="200px" src="src/assets/readme/lista-reservas.jpg"></td>
+    <td><img width="200px" src="src/assets/readme/alta-mesa.jpg"></td>
+  </tr>
+</table>
 
 #### Metre
 <img width="200px" src="src/assets/readme/home_metre.jpg">
@@ -54,14 +58,24 @@ Este proyecto, denominado food, tiene como objetivo desarrollar una aplicación 
 </table>
 
 #### Bartender
-<img width="200px" src="src/assets/readme/home_bartender.jpg.jpg">
-<img width="200px" src="src/assets/readme/home-bartender2.jpg">
-<img width="200px" src="src/assets/readme/alta-producto.jpg">
+<table>
+  
+<tr>
+  <td><img width="200px" src="src/assets/readme/home_bartender.jpg"></td>
+  <td><img width="200px" src="src/assets/readme/home-bartender2.jpg"></td>
+  <td><img width="200px" src="src/assets/readme/alta-producto.jpg"></td>
+</tr>
+</table>
 
 #### Cocinero
-<img width="200px" src="src/assets/readme/home_cocinero.jpg">
-<img width="200px" src="src/assets/readme/home_cocinero2.jpg">
-<img width="200px" src="src/assets/readme/alta-producto.jpg">
+<table>
+<tr>
+  <td><img width="200px" src="src/assets/readme/home_cocinero.jpg"></td>
+  <td><img width="200px" src="src/assets/readme/home_cocinero2.jpg"></td>
+  <td><img width="200px" src="src/assets/readme/alta-producto.jpg"></td>
+</tr>
+ 
+</table>
 
 #### Cliente
 

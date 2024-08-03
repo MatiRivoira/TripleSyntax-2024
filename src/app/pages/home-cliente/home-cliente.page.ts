@@ -50,13 +50,18 @@ export class HomeClientePage implements OnInit {
             if (cliente.mesaAsignada != null) {
               this.numeroMesa = cliente.mesaAsignada;
               console.log(cliente.email);
-              if (this.numeroMesa) {
-                
+              var numero:any = this.numeroMesa;
+              if (Array.isArray(this.numeroMesa)) {
+                numero = this.numeroMesa;
+                numero = numero.numero;
               }
-              console.log(this.numeroMesa);
-              
-              this.presentToast('Se le asigno la mesa ' + this.numeroMesa + '!', 'success', 'thumbs-up-outline');
-              this.estaEnLaLista = true;
+              if (this.numeroMesa == -1) {
+                this.presentToast('Su reserva expiro', 'danger', 'thumbs-up-outline');
+                this.estaEnLaLista = false;
+              } else {
+                this.presentToast('Se le asigno la mesa ' + numero + '!', 'success', 'thumbs-up-outline');
+                this.estaEnLaLista = true;
+              }
             }
           }
         });
